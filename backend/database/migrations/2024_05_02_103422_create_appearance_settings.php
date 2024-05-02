@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('font_color')->nullable();
             $table->string('font_style')->nullable();
             $table->string('profile_image')->nullable();
-            $table->string('shadow_color')->nullable();
             $table->foreignId('theme_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
         });
