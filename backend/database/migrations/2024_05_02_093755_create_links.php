@@ -19,7 +19,7 @@ return new class extends Migration
             $table->tinyInteger('type')->default(1); // 1 = link, 2 = header
             $table->string('thumbnail')->nullable();
             $table->tinyInteger('position')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained();
         });
     }
 
