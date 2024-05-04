@@ -17,6 +17,7 @@ class OauthController extends Controller
             'provider' => ['required', 'string', 'max:255'],
             'access_token' => ['required', 'string'],
         ]);
+        $userAgent = $request->userAgent();
 
         $access_token = $request->access_token;
         $provider = $request->provider;
@@ -24,39 +25,33 @@ class OauthController extends Controller
         $user = [];
         $search = null;
 
-        if($provider === 'google') {
-            $googleUser = Socialite::driver('google')->userFromToken($access_token);
+        $isExist = User::where('email', $request->email)->first();
 
-            $user = [
-
-                'firstname' => $googleUser->user["given_name"],
-                'lastname' => $googleUser->user["family_name"],
-                'email' => $googleUser->user["email"],
-                'google_id' => $googleUser->id
-            ];
-
-            $search = User::where('email', $user['email'])->first();
+        if(isset($isExist) && !$isExist->google_id) {
+            return response()->json([
+                "success" => false,
+                "message" => "We recognize your account but it looks like you signed up using email. To log in, enter  email, along with your password."
+            ], 400);
         }
 
-        if($provider === 'facebook') {
-            $facebookUser = Socialite::driver('facebook')->userFromToken($access_token);
+        $googleUser = Socialite::driver('google')->userFromToken($access_token);
 
-            $user = [
-                'facebook_id' => $facebookUser->id
-            ];
+        $user = [
+            'firstname' => $googleUser->user["given_name"],
+            'lastname' => $googleUser->user["family_name"],
+            'email' => $googleUser->user["email"],
+            'google_id' => $googleUser->id
+        ];
 
-            $search = User::where('facebook_id', $user['facebook_id'])->first();
-        }
+        $search = User::where('email', $user['email'])->first();
 
 
         if(!isset($search)) {
+            $user['user_agent'] = $userAgent;
             $user = User::create($user);
         } else {
             if($provider === 'google') {
                 $search->google_id = $user['google_id'];
-            }
-            if($provider === 'facebook') {
-                $search->facebook_id = $user['facebook_id'];
             }
 
             $search->save();
