@@ -113,7 +113,7 @@ class LinksController extends Controller
             $link->thumbnail = $path;
             $link->save();
 
-            $imageUrl = asset('storage/' . $path); // Get the full URL of the uploaded image
+            $imageUrl = asset($path); // Get the full URL of the uploaded image
             return response()->json(['url' => $imageUrl], 200); // Return the URL of the uploaded image
         }
 
