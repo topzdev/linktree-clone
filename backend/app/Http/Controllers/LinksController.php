@@ -104,17 +104,16 @@ class LinksController extends Controller
         }
 
         if ($link->thumbnail) {
-            Storage::delete($link->thumbnail);
+           ImageManagerController::delete($link->thumbnail);
         }
-        $imageName = time() . '_' . $request->file('image')->getFilename() . '.' . $request->file('image')->extension();
-        $path = Storage::putFileAs('thumbnails', $request->file('image'), $imageName);
 
-        if ($path) {
-            $link->thumbnail = $path;
+        $uploaded =  ImageManagerController::uploadThumbnail($request->file('image'));
+
+        if ($uploaded['source']) {
+            $link->thumbnail = $uploaded['source'];
             $link->save();
 
-            $imageUrl = asset($path); // Get the full URL of the uploaded image
-            return response()->json(['url' => $imageUrl], 200); // Return the URL of the uploaded image
+            return response()->json($uploaded, 200);
         }
 
         return response()->json(['message' => 'Failed to update thumbnail'], 500);
