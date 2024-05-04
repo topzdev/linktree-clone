@@ -19,7 +19,8 @@ return new class extends Migration
             $table->tinyInteger('type')->default(1); // 1 = link, 2 = header
             $table->string('thumbnail')->nullable();
             $table->tinyInteger('position')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable(false)->constrained();
+            $table->softDeletes();
         });
     }
 
