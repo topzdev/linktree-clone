@@ -1,0 +1,62 @@
+[
+    {
+        "id": "fill",
+        "title": "Fill",
+        "group": "Fill",
+    },
+    {
+        "id": "fillrounded",
+        "title": "Fill Rounded",
+        "group": "Fill",
+    },
+    {
+        "id": "fillcircular",
+        "title": "Fill Circular",
+        "group": "Fill",
+    },
+    {
+        "id": "outline",
+        "title": "Outline",
+        "group": "Outline",
+    },
+    {
+        "id": "outlinerounded",
+        "title": "Outline Rounded",
+        "group": "Outline",
+    },
+    {
+        "id": "outlinecircular",
+        "title": "Outline Circular",
+        "group": "Outline",
+    },
+    {
+        "id": "softshadow",
+        "title": "Soft shadow",
+        "group": "Soft shadow",
+    },
+    {
+        "id": "softshadowrounded",
+        "title": "Soft shadow Rounded",
+        "group": "Soft shadow",
+    },
+    {
+        "id": "softshadowcircular",
+        "title": "Soft shadow Circular",
+        "group": "Soft shadow",
+    },
+    {
+        "id": "hardshadow",
+        "title": "Hardshadow",
+        "group": "Hard shadow",
+    },
+    {
+        "id": "hardshadowrounded",
+        "title": "Hard shadow Rounded",
+        "group": "Hard shadow",
+    },
+    {
+        "id": "hardshadowcircular",
+        "title": "Hard shadow Circular",
+        "group": "Hard shadow",
+    }
+]

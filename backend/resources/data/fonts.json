@@ -1,0 +1,338 @@
+[
+    {
+        "key": "arvo",
+        "title": "Arvo",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "barlow",
+        "title": "Barlow",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "bebas neue",
+        "title": "Bebas Neue",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0.4",
+        "group": "Unique"
+    },
+    {
+        "key": "bitter",
+        "title": "Bitter",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "calistoga",
+        "title": "Calistoga",
+        "font_size": "14",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "capriola",
+        "title": "Capriola",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "courgette",
+        "title": "Courgette",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "crimson text",
+        "title": "Crimson Text",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "dm sans",
+        "title": "DM Sans",
+        "font_size": "16",
+        "font_weight": "500",
+        "letter_spacing": "0.4",
+        "group": "Modern"
+    },
+    {
+        "key": "eb garamond",
+        "title": "EB Garamond",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "fredoka one",
+        "title": "Fredoka One",
+        "font_size": "13",
+        "font_weight": "400",
+        "letter_spacing": "0.2",
+        "group": "Unique"
+    },
+    {
+        "key": "gothic a1",
+        "title": "Gothic A1",
+        "font_size": "16",
+        "font_weight": "600",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "hepta slab",
+        "title": "Hepta Slab",
+        "font_size": "14",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "ibm plex sans",
+        "title": "IBM Plex Sans",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "ibm plex serif",
+        "title": "IBM Plex Serif",
+        "font_size": "14",
+        "font_weight": "500",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "inter regular",
+        "title": "Inter",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "karla",
+        "title": "Karla",
+        "font_size": "16",
+        "font_weight": "700",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "kite one",
+        "title": "Kite One",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "lato",
+        "title": "Lato",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "libre baskerville",
+        "title": "Libre Baskerville",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "lora",
+        "title": "Lora",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "merriweather",
+        "title": "Merriweather",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "montserrat",
+        "title": "Montserrat",
+        "font_size": "15.5",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "nanum pen script",
+        "title": "Nanum Pen Script",
+        "font_size": "20",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "noto serif",
+        "title": "Noto Serif",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "nova round",
+        "title": "Nova Round",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "oswald",
+        "title": "Oswald",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "pacifico",
+        "title": "Pacifico",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "playfair display",
+        "title": "Playfair Display",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "poppins",
+        "title": "Poppins",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "pt serif",
+        "title": "PT Serif",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "quicksand",
+        "title": "Quicksand",
+        "font_size": "14",
+        "font_weight": "500",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "raleway",
+        "title": "Raleway",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "roboto",
+        "title": "Roboto",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "roboto slab",
+        "title": "Roboto Slab",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "rock salt",
+        "title": "Rock Salt",
+        "font_size": "11",
+        "font_weight": "400",
+        "letter_spacing": "-0.4",
+        "group": "Unique"
+    },
+    {
+        "key": "rubik",
+        "title": "Rubik",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "source serif pro",
+        "title": "Source Serif Pro",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    },
+    {
+        "key": "space mono",
+        "title": "Space Mono",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "special elite",
+        "title": "Special Elite",
+        "font_size": "16",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Unique"
+    },
+    {
+        "key": "work sans",
+        "title": "Work Sans",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Modern"
+    },
+    {
+        "key": "zilla slab",
+        "title": "Zilla Slab",
+        "font_size": "16px",
+        "font_weight": "400",
+        "letter_spacing": "0",
+        "group": "Classic"
+    }
+]
