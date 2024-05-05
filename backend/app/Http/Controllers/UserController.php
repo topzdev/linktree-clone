@@ -12,11 +12,7 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         $user = $request->user();
-
-        if($user->facebook_id && !$user->email && !$user->firstname && !$user->lastname) {
-            $user['is_facebook_registered'] = true;
-        }
-
+        $user =  User::with('appearance_settings')->find(auth()->id());
         return $user;
     }
 

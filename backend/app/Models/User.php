@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,6 +46,18 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            $appearance = new AppearanceSettings([
+                "profile_title" => $user->username
+            ]);
+            $user->appearance_settings()->save($appearance);
+        });
+    }
+
     protected function casts(): array
     {
         return [
@@ -60,5 +74,10 @@ class User extends Authenticatable
     public function links(): HasMany
     {
         return $this->hasMany(Links::class);
+    }
+
+    public function appearance_settings():HasOne
+    {
+        return $this->hasOne(AppearanceSettings::class);
     }
 }

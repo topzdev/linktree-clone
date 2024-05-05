@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('key');
             $table->string('title');
-            $table->string('group');
-            $table->string('font_size')->nullable();
+            $table->string('font_size');
             $table->string('font_weight');
             $table->string('letter_spacing');
+            $table->tinyInteger('group_id');
             $table->timestamps();
         });
     }

@@ -1,62 +1,62 @@
 [
     {
-        "id": "fill",
+        "key": "fill",
         "title": "Fill",
-        "group": "Fill",
+        "group_id": 1
     },
     {
-        "id": "fillrounded",
+        "key": "fillrounded",
         "title": "Fill Rounded",
-        "group": "Fill",
+        "group_id": 1
     },
     {
-        "id": "fillcircular",
+        "key": "fillcircular",
         "title": "Fill Circular",
-        "group": "Fill",
+        "group_id": 1
     },
     {
-        "id": "outline",
+        "key": "outline",
         "title": "Outline",
-        "group": "Outline",
+        "group_id": 2
     },
     {
-        "id": "outlinerounded",
+        "key": "outlinerounded",
         "title": "Outline Rounded",
-        "group": "Outline",
+        "group_id": 2
     },
     {
-        "id": "outlinecircular",
+        "key": "outlinecircular",
         "title": "Outline Circular",
-        "group": "Outline",
+        "group_id": 2
     },
     {
-        "id": "softshadow",
+        "key": "softshadow",
         "title": "Soft shadow",
-        "group": "Soft shadow",
+        "group_id": 3
     },
     {
-        "id": "softshadowrounded",
+        "key": "softshadowrounded",
         "title": "Soft shadow Rounded",
-        "group": "Soft shadow",
+        "group_id": 3
     },
     {
-        "id": "softshadowcircular",
+        "key": "softshadowcircular",
         "title": "Soft shadow Circular",
-        "group": "Soft shadow",
+        "group_id": 3
     },
     {
-        "id": "hardshadow",
+        "key": "hardshadow",
         "title": "Hardshadow",
-        "group": "Hard shadow",
+        "group_id": 4
     },
     {
-        "id": "hardshadowrounded",
+        "key": "hardshadowrounded",
         "title": "Hard shadow Rounded",
-        "group": "Hard shadow",
+        "group_id": 4
     },
     {
-        "id": "hardshadowcircular",
+        "key": "hardshadowcircular",
         "title": "Hard shadow Circular",
-        "group": "Hard shadow",
+        "group_id": 4
     }
 ]

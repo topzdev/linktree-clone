@@ -5,7 +5,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "barlow",
@@ -13,7 +13,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "bebas neue",
@@ -21,7 +21,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0.4",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "bitter",
@@ -29,7 +29,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "calistoga",
@@ -37,7 +37,7 @@
         "font_size": "14",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "capriola",
@@ -45,7 +45,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "courgette",
@@ -53,7 +53,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "crimson text",
@@ -61,7 +61,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "dm sans",
@@ -69,7 +69,7 @@
         "font_size": "16",
         "font_weight": "500",
         "letter_spacing": "0.4",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "eb garamond",
@@ -77,7 +77,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "fredoka one",
@@ -85,7 +85,7 @@
         "font_size": "13",
         "font_weight": "400",
         "letter_spacing": "0.2",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "gothic a1",
@@ -93,7 +93,7 @@
         "font_size": "16",
         "font_weight": "600",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "hepta slab",
@@ -101,7 +101,7 @@
         "font_size": "14",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "ibm plex sans",
@@ -109,7 +109,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "ibm plex serif",
@@ -117,7 +117,7 @@
         "font_size": "14",
         "font_weight": "500",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "inter regular",
@@ -125,7 +125,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "karla",
@@ -133,7 +133,7 @@
         "font_size": "16",
         "font_weight": "700",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "kite one",
@@ -141,7 +141,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "lato",
@@ -149,7 +149,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "libre baskerville",
@@ -157,7 +157,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "lora",
@@ -165,7 +165,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "merriweather",
@@ -173,7 +173,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "montserrat",
@@ -181,7 +181,7 @@
         "font_size": "15.5",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "nanum pen script",
@@ -189,7 +189,7 @@
         "font_size": "20",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "noto serif",
@@ -197,7 +197,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "nova round",
@@ -205,7 +205,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "oswald",
@@ -213,7 +213,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "pacifico",
@@ -221,7 +221,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "playfair display",
@@ -229,7 +229,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "poppins",
@@ -237,7 +237,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "pt serif",
@@ -245,7 +245,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "quicksand",
@@ -253,7 +253,7 @@
         "font_size": "14",
         "font_weight": "500",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "raleway",
@@ -261,7 +261,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "roboto",
@@ -269,7 +269,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "roboto slab",
@@ -277,7 +277,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "rock salt",
@@ -285,7 +285,7 @@
         "font_size": "11",
         "font_weight": "400",
         "letter_spacing": "-0.4",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "rubik",
@@ -293,7 +293,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "source serif pro",
@@ -301,7 +301,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     },
     {
         "key": "space mono",
@@ -309,7 +309,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "special elite",
@@ -317,7 +317,7 @@
         "font_size": "16",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Unique"
+        "group_id": 3
     },
     {
         "key": "work sans",
@@ -325,7 +325,7 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Modern"
+        "group_id": 2
     },
     {
         "key": "zilla slab",
@@ -333,6 +333,6 @@
         "font_size": "16px",
         "font_weight": "400",
         "letter_spacing": "0",
-        "group": "Classic"
+        "group_id": 1
     }
 ]
