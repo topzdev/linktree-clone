@@ -51,8 +51,10 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::created(function (User $user) {
-            $appearance = new AppearanceSettings();
-            $user->appearanceSettings()->save($appearance);
+            $appearance = new AppearanceSettings([
+                "profile_title" => $user->username
+            ]);
+            $user->appearance_settings()->save($appearance);
         });
     }
 

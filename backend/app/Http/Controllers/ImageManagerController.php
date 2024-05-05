@@ -13,10 +13,8 @@ class ImageManagerController extends Controller
     public function upload(String $path, UploadedFile $file)
     {
         $imageName = time() . '_' . $file->getFilename() . '.' . $file->extension();
-        $path = Storage::putFileAs('thumbnails', $file, $imageName);
+        $path = Storage::putFileAs($path, $file, $imageName);
         $url = asset($path);
-
-
 
         return [
             "url" => $url,

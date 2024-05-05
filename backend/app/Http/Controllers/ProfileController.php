@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\AppearanceSettings;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Nette\Utils\Image;
 
 class ProfileController extends Controller
 {
     public function index(Request $request)
     {
         $userId = auth()->id();
-        $profile =  AppearanceSettings::profile();
+        $profile = AppearanceSettings::profile();
 
         return response()->json($profile);
     }
@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
     public function updateAvatar(Request $request)
     {
-
+        $uploader = new ImageManagerController();
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
@@ -47,10 +47,10 @@ class ProfileController extends Controller
         }
 
         if ($profile->profile_avatar) {
-            ImageManagerController::delete($profile->profile_avatar);
+            $uploader->delete($profile->profile_avatar);
         }
 
-        $uploaded =  ImageManagerController::uploadAvatar($request->file('image'));
+        $uploaded = $uploader->uploadAvatar($request->file('avatar'));
 
         if ($uploaded['source']) {
             $profile->profile_avatar = $uploaded['source'];
@@ -63,11 +63,11 @@ class ProfileController extends Controller
 
     public function removeAvatar()
     {
-
+        $uploader = new ImageManagerController();
         $profile = AppearanceSettings::profile();
 
-        if($profile->profile_avatar) {
-            ImageManagerController::delete($profile->profile_avatar);
+        if ($profile->profile_avatar) {
+            $uploader->delete($profile->profile_avatar);
             $profile->profile_avatar = null;
             $profile->save();
         }

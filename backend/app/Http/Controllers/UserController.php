@@ -12,7 +12,6 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         $user = $request->user();
-
         $user =  User::with('appearance_settings')->find(auth()->id());
         return $user;
     }
