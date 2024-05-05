@@ -74,7 +74,7 @@ class User extends Authenticatable
         return $this->hasMany(Links::class);
     }
 
-    public function appearanceSettings():HasOne
+    public function appearance_settings():HasOne
     {
         return $this->hasOne(AppearanceSettings::class);
     }

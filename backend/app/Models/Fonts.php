@@ -9,6 +9,12 @@ class Fonts extends Model
 {
     use HasFactory;
 
+    const GROUP = [
+        1 => "Classic",
+        2 => "Modern",
+        3 => "Unique"
+    ];
+
     protected $fillable = [
         'key',
         'title',

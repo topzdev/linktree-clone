@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Flat Color",
+        "key": "flat",
+        "preview": ""
+    },
+    {
+        "title": "Gradient",
+        "key": "gradient",
+        "preview": ""
+    },
+    {
+        "title": "Image",
+        "key": "image",
+        "preview": ""
+    },
+    {
+        "title": "Video",
+        "key": "video",
+        "preview": ""
+    },
+   {
+        "title": "Polka",
+        "key": "stripe",
+        "preview": ""
+    },
+    {
+        "title": "Stripe",
+        "key": "stripe",
+        "preview": ""
+    },
+    {
+        "title": "Waves",
+        "key": "waves",
+        "preview": ""
+    },
+    {
+        "title": "Zig Zag",
+        "key": "zigzag",
+        "preview": ""
+    }
+]
