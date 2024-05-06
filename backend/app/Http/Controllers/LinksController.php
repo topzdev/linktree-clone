@@ -104,10 +104,10 @@ class LinksController extends Controller
         }
 
         if ($link->thumbnail) {
-           ImageManagerController::delete($link->thumbnail);
+           AssetsManagerController::delete($link->thumbnail);
         }
 
-        $uploaded =  ImageManagerController::uploadThumbnail($request->file('image'));
+        $uploaded =  AssetsManagerController::uploadThumbnail($request->file('image'));
 
         if ($uploaded['source']) {
             $link->thumbnail = $uploaded['source'];

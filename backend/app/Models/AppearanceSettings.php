@@ -50,10 +50,30 @@ class AppearanceSettings extends Model
         );
     }
 
+    protected function bgImageUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_image ? asset($this->bg_image) : null
+        );
+    }
+
+    protected function bgVideoUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_video ? asset($this->bg_video) : null
+        );
+    }
+
     public static function profile()
     {
         $userId = auth()->id();
         return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title'])->append(['profile_avatar_url'])->first();
+    }
+
+    public static function userAppearanceSettings()
+    {
+        $userId = auth()->id();
+        return AppearanceSettings::find(['user_id' => $userId])->first();
     }
 
     public function user(): BelongsTo

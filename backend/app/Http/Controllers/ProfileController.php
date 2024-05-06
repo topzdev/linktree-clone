@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
     public function updateAvatar(Request $request)
     {
-        $uploader = new ImageManagerController();
+        $uploader = new AssetsManagerController();
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
@@ -63,7 +63,7 @@ class ProfileController extends Controller
 
     public function removeAvatar()
     {
-        $uploader = new ImageManagerController();
+        $uploader = new AssetsManagerController();
         $profile = AppearanceSettings::profile();
 
         if ($profile->profile_avatar) {
