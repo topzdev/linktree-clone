@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BackgroundsSeeder::class,
             ButtonsSeeder::class,
-            FontsSeeder::class
+            FontsSeeder::class,
+            ThemesSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

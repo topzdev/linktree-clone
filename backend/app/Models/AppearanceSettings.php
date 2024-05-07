@@ -39,9 +39,19 @@ class AppearanceSettings extends Model
     protected function casts()
     {
         return [
-            'profile_image_style' => 'integer'
+            'profile_image_style' => 'integer',
+            'theme_id' => "integer",
+            'font_id' => "integer",
+            'bg_id' => "integer",
+            'btn_id' => "integer",
         ];
     }
+
+    protected $appends = [
+        'profile_avatar_url',
+        'bg_image_url',
+        'bg_video_url',
+    ];
 
     protected function profileAvatarUrl(): Attribute
     {
@@ -50,10 +60,30 @@ class AppearanceSettings extends Model
         );
     }
 
+    protected function bgImageUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_image ? asset($this->bg_image) : null
+        );
+    }
+
+    protected function bgVideoUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_video ? asset($this->bg_video) : null
+        );
+    }
+
     public static function profile()
     {
         $userId = auth()->id();
         return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title'])->append(['profile_avatar_url'])->first();
+    }
+
+    public static function userAppearanceSettings()
+    {
+        $userId = auth()->id();
+        return AppearanceSettings::find(['user_id' => $userId])->first();
     }
 
     public function user(): BelongsTo
@@ -73,12 +103,12 @@ class AppearanceSettings extends Model
 
     public function font(): HasOne
     {
-        return $this->hasOne(Fonts::class, 'id', 'fonts_id');
+        return $this->hasOne(Fonts::class, 'id', 'font_id');
     }
 
     public function theme(): HasOne
     {
-        return $this->hasOne(Themes::class, 'id', 'fonts_id');
+        return $this->hasOne(Themes::class, 'id', 'theme_id');
     }
 
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class ImageManagerController extends Controller
+class AssetsManagerController extends Controller
 {
     /*
     $where
@@ -32,5 +32,14 @@ class ImageManagerController extends Controller
     }
     public function uploadThumbnail(UploadedFile $file) {
         return $this->upload('thumbnails', $file);
+    }
+
+    public function uploadBackgroundImage(UploadedFile $file)
+    {
+        return $this->upload('backgrounds_images', $file);
+    }
+    public function uploadBackgroundVideo(UploadedFile $file)
+    {
+        return $this->upload('backgrounds_videos', $file);
     }
 }

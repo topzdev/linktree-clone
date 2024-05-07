@@ -73,6 +73,8 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('thumbnails') => storage_path('app/thumbnails'),
         public_path('avatars') => storage_path('app/avatars'),
+        public_path('backgrounds_images') => storage_path('app/background_image'),
+        public_path('backgrounds_videos') => storage_path('app/background_video'),
     ],
 
 ];
