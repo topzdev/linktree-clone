@@ -93,12 +93,12 @@ class AppearanceSettings extends Model
 
     public function font(): HasOne
     {
-        return $this->hasOne(Fonts::class, 'id', 'fonts_id');
+        return $this->hasOne(Fonts::class, 'id', 'font_id');
     }
 
     public function theme(): HasOne
     {
-        return $this->hasOne(Themes::class, 'id', 'fonts_id');
+        return $this->hasOne(Themes::class, 'id', 'theme_id');
     }
 
 }

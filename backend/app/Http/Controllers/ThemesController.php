@@ -41,7 +41,7 @@ class ThemesController extends Controller
             $settings->bg_image = $uploaded['source'];
         }
 
-        if($request->file('bg_image')) {
+        if($request->file('bg_video')) {
             $uploaded = $uploader->uploadBackgroundVideo($request->file('bg_video'));
             $settings->bg_video = $uploaded['source'];
         }
@@ -52,6 +52,5 @@ class ThemesController extends Controller
 
         return response()->json($settings);
     }
-
 
 }
