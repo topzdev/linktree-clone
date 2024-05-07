@@ -39,6 +39,14 @@ class Themes extends Model
         'font'
     ];
 
+    protected function casts()
+    {
+        return [
+            'theme_id' => "integer",
+            'btn_id' => "integer",
+        ];
+    }
+
     protected function previewUrl(): Attribute
     {
         return new Attribute(

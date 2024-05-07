@@ -39,9 +39,19 @@ class AppearanceSettings extends Model
     protected function casts()
     {
         return [
-            'profile_image_style' => 'integer'
+            'profile_image_style' => 'integer',
+            'theme_id' => "integer",
+            'font_id' => "integer",
+            'bg_id' => "integer",
+            'btn_id' => "integer",
         ];
     }
+
+    protected $appends = [
+        'profile_avatar_url',
+        'bg_image_url',
+        'bg_video_url',
+    ];
 
     protected function profileAvatarUrl(): Attribute
     {

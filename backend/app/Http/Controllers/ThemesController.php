@@ -16,7 +16,7 @@ class ThemesController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            "theme_id" => "required|string|exist:themes"
+            "theme_id" => "required|string|exists:themes,id"
         ]);
         $data = AppearanceSettings::userAppearanceSettings()->fill($request->only('theme_id'));
         return response()->json($data);
@@ -27,11 +27,11 @@ class ThemesController extends Controller
         $uploader = new AssetsManagerController();
 
         $request->validate([
-            "bg_color" => "string",
-            "bg_color2" => "string",
+            "bg_color" => "string|hex_color",
+            "bg_color2" => "string|hex_color",
             "bg_position" => "string",
-            "bg_image" => "required|image|mimes:jpeg,png,jpg,gif|max:2048", // Adjust validation rules as needed
-            "bg_video" => "required|file|mimes:mp4,avi,mov|max:20480",
+            "bg_image" => "image|mimes:jpeg,png,jpg,gif,webp|max:2048", // Adjust validation rules as needed
+            "bg_video" => "file|mimes:mp4,avi,mov|max:20480",
         ]);
 
         $settings = AppearanceSettings::userAppearanceSettings();
@@ -48,7 +48,6 @@ class ThemesController extends Controller
 
         $settings->fill($request->only('bg_color', 'bg_color2', 'bg_position'));
         $settings->save();
-        $settings->append(['bg_image_url', 'bg_video_url']);
 
         return response()->json($settings);
     }
