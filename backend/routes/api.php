@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ButtonsController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemesController;
@@ -31,4 +32,9 @@ Route::middleware(['auth:sanctum'])->prefix('themes')->controller(ThemesControll
     Route::get('/', 'index');
     Route::post('/update', 'update');
     Route::post('/update/custom', 'updateCustomTheme');
+});
+
+Route::middleware(['auth:sanctum'])->prefix('buttons')->controller(ButtonsController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/update', 'update');
 });
