@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(AppearanceSettings::class)->with('font', 'button', 'background', 'theme');
     }
+
+    public function socials()
+    {
+        return $this->hasMany(Socials::class);
+    }
 }

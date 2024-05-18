@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             FontsSeeder::class,
             ThemesSeeder::class,
             UserSeeder::class,
+            SocialsSeeder::class
         ]);
     }
 }

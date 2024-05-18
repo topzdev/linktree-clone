@@ -7,7 +7,7 @@
             "https://amazon.com/",
             "https://www.amazon.com/"
         ],
-        "icon": "amazon"
+        "id": "amazon"
     },
     "apple_app": {
         "title": "Apple App Store",
@@ -16,7 +16,7 @@
         "validation": [
             "https://apps.apple.com/"
         ],
-        "icon": "app-store"
+        "id": "app-store"
     },
     "apple_music": {
         "title": "Apple Music",
@@ -25,7 +25,7 @@
         "validation": [
             "https://music.apple.com/"
         ],
-        "icon": "fa-solid fa-music"
+        "id": "fa-solid fa-music"
     },
     "apple_podcast": {
         "title": "Apple Music",
@@ -34,7 +34,7 @@
         "validation": [
             "https://podcasts.apple.com/"
         ],
-        "icon": "fa-solid fa-podcast"
+        "id": "fa-solid fa-podcast"
     },
     "bandcamp": {
         "title": "Bandcamp",
@@ -43,7 +43,7 @@
         "validation": [
             ""
         ],
-        "icon": "bandcamp"
+        "id": "bandcamp"
     },
     "cameo": {
         "title": "Cameo",
@@ -52,7 +52,7 @@
         "validation": [
             "https://cameo.com/"
         ],
-        "icon": "fa-solid fa-icons"
+        "id": "fa-solid fa-ids"
     },
     "clubhouse": {
         "title": "Clubhouse",
@@ -61,7 +61,7 @@
         "validation": [
             "https://clubhouse.com/@"
         ],
-        "icon": "fa-solid fa-handshake"
+        "id": "fa-solid fa-handshake"
     },
     "discord": {
         "title": "Discord",
@@ -70,7 +70,7 @@
         "validation": [
             "https://discord.com/"
         ],
-        "icon": "discord"
+        "id": "discord"
     },
     "email": {
         "title": "Email",
@@ -79,7 +79,7 @@
         "validation": [
             ""
         ],
-        "icon": "fa-solid fa-envelope"
+        "id": "fa-solid fa-envelope"
     },
     "etsy": {
         "title": "Etsy",
@@ -88,7 +88,7 @@
         "validation": [
             "https://www.etsy.com/"
         ],
-        "icon": "etsy"
+        "id": "etsy"
     },
     "facebook": {
         "title": "Facebook",
@@ -98,7 +98,7 @@
             "https://www.facebook.com/",
             "https://facebook.com/"
         ],
-        "icon": "facebook"
+        "id": "facebook"
     },
     "github": {
         "title": "GitHub",
@@ -107,7 +107,7 @@
         "validation": [
             "https://github.com/"
         ],
-        "icon": "github"
+        "id": "github"
     },
     "google_play": {
         "title": "Google Play",
@@ -116,7 +116,7 @@
         "validation": [
             "https://play.google.com/"
         ],
-        "icon": "google-play"
+        "id": "google-play"
     },
     "instagram": {
         "title": "Instagram",
@@ -125,7 +125,7 @@
         "validation": [
             "https://www.instagram.com/"
         ],
-        "icon": "instagram"
+        "id": "instagram"
     },
     "lastfm": {
         "title": "Last.fm",
@@ -134,7 +134,7 @@
         "validation": [
             "https://www.last.fm/music/"
         ],
-        "icon": "lastfm"
+        "id": "lastfm"
     },
     "letterboxd": {
         "title": "Letterboxd",
@@ -143,7 +143,7 @@
         "validation": [
             ""
         ],
-        "icon": "letterboxd"
+        "id": "letterboxd"
     },
     "lineoa": {
         "title": "Line OA",
@@ -152,7 +152,7 @@
         "validation": [
             ""
         ],
-        "icon": "line"
+        "id": "line"
     },
     "linkedin": {
         "title": "Linkedin",
@@ -161,7 +161,7 @@
         "validation": [
             "https://www.linkedin.com/"
         ],
-        "icon": "linkedin"
+        "id": "linkedin"
     },
     "mastodon": {
         "title": "Mastodon",
@@ -170,7 +170,7 @@
         "validation": [
             ""
         ],
-        "icon": "mastodon"
+        "id": "mastodon"
     },
     "patreon": {
         "title": "Patreon",
@@ -179,7 +179,7 @@
         "validation": [
             "https://patreon.com/"
         ],
-        "icon": "patreon"
+        "id": "patreon"
     },
     "payment": {
         "title": "Payment",
@@ -188,7 +188,7 @@
         "validation": [
             ""
         ],
-        "icon": "fa-solid fa-circle-dollar-to-slot"
+        "id": "fa-solid fa-circle-dollar-to-slot"
     },
     "phone": {
         "title": "Phone",
@@ -197,7 +197,7 @@
         "validation": [
             ""
         ],
-        "icon": "fa-solid fa-phone"
+        "id": "fa-solid fa-phone"
     },
     "pinterest": {
         "title": "Pinterest",
@@ -206,7 +206,7 @@
         "validation": [
             "https://pinterest.com/"
         ],
-        "icon": "pinterest"
+        "id": "pinterest"
     },
     "quora": {
         "title": "Quora",
@@ -215,7 +215,7 @@
         "validation": [
             "https://www.quora.com/"
         ],
-        "icon": "quora"
+        "id": "quora"
     },
     "reddit": {
         "title": "Reddit",
@@ -224,7 +224,7 @@
         "validation": [
             "https://www.reddit.com/user/"
         ],
-        "icon": "reddit"
+        "id": "reddit"
     },
     "snapchat": {
         "title": "Snapchat",
@@ -233,7 +233,7 @@
         "validation": [
             "https://www.snapchat.com/"
         ],
-        "icon": "snapchat"
+        "id": "snapchat"
     },
     "soundcloud": {
         "title": "Soundcloud",
@@ -242,7 +242,7 @@
         "validation": [
             "https://soundcloud.com/"
         ],
-        "icon": "soundcloud"
+        "id": "soundcloud"
     },
     "spotify": {
         "title": "Spotify",
@@ -251,7 +251,7 @@
         "validation": [
             ""
         ],
-        "icon": "spotify"
+        "id": "spotify"
     },
     "stackoverflow": {
         "title": "Stack Overflow",
@@ -260,7 +260,7 @@
         "validation": [
             "https://stackoverflow.com/"
         ],
-        "icon": "stack-overflow"
+        "id": "stack-overflow"
     },
     "steam": {
         "title": "Steam",
@@ -269,7 +269,7 @@
         "validation": [
             "https://steamcommunity.com/id/"
         ],
-        "icon": "steam"
+        "id": "steam"
     },
     "sms": {
         "title": "SMS",
@@ -278,7 +278,7 @@
         "validation": [
             ""
         ],
-        "icon": "fa-solid fa-comment-sms"
+        "id": "fa-solid fa-comment-sms"
     },
     "telegram": {
         "title": "Telegram",
@@ -287,7 +287,7 @@
         "validation": [
             "https://t.me/"
         ],
-        "icon": "telegram"
+        "id": "telegram"
     },
     "tiktok": {
         "title": "Tiktok",
@@ -296,7 +296,7 @@
         "validation": [
             "https://www.tiktok.com/@"
         ],
-        "icon": "tiktok"
+        "id": "tiktok"
     },
     "twitch": {
         "title": "Twitch",
@@ -305,7 +305,7 @@
         "validation": [
             "https://twitch.tv/"
         ],
-        "icon": "twitch"
+        "id": "twitch"
     },
     "twitter": {
         "title": "Twitter",
@@ -314,7 +314,7 @@
         "validation": [
             "https://twitter.com"
         ],
-        "icon": "twitter"
+        "id": "twitter"
     },
     "whatsapp": {
         "title": "WhatsApp",
@@ -323,7 +323,7 @@
         "validation": [
             ""
         ],
-        "icon": "whatsapp"
+        "id": "whatsapp"
     },
     "youtube": {
         "title": "Youtube",
@@ -333,6 +333,6 @@
             "https://www.youtube.com/",
             "https://youtube.com/"
         ],
-        "icon": "youtube"
+        "id": "youtube"
     }
 }
