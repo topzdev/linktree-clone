@@ -21,7 +21,6 @@ class AppearanceSettings extends Model
         'btn_color',
         'btn_style',
         'btn_text_color',
-        'btn_text_color',
         'profile_avatar',
         'profile_bio',
         'profile_image_style',
