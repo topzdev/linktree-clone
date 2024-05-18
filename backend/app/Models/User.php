@@ -78,6 +78,6 @@ class User extends Authenticatable
 
     public function appearance_settings():HasOne
     {
-        return $this->hasOne(AppearanceSettings::class);
+        return $this->hasOne(AppearanceSettings::class)->with('font', 'button', 'background', 'theme');
     }
 }
