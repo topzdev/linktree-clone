@@ -38,3 +38,8 @@ Route::middleware(['auth:sanctum'])->prefix('buttons')->controller(ButtonsContro
     Route::get('/', 'index');
     Route::post('/update', 'update');
 });
+
+Route::middleware(['auth:sanctum'])->prefix('fonts')->controller(\App\Http\Controllers\FontsController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/update', 'update');
+});
