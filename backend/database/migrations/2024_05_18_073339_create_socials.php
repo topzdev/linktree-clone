@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('social_id');
             $table->string('value');
+            $table->integer('position')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

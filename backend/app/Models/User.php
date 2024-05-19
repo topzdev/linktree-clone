@@ -79,13 +79,10 @@ class User extends Authenticatable
     public function appearance_settings():HasOne
     {
         return $this->hasOne(AppearanceSettings::class)->with('font', 'button', 'background', 'theme');
-<<<<<<< HEAD
     }
 
     public function socials()
     {
-        return $this->hasMany(Socials::class);
-=======
->>>>>>> c7ec33d (13 upd:fonts api completed)
+        return $this->hasMany(Socials::class)->orderBy('created_at', 'desc')->orderBy('position', 'asc');
     }
 }
