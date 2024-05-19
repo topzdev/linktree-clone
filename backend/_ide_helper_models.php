@@ -18,31 +18,33 @@ namespace App\Models{
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $bg_id
  * @property string|null $bg_color
  * @property string|null $bg_color2
  * @property string|null $bg_position
  * @property string|null $bg_image
  * @property string|null $bg_video
- * @property int $btn_id
  * @property string|null $btn_color
  * @property string|null $btn_style
  * @property string|null $btn_text_color
  * @property string|null $profile_bio
  * @property int $profile_image_style
  * @property string|null $profile_title
- * @property int|null $font_id
+ * @property string|null $profile_avatar
  * @property string|null $font_color
  * @property string|null $font_style
- * @property string|null $profile_image
+ * @property int $bg_id
+ * @property int $btn_id
+ * @property int|null $font_id
  * @property int|null $theme_id
  * @property int $user_id
  * @property-read \App\Models\Backgrounds|null $background
+ * @property-read mixed $bg_image_url
+ * @property-read mixed $bg_video_url
  * @property-read \App\Models\Buttons|null $button
  * @property-read \App\Models\Fonts|null $font
+ * @property-read mixed $profile_avatar_url
  * @property-read \App\Models\Themes|null $theme
  * @property-read \App\Models\User $user
- * @method static \Database\Factories\AppearanceSettingsFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings query()
@@ -61,8 +63,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereFontId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereFontStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereProfileAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereProfileBio($value)
- * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereProfileImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereProfileImageStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereProfileTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereThemeId($value)
@@ -79,7 +81,7 @@ namespace App\Models{
  * @property int $id
  * @property string $title
  * @property string $key
- * @property string $preview
+ * @property string|null $preview
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Backgrounds newModelQuery()
@@ -125,10 +127,10 @@ namespace App\Models{
  * @property int $id
  * @property string $key
  * @property string $title
- * @property string $group
- * @property string|null $font_size
+ * @property string $font_size
  * @property string $font_weight
  * @property string $letter_spacing
+ * @property int $group_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts newModelQuery()
@@ -137,7 +139,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereFontSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereFontWeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonts whereLetterSpacing($value)
@@ -152,35 +154,22 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $social_id
+ * @property string $value
+ * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $title
- * @property string|null $url
- * @property int $type
- * @property string|null $thumbnail
- * @property int|null $position
- * @property int $user_id
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\User $user
- * @method static \Database\Factories\LinksFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Links newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Links newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Links onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Links query()
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links wherePosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereThumbnail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Links withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Links withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereSocialId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials whereValue($value)
  */
-	class Links extends \Eloquent {}
+	class Socials extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -192,12 +181,45 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $title
  * @property string $key
+ * @property string|null $bg_color
+ * @property string|null $bg_color2
+ * @property string|null $bg_position
+ * @property string|null $bg_image
+ * @property string|null $bg_video
+ * @property string|null $bg_style
+ * @property string|null $bg_text_color
+ * @property string|null $btn_color
+ * @property string|null $btn_text_color
+ * @property string|null $font_color
+ * @property string|null $font_style
+ * @property string|null $preview
+ * @property int $btn_id
+ * @property int $font_id
+ * @property-read mixed $bg_image_url
+ * @property-read mixed $bg_video_url
+ * @property-read \App\Models\Buttons|null $button
+ * @property-read \App\Models\Fonts|null $font
+ * @property-read mixed $preview_url
  * @method static \Illuminate\Database\Eloquent\Builder|Themes newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Themes newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Themes query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgColor2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgPosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgStyle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgTextColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBgVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBtnColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBtnId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereBtnTextColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Themes whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereFontColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereFontId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes whereFontStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Themes whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Themes whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Themes wherePreview($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Themes whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Themes whereUpdatedAt($value)
  */
@@ -221,10 +243,13 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\AppearanceSettings|null $appearance_settings
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Links> $links
  * @property-read int|null $links_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Socials> $socials
+ * @property-read int|null $socials_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

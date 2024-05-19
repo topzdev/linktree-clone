@@ -1,0 +1,338 @@
+{
+    "amazon": {
+        "title": "Amazon",
+        "field_title": "Enter Amazon URL",
+        "example": "https://amazon.com/shop/yourshopname",
+        "validation": [
+            "https://amazon.com/",
+            "https://www.amazon.com/"
+        ],
+        "id": "amazon"
+    },
+    "apple_app": {
+        "title": "Apple App Store",
+        "field_title": "Enter Apple App Store URL",
+        "example": "https://apps.apple.com/us/yourapp/url1234567890",
+        "validation": [
+            "https://apps.apple.com/"
+        ],
+        "id": "app-store"
+    },
+    "apple_music": {
+        "title": "Apple Music",
+        "field_title": "Enter Apple Music URL",
+        "example": "https://music.apple.com/us/album/youralbum",
+        "validation": [
+            "https://music.apple.com/"
+        ],
+        "id": "fa-solid fa-music"
+    },
+    "apple_podcast": {
+        "title": "Apple Music",
+        "field_title": "Enter Apple Music URL",
+        "example": "https://podcasts.apple.com/us/podcast/yourpodcast/123456789",
+        "validation": [
+            "https://podcasts.apple.com/"
+        ],
+        "id": "fa-solid fa-podcast"
+    },
+    "bandcamp": {
+        "title": "Bandcamp",
+        "field_title": "Enter Bandcamp URL",
+        "example": "https://you.bandcamp.com/",
+        "validation": [
+            ""
+        ],
+        "id": "bandcamp"
+    },
+    "cameo": {
+        "title": "Cameo",
+        "field_title": "Enter Cameo URL",
+        "example": "https://cameo.com/",
+        "validation": [
+            "https://cameo.com/"
+        ],
+        "id": "fa-solid fa-ids"
+    },
+    "clubhouse": {
+        "title": "Clubhouse",
+        "field_title": "Enter Clubhouse URL",
+        "example": "https://clubhouse.com/@profile",
+        "validation": [
+            "https://clubhouse.com/@"
+        ],
+        "id": "fa-solid fa-handshake"
+    },
+    "discord": {
+        "title": "Discord",
+        "field_title": "Enter Discord URL",
+        "example": "https://discord.com/invite/yourchannel",
+        "validation": [
+            "https://discord.com/"
+        ],
+        "id": "discord"
+    },
+    "email": {
+        "title": "Email",
+        "field_title": "Enter Email",
+        "example": "my@email.com",
+        "validation": [
+            ""
+        ],
+        "id": "fa-solid fa-envelope"
+    },
+    "etsy": {
+        "title": "Etsy",
+        "field_title": "Enter Etsy URL",
+        "example": "https://www.etsy.com/shop/yourshop",
+        "validation": [
+            "https://www.etsy.com/"
+        ],
+        "id": "etsy"
+    },
+    "facebook": {
+        "title": "Facebook",
+        "field_title": "Enter Facebook URL",
+        "example": "https://www.facebook.com/yourname",
+        "validation": [
+            "https://www.facebook.com/",
+            "https://facebook.com/"
+        ],
+        "id": "facebook"
+    },
+    "github": {
+        "title": "GitHub",
+        "field_title": "Enter GitHub URL",
+        "example": "https://github.com/",
+        "validation": [
+            "https://github.com/"
+        ],
+        "id": "github"
+    },
+    "google_play": {
+        "title": "Google Play",
+        "field_title": "Enter Google Play URL",
+        "example": "https://play.google.com/store/apps/details?url=com.yourapp.app",
+        "validation": [
+            "https://play.google.com/"
+        ],
+        "id": "google-play"
+    },
+    "instagram": {
+        "title": "Instagram",
+        "field_title": "Enter Instagram URL",
+        "example": "https://www.instagram.com/yourname/",
+        "validation": [
+            "https://www.instagram.com/"
+        ],
+        "id": "instagram"
+    },
+    "lastfm": {
+        "title": "Last.fm",
+        "field_title": "Enter Last.fm URL",
+        "example": "https://www.last.fm/music/yourname",
+        "validation": [
+            "https://www.last.fm/music/"
+        ],
+        "id": "lastfm"
+    },
+    "letterboxd": {
+        "title": "Letterboxd",
+        "field_title": "Enter Letterboxd URL",
+        "example": "https://letterboxd.com/yourname/",
+        "validation": [
+            ""
+        ],
+        "id": "letterboxd"
+    },
+    "lineoa": {
+        "title": "Line OA",
+        "field_title": "Enter Line OA URL",
+        "example": "https://techhub.social/web/@yourname",
+        "validation": [
+            ""
+        ],
+        "id": "line"
+    },
+    "linkedin": {
+        "title": "Linkedin",
+        "field_title": "Enter Linkedin URL",
+        "example": "https://www.linkedin.com/in/username",
+        "validation": [
+            "https://www.linkedin.com/"
+        ],
+        "id": "linkedin"
+    },
+    "mastodon": {
+        "title": "Mastodon",
+        "field_title": "Enter Mastodon URL",
+        "example": "https://techhub.social/web/@yourname",
+        "validation": [
+            ""
+        ],
+        "id": "mastodon"
+    },
+    "patreon": {
+        "title": "Patreon",
+        "field_title": "Enter Patreon URL",
+        "example": "https://patreon.com/",
+        "validation": [
+            "https://patreon.com/"
+        ],
+        "id": "patreon"
+    },
+    "payment": {
+        "title": "Payment",
+        "field_title": "Enter Payment URL",
+        "example": "https://venmo.com/yourusername",
+        "validation": [
+            ""
+        ],
+        "id": "fa-solid fa-circle-dollar-to-slot"
+    },
+    "phone": {
+        "title": "Phone",
+        "field_title": "Enter Phone Number",
+        "example": "Numbers only! Full number with country code. Example: 15551234567",
+        "validation": [
+            ""
+        ],
+        "id": "fa-solid fa-phone"
+    },
+    "pinterest": {
+        "title": "Pinterest",
+        "field_title": "Enter Pinterest URL",
+        "example": "https://pinterest.com/",
+        "validation": [
+            "https://pinterest.com/"
+        ],
+        "id": "pinterest"
+    },
+    "quora": {
+        "title": "Quora",
+        "field_title": "Enter Quora URL",
+        "example": "https://www.quora.com/",
+        "validation": [
+            "https://www.quora.com/"
+        ],
+        "id": "quora"
+    },
+    "reddit": {
+        "title": "Reddit",
+        "field_title": "Enter Reddit URL",
+        "example": "https://www.reddit.com/user/username",
+        "validation": [
+            "https://www.reddit.com/user/"
+        ],
+        "id": "reddit"
+    },
+    "snapchat": {
+        "title": "Snapchat",
+        "field_title": "Enter Snapchat URL",
+        "example": "https://www.snapchat.com/add/yourusername",
+        "validation": [
+            "https://www.snapchat.com/"
+        ],
+        "id": "snapchat"
+    },
+    "soundcloud": {
+        "title": "Soundcloud",
+        "field_title": "Enter Soundcloud URL",
+        "example": "https://soundcloud.com/username",
+        "validation": [
+            "https://soundcloud.com/"
+        ],
+        "id": "soundcloud"
+    },
+    "spotify": {
+        "title": "Spotify",
+        "field_title": "Enter Spotify URL",
+        "example": "https://open.spotify.com/artist/artistname",
+        "validation": [
+            ""
+        ],
+        "id": "spotify"
+    },
+    "stackoverflow": {
+        "title": "Stack Overflow",
+        "field_title": "Enter Stack Overflow URL",
+        "example": "https://stackoverflow.com/",
+        "validation": [
+            "https://stackoverflow.com/"
+        ],
+        "id": "stack-overflow"
+    },
+    "steam": {
+        "title": "Steam",
+        "field_title": "Enter Steam Profile URL",
+        "example": "https://steamcommunity.com/id/mynickname",
+        "validation": [
+            "https://steamcommunity.com/id/"
+        ],
+        "id": "steam"
+    },
+    "sms": {
+        "title": "SMS",
+        "field_title": "Enter Phone Number",
+        "example": "Numbers only! Full number with country code. Example: 15551234567",
+        "validation": [
+            ""
+        ],
+        "id": "fa-solid fa-comment-sms"
+    },
+    "telegram": {
+        "title": "Telegram",
+        "field_title": "Enter Telegram URL",
+        "example": "https://t.me/",
+        "validation": [
+            "https://t.me/"
+        ],
+        "id": "telegram"
+    },
+    "tiktok": {
+        "title": "Tiktok",
+        "field_title": "Enter Tiktok URL",
+        "example": "https://www.tiktok.com/@myname",
+        "validation": [
+            "https://www.tiktok.com/@"
+        ],
+        "id": "tiktok"
+    },
+    "twitch": {
+        "title": "Twitch",
+        "field_title": "Enter Twitch URL",
+        "example": "https://twitch.tv/",
+        "validation": [
+            "https://twitch.tv/"
+        ],
+        "id": "twitch"
+    },
+    "twitter": {
+        "title": "Twitter",
+        "field_title": "Enter Twitter URL",
+        "example": "https://twitter.com/yourname",
+        "validation": [
+            "https://twitter.com"
+        ],
+        "id": "twitter"
+    },
+    "whatsapp": {
+        "title": "WhatsApp",
+        "field_title": "Enter WhatsApp Phone Number",
+        "example": "Numbers only! Full number with country code. Example: 15551234567",
+        "validation": [
+            ""
+        ],
+        "id": "whatsapp"
+    },
+    "youtube": {
+        "title": "Youtube",
+        "field_title": "Enter Youtube URL",
+        "example": "https://www.youtube.com/channel/youtubechannelurl",
+        "validation": [
+            "https://www.youtube.com/",
+            "https://youtube.com/"
+        ],
+        "id": "youtube"
+    }
+}
