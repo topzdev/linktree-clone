@@ -12,6 +12,8 @@ import {redirect} from "next/navigation";
 import {toast} from "@/components/ui/use-toast";
 import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 import FacebookLoginButton from "@/components/auth/FacebookLoginButton";
+import Typography from "@/components/ui/typography";
+import Link from "@/components/ui/link";
 
 
 
@@ -44,7 +46,11 @@ const Page = (props: Props) => {
 
     return <div className="container flex items-center justify-center h-screen">
         <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
-            <form className={'flex flex-col gap-y-3'} onSubmit={onSubmit}>
+
+            <Typography className={'text-center'} variant="h2" as="h2">Welcome Back</Typography>
+            <Typography foreground="secondary" className={'text-center'} variant="p" as="p">Login in to Linktree</Typography>
+
+            <form className={'flex flex-col gap-y-3 mt-2'} onSubmit={onSubmit}>
                 <div>
                     <Label htmlFor="email">Email</Label>
                     <Input  {...register('email')} id="email" type="email" placeholder="Email"/>
@@ -53,13 +59,20 @@ const Page = (props: Props) => {
                     <Label htmlFor="email">Password</Label>
                     <Input   {...register('password')} id="email" type="password" placeholder="Password"/>
                 </div>
-                <Button loading={formState.isSubmitting} disabled={formState.isSubmitting} type={'submit'}>Login</Button>
+                <Button size={'lg'} rounded loading={formState.isSubmitting} disabled={formState.isSubmitting}
+                        type={'submit'}>Login</Button>
 
             </form>
+
+            <Typography className={'text-center uppercase my-4'} foreground="secondary" variant="p" as="p">or</Typography>
+            
             <div className={'flex flex-col gap-y-2'}>
                 <GoogleLoginButton/>
-                <FacebookLoginButton/>
             </div>
+
+            <Typography className={'text-center my-4'} foreground="secondary" variant="p" as="p">
+                Don't have an account <Link className="text-blue-500 underline" href={'/register'}>Sign Up</Link>
+            </Typography>
 
         </div>
 

@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import {Button} from "@/components/ui/button";
 import useAppAuth from "@/hooks/useAppAuth";
+import {GoogleLogoIcon} from "@/components/icons/GoogleLogoIcon";
 
 type Props = {
     children?: React.ReactNode
@@ -18,8 +19,19 @@ const GoogleLoginButton = (props: Props) => {
 
     }
 
-    return <Button loading={loading} disabled={loading} onClick={handleSubmit} className="bg-blue-500">Login with
-        Google</Button>
+    return <Button
+        size={'lg'}
+        rounded
+        color={'accent'}
+        variant={'outlined'}
+        loading={loading}
+        disabled={loading}
+        iconLeft={
+            <GoogleLogoIcon/>
+        }
+        onClick={handleSubmit}>
+        Continue with Google
+    </Button>
 
 }
 

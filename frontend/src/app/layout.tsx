@@ -33,7 +33,6 @@ export default async function RootLayout({children}: Readonly<{
             )}
         >
         <ClientSessionProvider session={session}>
-            <Header/>
             {children}
             <Toaster/>
         </ClientSessionProvider>
