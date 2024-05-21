@@ -15,11 +15,9 @@ export type Credentials = {
 }
 
 export type RegisterInfo = {
-    firstname: string,
-    lastname: string,
+    username: string,
     email: string,
     password: string,
-    password_confirmation: string
 }
 
 export type UpdateUser = Pick<User, 'email' | 'firstname' | 'lastname'>
