@@ -19,7 +19,7 @@ const Page = (props: Props) => {
     const {login} = useAppAuth();
     const {register, control, handleSubmit, formState} = useForm<Credentials>({
         defaultValues: {
-            password: '2559069dev',
+            password: '123456789dev',
             email: 'christianlugod05@gmail.com',
         },
     });
@@ -39,22 +39,24 @@ const Page = (props: Props) => {
 
     return (
         <div className='container flex items-center justify-center h-screen'>
-            <div className='grid w-full max-w-sm items-center gap-1.5 mx-auto'>
-                <Typography
-                    className={'text-center'}
-                    variant='h2'
-                    as='h2'
-                >
-                    Welcome Back
-                </Typography>
-                <Typography
-                    foreground='secondary'
-                    className={'text-center'}
-                    variant='p'
-                    as='p'
-                >
-                    Login in to Linktree
-                </Typography>
+            <div className='grid w-full max-w-sm items-center gap-6 mx-auto'>
+                <div className={'flex flex-col gap-y-1'}>
+                    <Typography
+                        className={'text-center'}
+                        variant='h2'
+                        as='h2'
+                    >
+                        Welcome Back
+                    </Typography>
+                    <Typography
+                        foreground='secondary'
+                        className={'text-center'}
+                        variant='p'
+                        as='p'
+                    >
+                        Login in to your Linktree Account
+                    </Typography>
+                </div>
 
                 <form
                     className={'flex flex-col gap-y-3 mt-2'}
@@ -88,7 +90,7 @@ const Page = (props: Props) => {
                 </form>
 
                 <Typography
-                    className={'text-center uppercase my-4'}
+                    className={'text-center uppercase'}
                     foreground='secondary'
                     variant='p'
                     as='p'
