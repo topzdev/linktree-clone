@@ -1,35 +1,51 @@
 import * as React from "react"
-import {Slot} from "@radix-ui/react-slot"
-import {cva, type VariantProps} from "class-variance-authority"
+import {Slot, Slottable} from "@radix-ui/react-slot"
+import {cva, type VariantProps} from "class-variance-authority";
 
 import {cn} from "@/lib/utils"
 import {Loader2} from "lucide-react";
+
+const iconSizes = {
+    sm: 'text-lg',
+    base: 'text-xl',
+    lg: 'text-2xl',
+}
+
+const variants = {
+    primary: {
+        filled: 'border bg-primary text-primary-foreground border-primary hover:bg-primary-600 hover:border-primary-600',
+        outlined: 'border border-primary text-primary',
+        text: 'text-primary',
+        tonal: 'bg-primary-100 text-primary'
+    },
+    accent: {
+        filled: 'border bg-accent text-accent-foreground border-accent hover:bg-accent-600 hover:border-accent-600',
+        outlined: 'border border-border text-accent',
+        text: 'text-accent',
+        tonal: 'bg-accent-100 text-accent'
+    }
+}
 
 const buttonVariants = cva(
     "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
-            variant: {
-                default: "bg-primary text-primary-foreground hover:bg-primary/90",
-                destructive:
-                    "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-                outline:
-                    "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-                secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground",
-                link: "text-primary underline-offset-4 hover:underline",
-            },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-9 rounded-md px-3",
-                lg: "h-11 rounded-md px-8",
-                icon: "h-10 w-10",
+                sm: "h-[32px] rounded-md px-2.5 text-sm ",
+                base: "h-[40px] rounded-md px-4 text-base",
+                lg: "h-[48px] rounded-md px-5 text-md",
             },
+
+            rounded: {
+                true: '!rounded-full',
+                false: '',
+            }
         },
+
+
         defaultVariants: {
-            variant: "default",
-            size: "default",
+            size: "base",
+            rounded: false,
         },
     }
 )
@@ -37,21 +53,50 @@ const buttonVariants = cva(
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof buttonVariants> {
-    asChild?: boolean,
+    asChild?: boolean;
+    variant?: 'filled' | 'outlined' | 'text' | 'tonal',
+    color?: 'primary' | 'accent',
+    iconLeft?: React.ReactNode,
+    iconRight?: React.ReactNode,
+    rounded?: boolean,
     loading?: boolean,
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({className, loading, variant, size, asChild = false, children, ...props}, ref) => {
+    ({
+         className,
+         variant = 'filled',
+         children,
+         iconRight,
+         iconLeft,
+         color = 'primary',
+         size,
+         rounded,
+         asChild = false,
+         loading = false,
+         ...props
+     }, ref) => {
         const Comp = asChild ? Slot : "button"
+        const style = variants[color][variant];
+        const iconSize = iconSizes[size ? size : 'base'];
+
         return (
             <Comp
-                className={cn(buttonVariants({variant, size, className}))}
+                className={cn(style, buttonVariants({size, rounded}), className)}
                 ref={ref}
                 {...props}
             >
-                {loading && <Loader2  className="w-4 h-4 mr-2 animate-spin" />}
-                {children}
+                {loading && <Loader2 className="animate-spin mr-1"/>}
+                {!loading && iconLeft && <span className={cn('mr-2', iconSize)}>
+                    {iconLeft}
+                </span>}
+                <Slottable>
+                    {children}
+                </Slottable>
+                {iconRight && <span className={cn('ml-2 ', iconSize)}>
+                    {iconRight}
+                </span>}
+
             </Comp>
         )
     }
