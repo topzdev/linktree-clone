@@ -3,6 +3,7 @@
 use App\Http\Controllers\ButtonsController;
 use App\Http\Controllers\FontsController;
 use App\Http\Controllers\LinksController;
+use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\ThemesController;
@@ -54,3 +55,8 @@ Route::middleware(['auth:sanctum'])->prefix('socials')->controller(SocialsContro
     Route::post('/update/position', 'updatePosition');
     Route::post('/update/{id}', 'update');
 });
+
+Route::prefix('preview')->controller(PreviewController::class)->group(function () {
+    Route::get('/{username}', 'profile');
+});
+
