@@ -35,7 +35,7 @@ class LinksController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:44'],
-            'url' => ['required', 'string', 'url'],
+            'url' => ['string', 'url'],
             'type' => ['required', 'numeric', 'in:1,2']
         ]);
 
@@ -48,7 +48,7 @@ class LinksController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:44'],
-            'url' => ['required', 'string', 'url'],
+            'url' => ['string', 'url'],
         ]);
 
         $link = Links::where([
