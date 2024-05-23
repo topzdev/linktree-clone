@@ -9,6 +9,8 @@ type Props = {
 };
 
 const Page = (props: Props) => {
+
+
   return (
     <>
       <h1>Public Only Pages</h1>
