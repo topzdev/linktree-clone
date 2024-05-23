@@ -5,9 +5,11 @@ export default async function AuthLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
     return <>
-        <Link className={'top-12 md:top-16 left-1/2 -translate-x-1/2 absolute '} href={'/'}>
-            <Image height={30} width={145} src={'/logo.svg'} alt={'Linktree'}/>
-        </Link>
+        <div className={'flex justify-center py-14 absolute top-0 left-0 w-full'}>
+            <Link className={''} href={'/'}>
+                <Image height={30} width={145} src={'/logo.svg'} alt={'Linktree'}/>
+            </Link>
+        </div>
         {children}
     </>
 }
