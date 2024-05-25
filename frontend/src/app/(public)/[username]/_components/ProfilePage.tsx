@@ -7,6 +7,8 @@ import {apiClient} from "@/lib/ofetch";
 import {ProfileData} from "@/types/models";
 import {useQuery} from "@tanstack/react-query";
 import profileCssVariables from "@/lib/profileCssVariables";
+import SocialIconsList from "@/app/(public)/[username]/_components/SocialIconsList";
+import AppLogo from "@/components/common/AppLogo";
 
 type Props = {
     children?: React.ReactNode,
@@ -23,6 +25,7 @@ const ProfilePage = ({username}: Props) => {
     if (!data) return <></>
     const appearance_settings = data.appearance_settings;
     const links = data.links;
+    const socials = data.socials;
 
     const backgrounds = [appearance_settings.bg_color, appearance_settings.bg_color2].filter(item => item);
     const backgroundStyle: React.CSSProperties = {};
@@ -55,10 +58,9 @@ const ProfilePage = ({username}: Props) => {
         {}
         <div className='max-w-[700px] flex flex-col items-center mx-auto gap-y-[60px]'>
             <ProfileInfo data={data.appearance_settings}/>
-            <LinkListContainer button={data.appearance_settings.button} links={data.links}/>
-
-            <pre
-                className={'font-sm w-full break-words whitespace-pre-wrap'}>{JSON.stringify(appearance_settings, null, 2)}</pre>
+            <LinkListContainer button={data.appearance_settings.button} links={links}/>
+            <SocialIconsList socials={socials}></SocialIconsList>
+            <AppLogo/>
         </div>
     </div>
 }

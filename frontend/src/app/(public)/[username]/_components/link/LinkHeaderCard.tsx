@@ -8,8 +8,8 @@ type Props = {
 }
 
 const LinkHeaderCard = ({data: {title}}: Props) => {
-    return <div className="text-center w-full">
-            <Typography variant={'h3'}>{title}</Typography>
+    return <div className="text-center py-4 w-full">
+            <Typography variant={'h4'}>{title}</Typography>
     </div>
 }
 
