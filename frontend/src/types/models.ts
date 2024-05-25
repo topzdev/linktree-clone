@@ -1,3 +1,5 @@
+import {ButtonStyleTypes} from "@/data/buttons-style";
+
 export type AppearanceSettings = {
     id: number;
     created_at: string;
@@ -9,11 +11,13 @@ export type AppearanceSettings = {
     bg_video: string | null;
     btn_color: string;
     btn_style: string | null;
-    btn_text_color: string;
+    btn_text_color: string | null;
+    btn_shadow_color: string | null;
     profile_bio: string;
     profile_image_style: number;
     profile_title: string;
     profile_avatar: string;
+    profile_initials: string | null
     font_color: string | null;
     font_style: string | null;
     bg_id: number;
@@ -47,7 +51,7 @@ export type Button = {
     created_at: string | null;
     updated_at: string | null;
     title: string;
-    key: string;
+    key: ButtonStyleTypes;
     group_id: number;
 }
 
