@@ -54,9 +54,9 @@ const ProfilePage = ({username}: Props) => {
             }),
             ...backgroundStyle
         }}
-        className="py-[100px] min-h-screen">
+        className="py-[95px] md:py-[100px] min-h-screen">
         {}
-        <div className='max-w-[700px] flex flex-col items-center mx-auto gap-y-[60px]'>
+        <div className='px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
             <ProfileInfo data={data.appearance_settings}/>
             <LinkListContainer button={data.appearance_settings.button} links={links}/>
             <SocialIconsList socials={socials}></SocialIconsList>

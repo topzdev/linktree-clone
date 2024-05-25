@@ -15,7 +15,7 @@ const SocialIcon = ({data: {social_id, id, position, user_id, value, updated_at,
     if (!info) return;
 
     return <Link className={'flex'} href={value} target={'_blank'} title={info.title}>
-        {info.icon && <div className={'h-10 w-10'} dangerouslySetInnerHTML={{
+        {info.icon && <div className={'h-8 w-8 md:h-10 md:w-10'} dangerouslySetInnerHTML={{
             __html: info.icon
         }}></div>
         }

@@ -8,7 +8,7 @@ type Props = {
 }
 
 const SocialIconsList = ({socials}: Props) => {
-    return <ul className="flex gap-x-4">
+    return <ul className="flex flex-wrap justify-center gap-x-4 w-full">
         {socials.map(item => <SocialIcon key={item.id + item.social_id} data={item} />)}
         <li></li>
     </ul>
