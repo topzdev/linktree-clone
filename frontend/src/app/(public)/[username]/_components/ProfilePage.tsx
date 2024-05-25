@@ -21,18 +21,44 @@ const ProfilePage = ({username}: Props) => {
     })
 
     if (!data) return <></>
+    const appearance_settings = data.appearance_settings;
+    const links = data.links;
+
+    const backgrounds = [appearance_settings.bg_color, appearance_settings.bg_color2].filter(item => item);
+    const backgroundStyle: React.CSSProperties = {};
+
+    backgroundStyle.color = appearance_settings.font_color || 'var(--foreground)';
+    switch (appearance_settings.background?.key) {
+        case 'flat':
+            backgroundStyle.background = backgrounds[0] || '#fff';
+            break;
+        case 'gradient':
+            const position = appearance_settings.bg_position || '180deg'
+            backgroundStyle.background = `linear-gradient(${position},${backgrounds[0]},${backgrounds[1]})`;
+            break;
+        default:
+            backgroundStyle.background = 'var(--background)';
+            backgroundStyle.color = 'var(--foreground)';
+            break;
+    }
 
     return <div
-        style={profileCssVariables({
-            btn_shadow_color: data.appearance_settings.btn_shadow_color,
-            btn_text_color: data.appearance_settings.btn_text_color,
-            btn_color: data.appearance_settings.btn_color
-        })}
-        className="bg-primary py-[100px] h-screen">
-
+        style={{
+            ...profileCssVariables({
+                btn_shadow_color: data.appearance_settings.btn_shadow_color,
+                btn_text_color: data.appearance_settings.btn_text_color,
+                btn_color: data.appearance_settings.btn_color
+            }),
+            ...backgroundStyle
+        }}
+        className="py-[100px] min-h-screen">
+        {}
         <div className='max-w-[700px] flex flex-col items-center mx-auto gap-y-[60px]'>
             <ProfileInfo data={data.appearance_settings}/>
             <LinkListContainer button={data.appearance_settings.button} links={data.links}/>
+
+            <pre
+                className={'font-sm w-full break-words whitespace-pre-wrap'}>{JSON.stringify(appearance_settings, null, 2)}</pre>
         </div>
     </div>
 }
