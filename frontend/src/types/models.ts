@@ -1,4 +1,4 @@
-interface AppearanceSettings {
+export type AppearanceSettings = {
     id: number;
     created_at: string;
     updated_at: string;
@@ -30,7 +30,7 @@ interface AppearanceSettings {
     theme?: any | null;
 }
 
-interface Font {
+export type Font = {
     id: number;
     key: string;
     title: string;
@@ -42,7 +42,7 @@ interface Font {
     updated_at: string | null;
 }
 
-interface Button {
+export type Button = {
     id: number;
     created_at: string | null;
     updated_at: string | null;
@@ -51,7 +51,7 @@ interface Button {
     group_id: number;
 }
 
-interface Background {
+export type Background = {
     id: number;
     title: string;
     key: string;
@@ -60,7 +60,7 @@ interface Background {
     updated_at: string | null;
 }
 
-interface Link {
+export type Link = {
     id: number;
     created_at: string;
     updated_at: string;
@@ -68,12 +68,13 @@ interface Link {
     url: string | null;
     type: number;
     thumbnail: string | null;
+    thumbnail_url: string | null;
     position: number | null;
     user_id: number;
     deleted_at: string | null;
 }
 
-interface Social {
+export type Social = {
     id: number;
     social_id: string;
     value: string;
@@ -83,7 +84,7 @@ interface Social {
     updated_at: string;
 }
 
-interface Data {
+export type ProfileData = {
     appearance_settings: AppearanceSettings;
     links: Link[];
     socials: Social[];

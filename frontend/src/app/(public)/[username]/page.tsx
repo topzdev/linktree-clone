@@ -1,18 +1,24 @@
 import React from "react";
-import ofetch, {apiClient} from "@/lib/ofetch";
+import {apiClient} from "@/lib/ofetch";
+import {ProfileData} from "@/types/models";
+import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
+import ProfilePage from "@/app/(public)/[username]/_components/ProfilePage";
 
 type Props = {
     params: { username: string }
 }
 
+const Page = async ({params}: Props) => {
+    const queryClient = new QueryClient();
 
-const Page = async({params}: Props) => {
-    const data = await apiClient.get(`/preview/${params.username}`);
+    await queryClient.prefetchQuery({
+        queryKey: ['profile'],
+        queryFn: () => apiClient.get<ProfileData>(`/preview/${params.username}`),
+    })
 
-    console.log(data);
-    return <>
-        {JSON.stringify(data)}
-    </>
+    return <HydrationBoundary state={dehydrate(queryClient)}>
+        <ProfilePage username={params.username}/>
+    </HydrationBoundary>
 }
 
 export default Page;

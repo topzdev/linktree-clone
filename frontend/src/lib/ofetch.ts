@@ -29,7 +29,7 @@ const instance  = ofetch.create({
 
 });
 
-const get = function (request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", any>>
+const get = function<T>(request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", T>>
 {
     return instance(request, {
         method: 'GET',
@@ -38,7 +38,7 @@ const get = function (request: FetchRequest, options?: FetchOptions<"json">): Pr
 }
 
 
-const post = function (request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", any>>
+const post = function<T>(request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", T>>
 {
     return instance(request, {
         method: 'POST',
@@ -47,7 +47,7 @@ const post = function (request: FetchRequest, options?: FetchOptions<"json">): P
 }
 
 
-const put = function (request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", any>>
+const put = function<T>(request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", T>>
 {
     return instance(request, {
         method: 'PUT',
@@ -56,7 +56,7 @@ const put = function (request: FetchRequest, options?: FetchOptions<"json">): Pr
 }
 
 
-const _delete = function (request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", any>>
+const _delete = function<T>(request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", T>>
 {
     return instance(request, {
         method: 'DELETE',

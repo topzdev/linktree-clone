@@ -8,6 +8,7 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import ClientSessionProvider from "@/components/providers/ClientSessionProvider";
 import Header from "@/components/common/Header";
 import {Toaster} from "@/components/ui/toaster"
+import Providers from "@/app/providers";
 
 
 const fontSans = FontSans({
@@ -33,8 +34,10 @@ export default async function RootLayout({children}: Readonly<{
             )}
         >
         <ClientSessionProvider session={session}>
-            {children}
-            <Toaster/>
+            <Providers>
+                {children}
+                <Toaster/>
+            </Providers>
         </ClientSessionProvider>
 
         </body>
