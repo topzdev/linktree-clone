@@ -12,6 +12,7 @@ import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSe
 import {cn} from "@/lib/utils";
 import MobileNavigationBottomLink from "@/app/dashboard/_components/MobileNavigationBottomLink";
 import useIsActivePage from "@/hooks/useIsActivePage";
+import MaterialSymbolsMoreHoriz from "@/components/icons/MaterialSymbolsMoreHoriz";
 
 export const mobileNavbarHeight = 83
 
@@ -70,6 +71,9 @@ const MobileNavigationBottomBar = ({className, ...props}: Props) => {
                 className={cn('fixed bottom-0 left-0 w-screen bg-background border ', className)}>
         <ul className={'flex h-full w-full'}>
             {links.map(item => <li className={'w-full h-full'} key={item.label + 'MobileNav'}><MobileNavigationBottomLink className={'w-full h-full'} {...item}/></li>)}
+            <li className="w-full h-full">
+                <MobileNavigationBottomLink className={'w-full h-full'} icon={<MaterialSymbolsMoreHoriz/>} label={'More'} />
+            </li>
         </ul>
     </div>
 }
