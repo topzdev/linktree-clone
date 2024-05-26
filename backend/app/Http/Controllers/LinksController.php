@@ -88,6 +88,7 @@ class LinksController extends Controller
 
     public function updateThumbnail(String $id, Request $request)
     {
+        $uploader = new AssetsManagerController();
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
@@ -104,10 +105,10 @@ class LinksController extends Controller
         }
 
         if ($link->thumbnail) {
-           AssetsManagerController::delete($link->thumbnail);
+           $uploader->delete($link->thumbnail);
         }
 
-        $uploaded =  AssetsManagerController::uploadThumbnail($request->file('image'));
+        $uploaded =  $uploader->uploadThumbnail($request->file('image'));
 
         if ($uploaded['source']) {
             $link->thumbnail = $uploaded['source'];

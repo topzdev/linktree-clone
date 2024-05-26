@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function links(): HasMany
     {
-        return $this->hasMany(Links::class);
+        return $this->hasMany(Links::class)->orderBy('created_at', 'desc')->orderBy('position', 'asc');
     }
 
     public function appearance_settings():HasOne

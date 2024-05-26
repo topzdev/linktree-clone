@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,6 +29,17 @@ class Links extends Model
         return [
             'type' => 'integer'
         ];
+    }
+
+    protected $appends = [
+        'thumbnail_url'
+    ];
+
+    protected function thumbnailUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->thumbnail ? asset($this->thumbnail) : null
+        );
     }
 
     protected static function booted(): void

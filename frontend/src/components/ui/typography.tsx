@@ -20,9 +20,10 @@ const typographies = {
     small: {className: 'text-sm leading-3.5', element: 'p'},
     detail: {className: 'text-xs leading-5', element: 'p'},
     blockqoute: { className: 'mt-6 border-l-2 pl-6 italic', element: 'blockqoute' },
-    list: { className: 'my-6 ml-6 list-disc [&>li]:mt-2', element: 'list' },
+    list: { className: 'my-6 ml-6 list-disc [&>li]:mt-2', element: 'p' },
     code: { className: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold', element: 'code' },
-    lead: { className: 'text-xl text-muted-foreground', element: 'lead' },
+    lead: { className: 'text-xl text-muted-foreground', element: 'p' },
+    large: { className: 'text-md font-semibold leading-7', element: 'p' },
     overline: {className: 'text-sm tracking-tight uppercase', element: 'p'}
 }
 

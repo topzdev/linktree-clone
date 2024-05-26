@@ -2,16 +2,19 @@ import ky from 'ky';
 
 
 const instance = ky.create({
-    prefixUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
+    prefixUrl: process.env.NEXT_PUBLIC_API_URL,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Referer': 'http://127.0.0.1:8000'
+        'Referer': process.env.NEXT_PUBLIC_REFERER
     },
     hooks: {
         beforeRequest: [
             request => {
-                const token = window.localStorage.getItem('access_token');
+                let token = '';
+                if (typeof window !== 'undefined') {
+                    token = window.localStorage.getItem('access_token') || '';
+                }
 
                 if (token) {
                     request.headers.set('Authorization', `Bearer ${token}`);
