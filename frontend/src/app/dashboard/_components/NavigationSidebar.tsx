@@ -12,7 +12,8 @@ import MaterialSymbolsAnalyticsOutline from "@/components/icons/MaterialSymbolsA
 import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSettingsOutline";
 import AppLogoIcon from "@/components/common/AppLogoIcon";
 import NavigationLink from "./NavigationLink";
-import {usePathname} from "next/navigation";
+import {Button} from "@/components/ui/button";
+import {signOut, useSession} from "next-auth/react";
 
 type Props = {
     children?: React.ReactNode,
@@ -59,12 +60,19 @@ export const links = [
 ]
 
 const NavigationSidebar = ({className}: Props) => {
+    const {data: session} = useSession();
+    const handleLogout = async () => {
+        await signOut();
+    }
 
-    return <aside className={cn("flex flex-col items-start bg-background px-4 lg:px-5 py-8 lg:py-12 gap-y-8 lg:gap-y-12 ", className)}>
+    return <aside
+        className={cn("flex flex-col items-start bg-background px-4 lg:px-5 py-8 lg:py-12 gap-y-8 lg:gap-y-12 ", className)}>
         <AppLogoIcon className={'text-primary h-[30px] max-h-[30px] flex'} href={'/'}/>
         <ul className={'flex flex-col gap-y-2 lg:gap-y-4 w-full'}>
             {links.map(item => <li key={item.label}><NavigationLink  {...item}/></li>)}
         </ul>
+
+        {session && <Button onClick={handleLogout} className={'mt-auto'} variant={'text'} color={'accent'}>Logout</Button>}
     </aside>
 }
 

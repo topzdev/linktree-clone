@@ -31,6 +31,9 @@ const pageRoutes = {
             settings: {
                 href: `${_path}/settings`
             },
+            preview: {
+                href: `${_path}/preview`
+            },
         }
     })()
 };
