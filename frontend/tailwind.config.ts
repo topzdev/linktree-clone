@@ -24,18 +24,13 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
-        // user: {
-        //   'bg-color': 'var(--user-bg-color)',
-        //   'bg-color-2': 'var(--user-bg-color-2)',
-        //   'bg-position': 'var(--user-bg-position)',
-        //   'btn-color': 'var(--user-btn-color)',
-        //   'btn-text-color': 'var(--user-btn-text-color)',
-        // },
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+
         background: "hsl(var(--background))",
+        'dashboard-background': "hsl(var(--dashboard-background))",
 
         foreground: {
           primary:  "hsl(var(--foreground))",
