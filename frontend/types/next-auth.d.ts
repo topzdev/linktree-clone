@@ -4,6 +4,7 @@ export type AuthUser = {
     id: number,
     provider: string | null,
     provider_id: number,
+    username: string,
     firstname: string,
     lastname: string,
     email: string,

@@ -1,12 +1,21 @@
-import { getToken } from 'next-auth/jwt';
-import { withAuth } from 'next-auth/middleware';
-import { NextResponse } from 'next/server';
+import {withAuth} from 'next-auth/middleware';
+import {NextResponse} from 'next/server';
+import pageRoutes from "@/configs/page-routes";
 
-const protectedRoutes = ['/auth-only'];
-const authRoutes = ['/login', '/register', '/guest-only'];
+const protectedRoutes = [
+    pageRoutes.dashboard.links.href,
+    pageRoutes.dashboard.analytics.href,
+    pageRoutes.dashboard.buttons.href,
+    pageRoutes.dashboard.fonts.href,
+    pageRoutes.dashboard.profile.href,
+    pageRoutes.dashboard.settings.href,
+    pageRoutes.dashboard.theme.href,
+    pageRoutes.dashboard.preview.href,
+];
+const authRoutes = ['/login', '/register'];
 const publicRoutes = ['/', '/about']
 export const loginRoute = '/login';
-export const homeRoute = '/';
+export const homeRoute = pageRoutes.dashboard.links.href;
 export default withAuth(
     // `withAuth` augments your `Request` with the user's token.
     function middleware(req) {
@@ -17,9 +26,8 @@ export default withAuth(
         const isProtectedRoute = protectedRoutes.includes(pathname);
         const isPublicRoute = publicRoutes.includes(pathname);
 
-
         if (isProtectedRoute && !isAuthenticated) {
-            return  NextResponse.redirect(new URL(loginRoute, req.nextUrl));
+            return NextResponse.redirect(new URL(loginRoute, req.nextUrl));
         }
 
         if (isAuthRoute && isAuthenticated) {
@@ -30,7 +38,7 @@ export default withAuth(
     },
     {
         callbacks: {
-            authorized: ({ token }) => true,
+            authorized: ({token}) => true,
         },
     },
 )
