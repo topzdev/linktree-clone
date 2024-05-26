@@ -1,7 +1,6 @@
-"use client";
+"use client"
 
 import React from "react";
-import {cn} from "@/lib/utils";
 import pageRoutes from "@/configs/page-routes";
 import MaterialSymbolsList from "@/components/icons/MaterialSymbolsList";
 import MaterialSymbolsAccountCircleOutline from "@/components/icons/MaterialSymbolsAccountCircleOutline";
@@ -10,17 +9,17 @@ import MaterialSymbolsSmartButtonSharp from "@/components/icons/MaterialSymbolsS
 import MaterialSymbolsFontDownloadOutline from "@/components/icons/MaterialSymbolsFontDownloadOutline";
 import MaterialSymbolsAnalyticsOutline from "@/components/icons/MaterialSymbolsAnalyticsOutline";
 import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSettingsOutline";
-import AppLogoIcon from "@/components/common/AppLogoIcon";
-import NavigationLink from "./NavigationLink";
-import {usePathname} from "next/navigation";
+import {cn} from "@/lib/utils";
+import MobileNavigationBottomLink from "@/app/dashboard/_components/MobileNavigationBottomLink";
+import useIsActivePage from "@/hooks/useIsActivePage";
+
+export const mobileNavbarHeight = 83
 
 type Props = {
-    children?: React.ReactNode,
-    className?: string,
-}
+    children?: React.ReactNode
+} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-
-export const links = [
+const links = [
     {
         href: pageRoutes.dashboard.links.href,
         label: 'Links',
@@ -41,6 +40,9 @@ export const links = [
         label: 'Buttons',
         icon: <MaterialSymbolsSmartButtonSharp/>
     },
+]
+
+const moreLinks = [
     {
         href: pageRoutes.dashboard.fonts.href,
         label: 'Fonts',
@@ -58,14 +60,18 @@ export const links = [
     },
 ]
 
-const NavigationSidebar = ({className}: Props) => {
+const MobileNavigationBottomBar = ({className, ...props}: Props) => {
 
-    return <aside className={cn("flex flex-col items-start bg-background px-4 lg:px-5 py-8 lg:py-12 gap-y-8 lg:gap-y-12 ", className)}>
-        <AppLogoIcon className={'text-primary h-[30px] max-h-[30px] flex'} href={'/'}/>
-        <ul className={'flex flex-col gap-y-2 lg:gap-y-4 w-full'}>
-            {links.map(item => <li key={item.label}><NavigationLink  {...item}/></li>)}
+    return <div {...props}
+                style={{
+                    height: mobileNavbarHeight,
+                    minHeight: mobileNavbarHeight
+                }}
+                className={cn('fixed bottom-0 left-0 w-screen bg-background border ', className)}>
+        <ul className={'flex h-full w-full'}>
+            {links.map(item => <li className={'w-full h-full'} key={item.label + 'MobileNav'}><MobileNavigationBottomLink className={'w-full h-full'} {...item}/></li>)}
         </ul>
-    </aside>
+    </div>
 }
 
-export default NavigationSidebar;
+export default MobileNavigationBottomBar;

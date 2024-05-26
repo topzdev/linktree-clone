@@ -12,7 +12,7 @@ const iconSizes = {
     xl: 'text-3xl',
 }
 
-const variants = {
+export const variants = {
     primary: {
         filled: 'border bg-primary text-primary-foreground border-primary hover:bg-primary-600 hover:border-primary-600',
         outlined: 'border border-primary text-primary',
