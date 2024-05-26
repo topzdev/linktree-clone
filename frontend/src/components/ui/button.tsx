@@ -9,9 +9,10 @@ const iconSizes = {
     sm: 'text-lg',
     base: 'text-xl',
     lg: 'text-2xl',
+    xl: 'text-3xl',
 }
 
-const variants = {
+export const variants = {
     primary: {
         filled: 'border bg-primary text-primary-foreground border-primary hover:bg-primary-600 hover:border-primary-600',
         outlined: 'border border-primary text-primary',
@@ -34,6 +35,7 @@ const buttonVariants = cva(
                 sm: "h-[32px] rounded-md px-2.5 text-sm ",
                 base: "h-[40px] rounded-md px-4 text-base",
                 lg: "h-[48px] rounded-md px-5 text-md",
+                xl: "h-[55px] rounded-md px-5 text-lg",
             },
 
             rounded: {
@@ -54,6 +56,7 @@ export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof buttonVariants> {
     asChild?: boolean;
+    size?: 'sm' | 'base' | 'lg' | 'xl'
     variant?: 'filled' | 'outlined' | 'text' | 'tonal',
     color?: 'primary' | 'accent',
     iconLeft?: React.ReactNode,
@@ -70,7 +73,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
          iconRight,
          iconLeft,
          color = 'primary',
-         size,
+         size = 'base',
          rounded,
          asChild = false,
          loading = false,

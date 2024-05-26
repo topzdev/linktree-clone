@@ -305,7 +305,11 @@
       --primary-950: 18 86% 15%;   /*#451A05*/
 
       --background: 0 0% 100%;
+      --dashboard-background: var(--gray-100);
+
       --foreground: var(--slate-900);
+      --dashboard-foreground: var(--foreground);
+
       --foreground-secondary: var(--slate-500);
       --foreground-disabled: var(--slate-600);
 
