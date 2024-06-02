@@ -20,8 +20,10 @@ Route::middleware(['auth:sanctum'])->prefix('links')->controller(LinksController
     Route::post('/', 'store');
     Route::get('/{id}', 'show');
     Route::delete('/{id}', 'destroy');
+    Route::post('/update/positions', 'updatePosition');
     Route::post('/update/{id}', 'update');
     Route::post('/update/{id}/thumbnail', 'updateThumbnail');
+    Route::post('/update/{id}/toggle', 'toggle');
 });
 
 Route::middleware(['auth:sanctum'])->prefix('profile')->controller(ProfileController::class)->group(function () {

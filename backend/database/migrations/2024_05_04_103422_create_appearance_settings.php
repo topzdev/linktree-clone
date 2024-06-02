@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('btn_color')->nullable();
             $table->string('btn_style')->nullable();
             $table->string('btn_text_color')->nullable();
+            $table->string('btn_shadow_color')->nullable();
             $table->string('profile_bio')->nullable();
             $table->tinyInteger('profile_image_style')->default(1);
             $table->string('profile_title')->nullable();

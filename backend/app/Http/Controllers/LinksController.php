@@ -67,6 +67,28 @@ class LinksController extends Controller
         return response()->json($link);
     }
 
+    public function toggle(String $id, Request $request)
+    {
+        $request->validate([
+            'is_enabled' => ['required', 'boolean']
+        ]);
+        $link = Links::where([
+            'id' => $id,
+            'user_id' => auth()->id()
+        ])->first();
+
+        if (empty($link)) {
+            return response()->json([
+                'message' => 'Link not exist'
+            ], 404);
+        }
+
+        $link->is_enabled = $request->is_enabled;
+        $link->save();
+
+        return $link->is_enabled;
+    }
+
     public function destroy(String $id)
     {
 
@@ -119,5 +141,20 @@ class LinksController extends Controller
 
         return response()->json(['message' => 'Failed to update thumbnail'], 500);
 
+    }
+
+    public function updatePosition(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|string',
+        ]);
+
+        $ids = explode(',', $request->ids);
+        foreach ($ids as $idx => $id) {
+            $update = Links::find($id);
+            $update->position = $idx + 1;
+            $update->save();
+        }
+        return response()->json(true);
     }
 }

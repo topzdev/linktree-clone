@@ -27,6 +27,7 @@ class ThemesController extends Controller
         $uploader = new AssetsManagerController();
 
         $request->validate([
+            'bg_id' => "string",
             "bg_color" => "string|hex_color",
             "bg_color2" => "string|hex_color",
             "bg_position" => "string",
@@ -46,7 +47,7 @@ class ThemesController extends Controller
             $settings->bg_video = $uploaded['source'];
         }
 
-        $settings->fill($request->only('bg_color', 'bg_color2', 'bg_position'));
+        $settings->fill($request->only('bg_id','bg_color', 'bg_color2', 'bg_position'));
         $settings->save();
 
         return response()->json($settings);

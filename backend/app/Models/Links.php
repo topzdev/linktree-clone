@@ -22,12 +22,14 @@ class Links extends Model
         'thumbnail',
         'position',
         'user_id',
+        'is_enabled',
     ];
 
     protected function casts()
     {
         return [
-            'type' => 'integer'
+            'type' => 'integer',
+            'is_enabled' => 'boolean'
         ];
     }
 
@@ -45,7 +47,7 @@ class Links extends Model
     protected static function booted(): void
     {
         static::creating(function (Links $links) {
-            $links->user_id = auth()->id();
+            $links->user_id = $links->user_id ? $links->user_id : auth()->id();
         });
     }
 

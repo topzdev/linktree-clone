@@ -16,12 +16,13 @@ class FontsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            "font_id" => "required|string",
+            "font_id" => "string",
+            "font_color" => "hex_color",
         ]);
 
         $settings = AppearanceSettings::userAppearanceSettings();
 
-        $settings->font_id = $request->font_id;
+        $settings->fill($request->only('font_id', 'font_color'));
         $settings->save();
 
         return response()->json($settings);
