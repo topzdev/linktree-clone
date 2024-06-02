@@ -47,12 +47,10 @@ const LinksList = ({links}: Props) => {
 
         move(result.source.index, result.destination.index);
 
-        // Update the form state to reflect the new order of items
         const reorderedItems = Array.from(fields);
         const [removed] = reorderedItems.splice(result.source.index, 1);
         reorderedItems.splice(result.destination.index, 0, removed);
 
-        // Update the database
         const reorderedLinks = reorderedItems.map((item) => item.id);
         console.log(reorderedLinks);
     //
