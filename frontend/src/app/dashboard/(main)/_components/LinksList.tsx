@@ -16,8 +16,9 @@ type Props = {
 export const linkSchema = yup.object().shape({
     id: yup.string(),
     url: yup.string().url().nullable(),
-    title: yup.string().required().nullable(),
+    title: yup.string().max(44).min(0).required().nullable(),
     type: yup.number().nullable(),
+    is_enabled: yup.boolean(),
     thumbnail_url: yup.string().nullable(),
 });
 
@@ -42,7 +43,7 @@ const LinksList = ({links}: Props) => {
         name: "links", // unique name for your Field Array
     });
 
-    const handleDragEnd = (result: DropResult) => {
+    const handleDragEnd = async (result: DropResult) => {
         if (!result.destination) return;
 
         move(result.source.index, result.destination.index);
@@ -51,15 +52,18 @@ const LinksList = ({links}: Props) => {
         const [removed] = reorderedItems.splice(result.source.index, 1);
         reorderedItems.splice(result.destination.index, 0, removed);
 
-        const reorderedLinks = reorderedItems.map((item) => item.id);
-        console.log(reorderedLinks);
-    //
+        const reorderedLinks = reorderedItems.map((item) => item.id)
+
+        await linkServices.updatePositions(reorderedLinks as string[]);
     };
 
     const handleDelete = async (index: number) => {
         alert(`Delete ${fields[index].id}?`)
-        // await linkServices.delete(fields[index].id);
-        // remove(index);
+        const id = fields[0].id;
+        if (fields && fields[index] && fields[index].id) {
+            remove(index);
+            await linkServices.delete(id?.toString() as string);
+        }
     }
 
     return <DragDropContext onDragEnd={handleDragEnd}>

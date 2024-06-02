@@ -1,7 +1,7 @@
 import React from "react";
 import {cn} from "@/lib/utils";
 
-type Props = {
+export type TypographyProps = {
     children?: React.ReactNode,
     variant?: keyof typeof typographies;
     className?: string,
@@ -38,7 +38,7 @@ const foregrounds = {
     disabled: 'text-foreground-disabled',
 }
 
-const Typography = ({as: Element, variant = 'p', foreground = 'inherit', children, className}: Props) => {
+const Typography = ({as: Element, variant = 'p', foreground = 'inherit', children, className}: TypographyProps) => {
     const as = Element ? Element : typographies[variant]['element'];
     const elementStyle = typographies[variant]['className'];
     const foregroundStyle = foregrounds[foreground];

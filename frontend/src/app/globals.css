@@ -331,7 +331,7 @@
       --accent: var(--slate-800);
       --accent-foreground: var(--slate-50);
 
-      --destructive: var(--red-900);
+      --destructive: var(--red-500);
       --destructive-foreground: var(--slate-50);
 
       --border: 214.3 31.8% 91.4%;

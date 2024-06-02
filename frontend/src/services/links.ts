@@ -1,5 +1,6 @@
 import {apiClient} from "@/lib/ofetch";
 import {Link} from "../../types/models";
+import {LinkForm} from "@/app/dashboard/(main)/_components/LinksList";
 
 const basePath = '/links'
 
@@ -9,10 +10,7 @@ export type AddLink = {
     type: string,
 }
 
-export type UpdateLink = {
-    title: string,
-    url?: string,
-}
+export type UpdateLink = Pick<LinkForm, 'title' | 'url'>
 
 const linkServices = {
     getAll: async () => {
@@ -27,23 +25,38 @@ const linkServices = {
         })
     },
     update: async (id: string, link: UpdateLink) => {
-        return apiClient.put(`${basePath}/update/${id}`, {
+        return apiClient.post(`${basePath}/update/${id}`, {
             body: link
+        })
+    },
+    updateToggle: async (id: string, is_enabled?: boolean) => {
+        return apiClient.post(`${basePath}/update/${id}/toggle`, {
+            body: {
+                is_enabled: is_enabled ? 1 : 0,
+            }
         })
     },
     updateThumbnail: async (id: string, image: File) => {
         const formData = new FormData();
         formData.append('image', image);
-        return apiClient.put(`${basePath}/update/${id}/thumbnail`, {
+        return apiClient.post(`${basePath}/update/${id}/thumbnail`, {
             body: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
     },
+    updatePositions: async (ids: string[]) => {
+        const body = {
+            ids: ids.join(',')
+        };
+        return apiClient.post(`${basePath}/update/positions`, {
+            body
+        })
+    },
     delete: async (id: string) => {
         return apiClient.delete(`${basePath}/${id}`);
-    }
+    },
 }
 
 export default linkServices;
