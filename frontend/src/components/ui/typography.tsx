@@ -27,7 +27,8 @@ const typographies = {
     },
     lead: {className: 'text-xl text-muted-foreground', element: 'p'},
     large: {className: 'text-md font-semibold leading-7', element: 'p'},
-    overline: {className: 'text-sm tracking-tight uppercase', element: 'p'}
+    overline: {className: 'text-sm tracking-tight uppercase', element: 'p'},
+    subtitle: {className: 'text-sm leading-5', element: 'p'}
 }
 
 const foregrounds = {

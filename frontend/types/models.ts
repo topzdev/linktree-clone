@@ -77,7 +77,6 @@ export type Link = {
     user_id: number;
     deleted_at: string | null;
 }
-
 export type Social = {
     id: number;
     social_id: string;

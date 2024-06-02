@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Link} from "@/types/models";
+import {Button, Link} from "../../../../../types/models";
 import LinkMainCard from "@/app/(public)/[username]/_components/link/LinkMainCard";
 import LinkHeaderCard from "@/app/(public)/[username]/_components/link/LinkHeaderCard";
 

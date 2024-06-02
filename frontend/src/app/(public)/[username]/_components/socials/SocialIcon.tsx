@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import Link from "next/link";
-import {Social} from "@/types/models";
+import {Social} from "../../../../../../types/models";
 import socialIcons from "@/data/social-icons";
 
 type Props = {

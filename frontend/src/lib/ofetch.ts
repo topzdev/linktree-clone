@@ -13,21 +13,23 @@ const instance  = ofetch.create({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Referer': process.env.NEXT_PUBLIC_REFERER
-    },
+    } as any,
     onRequest({request, options}) {
         let token = '';
         if (typeof window !== 'undefined') {
-            token = window.localStorage.getItem('access_token') || '';
+            token = window.localStorage.getItem('access-token') || '';
         }
 
         if (token) {
-            options.headers['Authorization'] = `Bearer ${token}`;
+            options.headers = {
+                ...options.headers,
+                'Authorization': `Bearer ${token}`,
+            };
         }
-
     },
 
-
 });
+
 
 const get = function<T>(request: FetchRequest, options?: FetchOptions<"json">): Promise<MappedResponseType<"json", T>>
 {

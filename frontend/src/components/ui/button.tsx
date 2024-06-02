@@ -5,7 +5,7 @@ import {cva, type VariantProps} from "class-variance-authority";
 import {cn} from "@/lib/utils"
 import {Loader2} from "lucide-react";
 
-const iconSizes = {
+export const iconSizes = {
     sm: 'text-lg',
     base: 'text-xl',
     lg: 'text-2xl',
@@ -33,7 +33,7 @@ const buttonVariants = cva(
         variants: {
             size: {
                 sm: "h-[32px] rounded-md px-2.5 text-sm ",
-                base: "h-[40px] rounded-md px-4 text-base",
+                base: "h-[40px] rounded-md px-4 text-lg",
                 lg: "h-[48px] rounded-md px-5 text-md",
                 xl: "h-[55px] rounded-md px-5 text-lg",
             },

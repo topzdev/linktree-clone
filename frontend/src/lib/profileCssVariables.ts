@@ -1,4 +1,4 @@
-import {AppearanceSettings} from "@/types/models";
+import {AppearanceSettings} from "../../types/models";
 import Color from "color";
 
 type ProfileCssVariablesConfig = Pick<AppearanceSettings, 'btn_color' | 'btn_text_color' | 'btn_shadow_color'>

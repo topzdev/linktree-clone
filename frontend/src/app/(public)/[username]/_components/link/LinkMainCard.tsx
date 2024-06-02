@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "@/types/models";
+import {Link} from "../../../../../../types/models";
 import Typography from "@/components/ui/typography";
 import Image from "next/image";
 import {cn} from "@/lib/utils";

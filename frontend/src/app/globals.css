@@ -325,8 +325,8 @@
       --secondary: var(--slate-800);
       --secondary-foreground: var(--slate-50);
 
-      --muted: var(--slate-800);
-      --muted-foreground: var(--slate-400);
+      --muted: var(--slate-100);
+      --muted-foreground: var(--slate-500);
 
       --accent: var(--slate-800);
       --accent-foreground: var(--slate-50);
@@ -357,8 +357,8 @@
       --secondary: 217.2 32.6% 17.5%;
       --secondary-foreground: 210 40% 98%;
 
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
+      --muted: var(--slate-800);
+      --muted-foreground: var(--slate-400);
 
       --accent: 217.2 32.6% 17.5%;
       --accent-foreground: 210 40% 98%;
