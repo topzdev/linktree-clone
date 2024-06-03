@@ -48,7 +48,6 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, title, 
             <input
                 hidden
                 type="file"
-                accept="image/*"
                 onChange={handleImageChange}
                 ref={fileInputRef}
                 className="hidden"

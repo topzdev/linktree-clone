@@ -11,6 +11,7 @@ import debounce from "debounce";
 import {yupResolver} from "@hookform/resolvers/yup";
 import LinkInputField from "@/app/dashboard/(main)/_components/cards/LinkInputField";
 import linkServices from "@/services/links";
+import {useToast} from "@/components/ui/use-toast";
 
 type Props = {
     children?: React.ReactNode,
@@ -22,13 +23,15 @@ type Props = {
 }
 
 const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
+    const { toast } = useToast()
     const [isEnabled, setEnabled] = useState(value.is_enabled);
 
     const {
         control,
         handleSubmit,
         watch,
-        formState, formState: {isValidating}
+        formState, formState: {isValidating},
+        setValue,
     } = useForm<LinkForm>({
         resolver: yupResolver(linkSchema),
         mode: 'onBlur',
@@ -66,6 +69,21 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
         }
     }
 
+    const handleThumbnailUpload = async (file: File) => {
+        if (value.id) {
+            try {
+                const response = await linkServices.updateThumbnail(value.id, file);
+                console.log('Response',response)
+                setValue('thumbnail_url', response.url);
+            } catch (e) {
+                console.log(e);
+                toast({
+                    title: 'Something went wrong',
+                })
+            }
+        }
+    }
+
 
     return (
         <Card className={'flex min-h-[100px] h-[100px] py-0'}>
@@ -76,7 +94,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
                 </div>
 
                 <div className={'flex items-center h-full w-full gap-2.5'}>
-                    <LinkThumbnailUploader image={value.thumbnail_url} title={value.title}/>
+                    <LinkThumbnailUploader image={value.thumbnail_url} title={value.title} onImageUpload={handleThumbnailUpload}/>
 
                     <form onSubmit={handleSubmit(onSubmit)} className={'flex flex-col w-full pr-4'}>
                         <LinkInputField control={control} name={'title'} as={'div'} foreground={'primary'}

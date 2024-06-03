@@ -10,6 +10,12 @@ export type AddLink = {
     type: string,
 }
 
+export type UpdateThumbnail = {
+    url: string,
+    filename: string,
+    source: string
+}
+
 export type UpdateLink = Pick<LinkForm, 'title' | 'url'>
 
 const linkServices = {
@@ -39,11 +45,14 @@ const linkServices = {
     updateThumbnail: async (id: string, image: File) => {
         const formData = new FormData();
         formData.append('image', image);
-        return apiClient.post(`${basePath}/update/${id}/thumbnail`, {
+        return apiClient.post<UpdateThumbnail>(`${basePath}/update/${id}/thumbnail`, {
             body: formData,
+            baseURL: process.env.NEXT_PUBLIC_API_URL,
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Referer': process.env.NEXT_PUBLIC_REFERER
+            } as any,
         })
     },
     updatePositions: async (ids: string[]) => {
