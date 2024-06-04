@@ -1,21 +1,27 @@
-import {FetchOptions, $Fetch, FetchRequest, MappedResponseType, ofetch} from "ofetch";
+import {FetchOptions, $Fetch, FetchRequest, MappedResponseType, ofetch, FetchError as OFetchError} from "ofetch";
+import {array} from "yup";
 
-type $NewFetch = $Fetch & {
-    post: (request: FetchRequest, options?: FetchOptions<"json">) => Promise<MappedResponseType<"json", any>>
-    get: (request: FetchRequest, options?: FetchOptions<"json">) => Promise<MappedResponseType<"json", any>>
-    put: (request: FetchRequest, options?: FetchOptions<"json">) => Promise<MappedResponseType<"json", any>>
-    delete: (request: FetchRequest, options?: FetchOptions<"json">) => Promise<MappedResponseType<"json", any>>
-};
+
+export type FetchError = Error & {
+    data: {
+        message: string,
+        errors: Record<string, string[]>
+    }
+}
+
+
 
 const instance  = ofetch.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Referer': process.env.NEXT_PUBLIC_REFERER
-    } as any,
     onRequest({request, options}) {
         let token = '';
+
+        options.headers = {
+            'Accept': 'application/json',
+            'Referer': process.env.NEXT_PUBLIC_REFERER || '',
+            ...options.headers,
+        }
+
         if (typeof window !== 'undefined') {
             token = window.localStorage.getItem('access-token') || '';
         }
@@ -26,6 +32,7 @@ const instance  = ofetch.create({
                 'Authorization': `Bearer ${token}`,
             };
         }
+
     },
 
 });

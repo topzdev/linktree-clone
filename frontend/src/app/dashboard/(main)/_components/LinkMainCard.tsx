@@ -12,6 +12,9 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import LinkInputField from "@/app/dashboard/(main)/_components/cards/LinkInputField";
 import linkServices from "@/services/links";
 import {useToast} from "@/components/ui/use-toast";
+import {FetchError} from "ofetch";
+import {useMutation} from "@tanstack/react-query";
+import * as yup from "yup";
 
 type Props = {
     children?: React.ReactNode,
@@ -22,44 +25,68 @@ type Props = {
     onDelete: (index: number) => void
 }
 
+
+export const contentSchema = yup.object().shape({
+    url: yup.string().url().nullable(),
+    title: yup.string().max(44).min(0).required().nullable(),
+});
+
 const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
-    const { toast } = useToast()
+    const {toast} = useToast()
     const [isEnabled, setEnabled] = useState(value.is_enabled);
 
-    const {
-        control,
-        handleSubmit,
-        watch,
-        formState, formState: {isValidating},
-        setValue,
-    } = useForm<LinkForm>({
+    const {control, handleSubmit} = useForm<LinkForm>({
+        resolver: yupResolver(contentSchema),
+        mode: 'all',
+        defaultValues: value
+    });
+
+    const hello = useForm<LinkForm>({
         resolver: yupResolver(linkSchema),
         mode: 'onBlur',
         defaultValues: value
     });
 
+    const useUploadThumbnail = useMutation({
+        mutationFn: (file: File) => {
+            return linkServices.updateThumbnail(value.id || '', file);
+        },
+        onSuccess(data, variables, context) {
+           hello.setValue('thumbnail_url', data.url);
+        },
+        onError(error: FetchError, variables, context) {
+            toast({
+                title: 'Something went wrong',
+                description: error.data.message,
+                variant: 'destructive'
+            })
+        },
+    })
+
+    const useUpdateContent = useMutation({
+        mutationFn: (data: LinkForm) => {
+            return linkServices.update(value.id || '', {
+                url: data.url,
+                title: data.title
+            })
+        },
+        onError(error: FetchError, variables, context) {
+            toast({
+                title: 'Something went wrong',
+                description: error.data.message,
+                variant: 'destructive'
+            })
+        },
+    })
+
     const debouncedSubmit = React.useCallback(
-        debounce(async (data: LinkForm) => {
-            if (value.id) {
-                await linkServices.update(value.id, {
-                    url: data.url,
-                    title: data.title
-                })
-            }
-        }, 500), // Adjust the delay (500ms in this case) as needed
+        debounce(useUpdateContent.mutate, 500), // Adjust the delay (500ms in this case) as needed
         []
     );
 
-    const data = watch();
-
-    React.useEffect(() => {
-        if (formState.isValid && !isValidating) {
-            debouncedSubmit(data);
-        }
-    }, [formState, data, isValidating]);
-
-    const onSubmit = (values: LinkForm) => {
-        debouncedSubmit(values);
+    const onSubmit = (e) => {
+        console.log('On Change Update')
+        e.preventDefault();
     };
 
     const handleToggle = async (checked: boolean) => {
@@ -70,18 +97,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
     }
 
     const handleThumbnailUpload = async (file: File) => {
-        if (value.id) {
-            try {
-                const response = await linkServices.updateThumbnail(value.id, file);
-                console.log('Response',response)
-                setValue('thumbnail_url', response.url);
-            } catch (e) {
-                console.log(e);
-                toast({
-                    title: 'Something went wrong',
-                })
-            }
-        }
+        await useUploadThumbnail.mutate(file);
     }
 
 
@@ -94,26 +110,28 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
                 </div>
 
                 <div className={'flex items-center h-full w-full gap-2.5'}>
-                    <LinkThumbnailUploader image={value.thumbnail_url} title={value.title} onImageUpload={handleThumbnailUpload}/>
+                    <LinkThumbnailUploader loading={useUploadThumbnail.isPending} image={value.thumbnail_url}
+                                           title={value.title}
+                                           onImageUpload={handleThumbnailUpload}/>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className={'flex flex-col w-full pr-4'}>
+                    <form onChange={onSubmit} className={'flex flex-col w-full pr-4'}>
                         <LinkInputField control={control} name={'title'} as={'div'} foreground={'primary'}
                                         variant={'large'}/>
                         <LinkInputField control={control} name={'url'} as={'div'} foreground={'primary'}
                                         variant={'subtitle'}/>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <div className={'flex flex-col items-center justify-center h-full gap-y-1'}>
-                <Switch checked={isEnabled} onCheckedChange={handleToggle}/>
-                <IconButton size={'lg'} className={'text-foreground-secondary'} onClick={() => onDelete(index)}>
-                    <IcOutlineDeleteOutline/>
-                </IconButton>
-            </div>
-        </CardContent>
-</Card>
-)
-    ;
+                <div className={'flex flex-col items-center justify-center h-full gap-y-1'}>
+                    <Switch checked={isEnabled} onCheckedChange={handleToggle}/>
+                    <IconButton size={'lg'} className={'text-foreground-secondary'} onClick={() => onDelete(index)}>
+                        <IcOutlineDeleteOutline/>
+                    </IconButton>
+                </div>
+            </CardContent>
+        </Card>
+    )
+        ;
 }
 
 export default LinkMainCard;

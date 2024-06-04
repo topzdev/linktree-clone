@@ -18,6 +18,7 @@ export type UpdateThumbnail = {
 
 export type UpdateLink = Pick<LinkForm, 'title' | 'url'>
 
+
 const linkServices = {
     getAll: async () => {
         return apiClient.get<Link[]>(`${basePath}/`);
@@ -47,12 +48,6 @@ const linkServices = {
         formData.append('image', image);
         return apiClient.post<UpdateThumbnail>(`${basePath}/update/${id}/thumbnail`, {
             body: formData,
-            baseURL: process.env.NEXT_PUBLIC_API_URL,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Accept': 'application/json',
-                'Referer': process.env.NEXT_PUBLIC_REFERER
-            } as any,
         })
     },
     updatePositions: async (ids: string[]) => {

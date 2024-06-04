@@ -2,14 +2,16 @@ import React, {useRef, useState} from 'react';
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import MaterialSymbolsImageOutline from "@/components/icons/MaterialSymbolsImageOutline";
 import Image from "next/image";
+import LucideLoaderCircle from "@/components/icons/LucideLoaderCircle";
 
 interface ThumbnailUploaderProps {
     image?: string | null,
     title: string | null,
     onImageUpload?: (file: File) => void;
+    loading?: boolean;
 }
 
-const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, title, onImageUpload }) => {
+const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading, title, onImageUpload}) => {
     const [preview, setPreview] = useState<string | null | undefined>(image)
     const fileInputRef = useRef<HTMLInputElement>(null);
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +19,8 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, title, 
             const file = e.target.files[0];
             const reader = new FileReader();
             reader.onloadend = () => {
-                setPreview(reader.result as string);
-               if (onImageUpload) onImageUpload(file);
+                if (onImageUpload) onImageUpload(file);
+                e.target.value = "";
             };
             reader.readAsDataURL(file);
         }
@@ -37,7 +39,7 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, title, 
                 <Image
                     priority
                     src={preview}
-                    alt={title}
+                    alt={title || ''}
                     width={64}
                     height={64}
                 />
@@ -45,6 +47,13 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, title, 
             <AvatarFallback className={'text-muted-foreground text-2xl bg-muted rounded-lg'}>
                 <MaterialSymbolsImageOutline/>
             </AvatarFallback>
+            {
+                loading &&
+                <div
+                    className={'absolute w-full h-full text-2xl bg-black/50 flex items-center justify-center text-white'}>
+                    <LucideLoaderCircle className="animate-spin"/>
+                </div>
+            }
             <input
                 hidden
                 type="file"
