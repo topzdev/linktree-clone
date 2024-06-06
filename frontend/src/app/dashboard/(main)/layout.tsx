@@ -10,9 +10,7 @@ export default function DashboardLayout({children}: Readonly<{
         <MobileNavbar className={'md:hidden'}/>
         <NavigationSidebar className={'sticky top-0 min-w-[250px] lg:min-w-[300px] 2xl:min-w-[360px] min-h-full max-h-screen max-md:hidden'}/>
         <div className={'w-full h-full pt-[90px] md:pt-[80px]'}>
-            <div className={'max-lg px-4 max-w-[600px] mx-auto'}>
                 {children}
-            </div>
         </div>
         <PreviewSidebar
             className={'sticky top-0 min-w-[250px] lg:min-w-[300px] xl:min-w-[400px] 2xl:min-w-[600px] min-h-full !max-h-screen max-md:hidden'}/>

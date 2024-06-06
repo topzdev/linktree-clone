@@ -14,7 +14,7 @@ type Props = {
 } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>
 
 export const linkSchema = yup.object().shape({
-    id: yup.string(),
+    id: yup.number(),
     url: yup.string().url().nullable(),
     title: yup.string().max(44).min(0).required().nullable(),
     type: yup.number().nullable(),
@@ -37,6 +37,12 @@ const LinksList = ({links}: Props) => {
         }
     });
 
+    useEffect(() => {
+        reset({
+            links
+        });
+    }, [links]);
+
     const {fields, update, move, append, remove} = useFieldArray({
         keyName: '_id',
         control, // control props comes from useForm (optional: if you are using FormProvider)
@@ -54,7 +60,7 @@ const LinksList = ({links}: Props) => {
 
         const reorderedLinks = reorderedItems.map((item) => item.id)
 
-        await linkServices.updatePositions(reorderedLinks as string[]);
+        await linkServices.updatePositions(reorderedLinks as number[]);
     };
 
     const handleDelete = async (index: number) => {
@@ -83,7 +89,6 @@ const LinksList = ({links}: Props) => {
                                             index={index}
                                             value={item}
                                             update={update}
-                                            control={control}
                                             onDelete={handleDelete}
                                         />
                                     </li>

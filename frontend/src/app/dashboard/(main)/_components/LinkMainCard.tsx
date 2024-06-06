@@ -49,7 +49,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
 
     const useUploadThumbnail = useMutation({
         mutationFn: (file: File) => {
-            return linkServices.updateThumbnail(value.id || '', file);
+            return linkServices.updateThumbnail(value.id, file);
         },
         onSuccess(data, variables, context) {
            hello.setValue('thumbnail_url', data.url);
@@ -65,7 +65,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
 
     const useUpdateContent = useMutation({
         mutationFn: (data: LinkForm) => {
-            return linkServices.update(value.id || '', {
+            return linkServices.update(value.id, {
                 url: data.url,
                 title: data.title
             })
@@ -84,9 +84,8 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
         []
     );
 
-    const onSubmit = (e) => {
+    const onSubmit = (value: LinkForm) => {
         console.log('On Change Update')
-        e.preventDefault();
     };
 
     const handleToggle = async (checked: boolean) => {
@@ -114,7 +113,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
                                            title={value.title}
                                            onImageUpload={handleThumbnailUpload}/>
 
-                    <form onChange={onSubmit} className={'flex flex-col w-full pr-4'}>
+                    <form onChange={handleSubmit(onSubmit)} className={'flex flex-col w-full pr-4'}>
                         <LinkInputField control={control} name={'title'} as={'div'} foreground={'primary'}
                                         variant={'large'}/>
                         <LinkInputField control={control} name={'url'} as={'div'} foreground={'primary'}

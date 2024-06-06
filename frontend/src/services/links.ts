@@ -23,7 +23,7 @@ const linkServices = {
     getAll: async () => {
         return apiClient.get<Link[]>(`${basePath}/`);
     },
-    getOne: async (id: string) => {
+    getOne: async (id: number) => {
         return apiClient.get<Link>(`${basePath}/${id}`);
     },
     add: async (link: AddLink) => {
@@ -31,26 +31,29 @@ const linkServices = {
             body: link,
         })
     },
-    update: async (id: string, link: UpdateLink) => {
+    update: async (id?: number, link?: UpdateLink) => {
         return apiClient.post(`${basePath}/update/${id}`, {
             body: link
         })
     },
-    updateToggle: async (id: string, is_enabled?: boolean) => {
+    updateToggle: async (id?: number, is_enabled?: boolean) => {
         return apiClient.post(`${basePath}/update/${id}/toggle`, {
             body: {
                 is_enabled: is_enabled ? 1 : 0,
             }
         })
     },
-    updateThumbnail: async (id: string, image: File) => {
+    updateThumbnail: async (id?: number, image?: File) => {
         const formData = new FormData();
-        formData.append('image', image);
+
+        if (image) {
+            formData.append('image', image);
+        }
         return apiClient.post<UpdateThumbnail>(`${basePath}/update/${id}/thumbnail`, {
             body: formData,
         })
     },
-    updatePositions: async (ids: string[]) => {
+    updatePositions: async (ids: number[]) => {
         const body = {
             ids: ids.join(',')
         };
