@@ -41,7 +41,7 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading
     };
 
     return (
-        <Avatar onClick={handleClick} className={'h-16 w-16 !rounded-lg cursor-pointer'}>
+        <Avatar onClick={handleClick} className={'h-12 w-12 md:h-16 md:w-16 !rounded-lg cursor-pointer'}>
             {preview && <AvatarImage asChild src={preview}>
                 <Image
                     priority

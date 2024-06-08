@@ -18,7 +18,7 @@ const AddButtons = (props: Props) => {
 
     return <>
         {type === '0' && <>
-            <Button rounded size={'lg'} className="w-full max-lg:hidden relative overflow-hidden ring-0"
+            <Button rounded size={'lg'} className="w-full max-lg:hidden relative overflow-hidden ring-0 mt-2.5"
                     onClick={() => setType('1')}>
                 Add Link
                 <div className="bg-primary-600 absolute right-0 min-h-full z-20 w-[50px] h-[52px] flex items-center justify-center ring:0"  onClick={(e) => {

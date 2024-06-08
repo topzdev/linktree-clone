@@ -71,7 +71,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
     }, 2000)
 
     return (
-        <Card className={'flex min-h-[100px] h-[100px] py-0'}>
+        <Card className={'flex h-[90px] min-h-[90px] md:min-h-[100px] md:h-[100px] py-0'}>
             <CardContent className={'flex w-full py-0 pl-0 pr-3'}>
                 <div {...handle}
                      className={'flex items-center justify-center h-full min-w-9 text-foreground-secondary hover:text-foreground cursor-pointer transition-all'}>
@@ -85,7 +85,7 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
 
                 <div className={'flex flex-col items-center justify-center h-full gap-y-1'}>
                     <Switch checked={isEnabled} onCheckedChange={handleToggle}/>
-                    <IconButton size={'lg'} className={'text-foreground-secondary'} onClick={() => onDelete(index)}>
+                    <IconButton size={'lg'} className={'text-foreground-secondary h-[35px] w-[35px]'} onClick={() => onDelete(index)}>
                         <IcOutlineDeleteOutline/>
                     </IconButton>
                 </div>
@@ -96,10 +96,10 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
 }
 
 export const LinkMainCardSkeleton = () => {
-    return <Card className={'flex min-h-[100px] h-[100px] py-0'}>
-        <CardContent className={'flex items-center w-full py-0 pl-0 p-2 py-5 gap-x-3'}>
+    return <Card className={'flex min-h-[90px] h-[90px] md:min-h-[100px] md:h-[100px] py-0'}>
+        <CardContent className={'flex items-center w-full pl-0 p-2 py-4 md::py-5 gap-x-3'}>
             <Skeleton className="h-10 min-w-5 rounded-lg"/>
-            <Skeleton className="h-16 min-w-16 rounded-lg"/>
+            <Skeleton className="h-12 min-w-12 md:h-16 md:min-w-16 rounded-lg"/>
             <div className="flex flex-col space-y-2 w-full">
                 <Skeleton className="h-5 w-6/12"/>
                 <Skeleton className="h-4 w-8/12"/>

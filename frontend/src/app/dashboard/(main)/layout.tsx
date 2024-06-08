@@ -7,7 +7,7 @@ export default function DashboardLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
     return <>
-        <MobileNavbar className={'lg:hidden z-[9999]'}/>
+        <MobileNavbar className={'lg:hidden z-50'}/>
         <NavigationSidebar className={'sticky top-0 min-w-[250px] lg:min-w-[300px] 2xl:min-w-[360px] min-h-full max-h-screen max-lg:hidden'}/>
         <div className={'w-full h-full pt-[90px] lg:pt-[80px] pb-[160px]'}>
                 {children}

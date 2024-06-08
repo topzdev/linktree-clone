@@ -28,7 +28,7 @@ const DashboardLinkPage = (props: Props) => {
 
     return <DashboardContainer>
         <div className="flex flex-col gap-y-5 w-full">
-            <div className={'flex flex-col gap-y-2.5 relative'}>
+            <div className={'flex flex-col relative'}>
                 <Typography as="h1" variant={'h2'}>
                     Links
                 </Typography>
