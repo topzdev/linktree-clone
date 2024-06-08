@@ -13,6 +13,7 @@ import AddHeaderForm from "@/app/dashboard/(main)/_components/links/AddHeaderFor
 import {FetchError} from "ofetch";
 import useDashboardStore from "@/stores/dashboard";
 import LinkTypeSelect from "@/app/dashboard/(main)/_components/links/LinkTypeSelect";
+import {Button} from "@/components/ui/button";
 
 type Props = {
     children?: React.ReactNode,
@@ -32,6 +33,7 @@ const AddLinkMainForm = ({showClose = true}: Props) => {
             return linkServices.add(data);
         },
         onSuccess(data, variables, context) {
+            setType('0');
             queryClient.setQueryData(
                 ['links'],
                 (oldData: Link[]) => {
@@ -60,10 +62,12 @@ const AddLinkMainForm = ({showClose = true}: Props) => {
 
     return <>
         <div className="flex flex-row items-start relative !pb-4">
-
-            <LinkTypeSelect value={type} onValueChange={setType}>
-                <Typography variant={'h3'}>Add {menuText}</Typography>
-                <MaterialSymbolsKeyboardArrowDownRounded className={'text-3xl'}/>
+            <LinkTypeSelect contentProps={{className: 'w-[300px]'}} value={type} onValueChange={setType}>
+                <Button className="px-0" variant={'text'} color={'accent'} iconRight={
+                    <MaterialSymbolsKeyboardArrowDownRounded className={'text-3xl'}/>
+                }>
+                    <Typography variant={'h3'}>Add {menuText}</Typography>
+                </Button>
             </LinkTypeSelect>
 
             {showClose && <IconButton size="sm" className={'ml-auto !mt-0 text-2xl text-muted-foreground'}

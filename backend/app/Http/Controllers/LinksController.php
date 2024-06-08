@@ -34,8 +34,8 @@ class LinksController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:44'],
-            'url' => ['string', 'url'],
+            'title' => 'string|nullable|max:44',
+            'url' => 'string|nullable|url',
             'type' => ['required', 'numeric', 'in:1,2']
         ]);
 
@@ -47,8 +47,8 @@ class LinksController extends Controller
     public function update(String $id, Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:44'],
-            'url' => ['string', 'url'],
+            'title' => 'string|nullable|max:44',
+            'url' => 'string|nullable|url',
         ]);
 
         $link = Links::where([

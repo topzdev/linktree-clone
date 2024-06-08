@@ -28,7 +28,10 @@ const AddButtons = (props: Props) => {
                     <MaterialSymbolsKeyboardArrowDownRounded className={'text-3xl'}/>
                 </div>
             </Button>
-            <LinkTypeSelect open={select} onOpenChange={setSelect} value={type} onValueChange={setType}> </LinkTypeSelect>
+            <LinkTypeSelect contentProps={{
+                align: 'end',
+                className: 'w-[300px]'
+            }} open={select} onOpenChange={setSelect} value={type} onValueChange={setType}/>
         </>
         }
 

@@ -1,6 +1,6 @@
 import {apiClient} from "@/lib/ofetch";
 import {Link} from "../../types/models";
-import {LinkForm} from "@/app/dashboard/(main)/_components/LinksList";
+import {LinkForm} from "@/app/dashboard/(main)/_components/links/LinksList";
 
 const basePath = '/links'
 

@@ -8,10 +8,12 @@ import {TooltipArrow} from "@radix-ui/react-tooltip";
 type Props = {
     children?: React.ReactNode,
     control: any,
-    name: string
+    name: string,
+    placeholder?: string,
+    inputClassName?: string
 } & TypographyProps
 
-const LinkInputField = ({control, name, ...props}: Props) => {
+const LinkInputField = ({control, name, placeholder, inputClassName, ...props}: Props) => {
     return <TooltipProvider>
         <Controller
             name={name}
@@ -21,8 +23,8 @@ const LinkInputField = ({control, name, ...props}: Props) => {
                     <TooltipTrigger>
                         <Typography as={'div'} {...props}>
                             <input
-                                placeholder="Enter title here"
-                                className={cn("placeholder:text-foreground-secondary !outline-0 w-full", error?.message ? '!text-destructive' : '')}
+                                placeholder={placeholder}
+                                className={cn("placeholder:text-foreground-secondary !outline-0 w-full", error?.message ? '!text-destructive' : '', inputClassName)}
                                 autoComplete="off"
                                 {...field}
                             />
@@ -30,7 +32,7 @@ const LinkInputField = ({control, name, ...props}: Props) => {
                     </TooltipTrigger>
                     <TooltipContent className={'border-destructive bg-destructive text-destructive-foreground'}>
                         <Typography variant={'small'}>{error?.message}</Typography>
-                        <TooltipArrow className={'fill-destructive'} width={11} height={5} />
+                        <TooltipArrow className={'fill-destructive'} width={11} height={5}/>
                     </TooltipContent>
                 </Tooltip>
             )}

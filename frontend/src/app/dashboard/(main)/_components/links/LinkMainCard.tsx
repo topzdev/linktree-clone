@@ -1,20 +1,21 @@
 import React, {useState} from "react";
 import MaterialSymbolsDragIndicator from "@/components/icons/MaterialSymbolsDragIndicator";
 import {Card, CardContent} from "@/components/ui/card";
-import LinkThumbnailUploader from "@/app/dashboard/(main)/_components/cards/LinkThumbnailUploader";
 import {Switch} from "@/components/ui/switch";
 import {IconButton} from "@/components/ui/icon-button";
 import IcOutlineDeleteOutline from "@/components/icons/IcOutlineDeleteOutline";
-import {FieldArrayWithId, UseFieldArrayUpdate, useForm} from "react-hook-form";
-import {LinkForm, linkSchema, LinksForm} from "@/app/dashboard/(main)/_components/LinksList";
+import {FieldArrayWithId, UseFieldArrayUpdate} from "react-hook-form";
+import {LinkForm, LinksForm} from "@/app/dashboard/(main)/_components/links/LinksList";
 import debounce from "debounce";
-import {yupResolver} from "@hookform/resolvers/yup";
-import LinkInputField from "@/app/dashboard/(main)/_components/cards/LinkInputField";
 import linkServices from "@/services/links";
 import {useToast} from "@/components/ui/use-toast";
 import {FetchError} from "ofetch";
 import {useMutation} from "@tanstack/react-query";
 import * as yup from "yup";
+import {Skeleton} from "@/components/ui/skeleton";
+import LinkMainUrlForm from "@/app/dashboard/(main)/_components/links/LinkMainUrlForm";
+import LinkMainHeaderForm from "@/app/dashboard/(main)/_components/links/LinkMainHeaderForm";
+import useDashboardStore from "@/stores/dashboard";
 
 type Props = {
     children?: React.ReactNode,
@@ -31,37 +32,12 @@ export const contentSchema = yup.object().shape({
     title: yup.string().max(44).min(0).required().nullable(),
 });
 
+
 const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
+    const updatePreview = useDashboardStore(state => state.updatePreview);
     const {toast} = useToast()
     const [isEnabled, setEnabled] = useState(value.is_enabled);
 
-    const {control, handleSubmit} = useForm<LinkForm>({
-        resolver: yupResolver(contentSchema),
-        mode: 'all',
-        defaultValues: value
-    });
-
-    const hello = useForm<LinkForm>({
-        resolver: yupResolver(linkSchema),
-        mode: 'onBlur',
-        defaultValues: value
-    });
-
-    const useUploadThumbnail = useMutation({
-        mutationFn: (file: File) => {
-            return linkServices.updateThumbnail(value.id, file);
-        },
-        onSuccess(data, variables, context) {
-           hello.setValue('thumbnail_url', data.url);
-        },
-        onError(error: FetchError, variables, context) {
-            toast({
-                title: 'Something went wrong',
-                description: error.data.message,
-                variant: 'destructive'
-            })
-        },
-    })
 
     const useUpdateContent = useMutation({
         mutationFn: (data: LinkForm) => {
@@ -70,6 +46,9 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
                 title: data.title
             })
         },
+        onSuccess(data, variables, context) {
+            updatePreview();
+        },
         onError(error: FetchError, variables, context) {
             toast({
                 title: 'Something went wrong',
@@ -79,46 +58,29 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
         },
     })
 
-    const debouncedSubmit = React.useCallback(
-        debounce(useUpdateContent.mutate, 500), // Adjust the delay (500ms in this case) as needed
-        []
-    );
-
-    const onSubmit = (value: LinkForm) => {
-        console.log('On Change Update')
-    };
-
     const handleToggle = async (checked: boolean) => {
         if (value.id) {
             setEnabled(checked)
+            updatePreview();
             await linkServices.updateToggle(value.id, checked);
         }
     }
 
-    const handleThumbnailUpload = async (file: File) => {
-        await useUploadThumbnail.mutate(file);
-    }
-
+    const onUpdateContent = debounce(async (data: LinkForm) => {
+        await useUpdateContent.mutate(data);
+    }, 2000)
 
     return (
         <Card className={'flex min-h-[100px] h-[100px] py-0'}>
-            <CardContent className={'flex w-full py-0 pl-0'}>
+            <CardContent className={'flex w-full py-0 pl-0 pr-3'}>
                 <div {...handle}
                      className={'flex items-center justify-center h-full min-w-9 text-foreground-secondary hover:text-foreground cursor-pointer transition-all'}>
                     <MaterialSymbolsDragIndicator className={'text-2xl'}/>
                 </div>
 
                 <div className={'flex items-center h-full w-full gap-2.5'}>
-                    <LinkThumbnailUploader loading={useUploadThumbnail.isPending} image={value.thumbnail_url}
-                                           title={value.title}
-                                           onImageUpload={handleThumbnailUpload}/>
-
-                    <form onChange={handleSubmit(onSubmit)} className={'flex flex-col w-full pr-4'}>
-                        <LinkInputField control={control} name={'title'} as={'div'} foreground={'primary'}
-                                        variant={'large'}/>
-                        <LinkInputField control={control} name={'url'} as={'div'} foreground={'primary'}
-                                        variant={'subtitle'}/>
-                    </form>
+                    {value.type === 1 && <LinkMainUrlForm update={onUpdateContent} value={value}/>}
+                    {value.type === 2 && <LinkMainHeaderForm update={onUpdateContent} value={value}/>}
                 </div>
 
                 <div className={'flex flex-col items-center justify-center h-full gap-y-1'}>
@@ -131,6 +93,19 @@ const LinkMainCard = ({value, index, handle, onDelete}: Props) => {
         </Card>
     )
         ;
+}
+
+export const LinkMainCardSkeleton = () => {
+    return <Card className={'flex min-h-[100px] h-[100px] py-0'}>
+        <CardContent className={'flex items-center w-full py-0 pl-0 p-2 py-5 gap-x-3'}>
+            <Skeleton className="h-10 min-w-5 rounded-lg"/>
+            <Skeleton className="h-16 min-w-16 rounded-lg"/>
+            <div className="flex flex-col space-y-2 w-full">
+                <Skeleton className="h-5 w-6/12"/>
+                <Skeleton className="h-4 w-8/12"/>
+            </div>
+        </CardContent>
+    </Card>
 }
 
 export default LinkMainCard;

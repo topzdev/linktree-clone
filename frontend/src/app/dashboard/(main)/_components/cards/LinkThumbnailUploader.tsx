@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import MaterialSymbolsImageOutline from "@/components/icons/MaterialSymbolsImageOutline";
 import Image from "next/image";
@@ -12,7 +12,14 @@ interface ThumbnailUploaderProps {
 }
 
 const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading, title, onImageUpload}) => {
-    const [preview, setPreview] = useState<string | null | undefined>(image)
+    const [preview, setPreview] = useState<string | null | undefined>(image);
+
+
+    useEffect(() =>
+    {
+        setPreview(image);
+    }, [image])
+
     const fileInputRef = useRef<HTMLInputElement>(null);
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {

@@ -73,7 +73,10 @@ class User extends Authenticatable
 
     public function links(): HasMany
     {
-        return $this->hasMany(Links::class)->orderBy('created_at', 'asc')->orderBy('position', 'asc');
+        return $this->hasMany(Links::class)
+            ->orderByRaw('CASE WHEN position IS NULL THEN 0 ELSE 1 END')
+            ->orderBy('position', 'ASC')
+            ->orderBy('created_at', 'DESC');
     }
 
     public function appearance_settings():HasOne

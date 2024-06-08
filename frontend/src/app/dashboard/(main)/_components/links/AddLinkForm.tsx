@@ -16,20 +16,23 @@ export const linkSchema  = yup.object().shape({
 });
 
 export type AddLinkForm = yup.InferType<typeof linkSchema>
+
+const defaultValues = {
+    url: ''
+}
 const AddLinkForm = ({onAdd, loading}: Props) => {
-    const {handleSubmit, control, formState} = useForm<AddLinkForm>({
+    const {handleSubmit, control, reset, formState} = useForm<AddLinkForm>({
         resolver: yupResolver(linkSchema),
-        defaultValues: {
-            url: ''
-        },
+        defaultValues
     })
 
-    const onSumbit = handleSubmit((value) => {
-        onAdd({
+    const onSumbit = handleSubmit(async (value) => {
+        await onAdd({
             title: '',
             url: value.url || '',
             type: '1',
         })
+        reset(defaultValues)
     })
 
     return <form onSubmit={onSumbit} className={'flex  max-sm:flex-col items-stretch w-full gap-2.5'}>
