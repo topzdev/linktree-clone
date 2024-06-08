@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@/components/ui/typography";
-import {Link} from "@/types/models";
+import {Link} from "../../../../../../types/models";
 
 type Props = {
     children?: React.ReactNode,

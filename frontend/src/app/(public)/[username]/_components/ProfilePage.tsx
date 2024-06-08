@@ -4,7 +4,7 @@ import React from "react";
 import ProfileInfo from "@/app/(public)/[username]/_components/ProfileInfo";
 import LinkListContainer from "@/app/(public)/[username]/_components/LinkListContainer";
 import {apiClient} from "@/lib/ofetch";
-import {ProfileData} from "@/types/models";
+import {ProfileData} from "../../../../../types/models";
 import {useQuery} from "@tanstack/react-query";
 import profileCssVariables from "@/lib/profileCssVariables";
 import SocialIconsList from "@/app/(public)/[username]/_components/SocialIconsList";

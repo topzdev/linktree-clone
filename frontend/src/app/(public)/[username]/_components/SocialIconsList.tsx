@@ -1,5 +1,5 @@
 import React from "react";
-import {Social} from "@/types/models";
+import {Social} from "../../../../../types/models";
 import SocialIcon from "@/app/(public)/[username]/_components/socials/SocialIcon";
 
 type Props = {

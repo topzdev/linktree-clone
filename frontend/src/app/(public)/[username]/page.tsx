@@ -1,6 +1,6 @@
 import React from "react";
 import {apiClient} from "@/lib/ofetch";
-import {ProfileData} from "@/types/models";
+import {ProfileData} from "../../../../types/models";
 import {dehydrate, HydrationBoundary, QueryClient, useQuery} from "@tanstack/react-query";
 import ProfilePage from "@/app/(public)/[username]/_components/ProfilePage";
 import {Metadata, ResolvingMetadata} from "next";

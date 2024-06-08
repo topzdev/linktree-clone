@@ -21,6 +21,7 @@ class AppearanceSettings extends Model
         'btn_color',
         'btn_style',
         'btn_text_color',
+        'btn_shadow_color',
         'profile_avatar',
         'profile_bio',
         'profile_image_style',
@@ -48,10 +49,27 @@ class AppearanceSettings extends Model
 
     protected $appends = [
         'profile_avatar_url',
+        'profile_initials',
         'bg_image_url',
         'bg_video_url',
     ];
 
+    protected function profileInitials(): Attribute
+    {
+        return new Attribute(
+            get: function (){
+                $words = explode(' ', $this->profile_title); // Split the string by spaces into an array of words
+                $initials = '';
+
+                foreach ($words as $word) {
+                    if (strlen($word) > 0) {
+                        $initials .= strtoupper($word[0]); // Add the first letter of each word in uppercase
+                    }
+                }
+                return $initials;
+            }
+        );
+    }
     protected function profileAvatarUrl(): Attribute
     {
         return new Attribute(

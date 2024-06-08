@@ -20,11 +20,13 @@ class ButtonsController extends Controller
         $request->validate([
             "btn_color" => "string|hex_color",
             "btn_text_color" => "string|hex_color",
+            "btn_shadow_color" => "string|hex_color",
+            'btn_id' => 'string'
         ]);
 
         $settings = AppearanceSettings::userAppearanceSettings();
 
-        $settings->fill($request->only('btn_color', 'btn_text_color'));
+        $settings->fill($request->only('btn_color', 'btn_text_color', 'btn_shadow_color', 'btn_id'));
         $settings->save();
 
         return response()->json($settings);

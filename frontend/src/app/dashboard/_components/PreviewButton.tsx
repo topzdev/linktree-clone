@@ -27,7 +27,7 @@ const PreviewButton = (props: Props) => {
 
     return <div style={{
         bottom: (isInPreviewPage ? 0 : mobileNavbarHeight) + 20 + 'px'
-    }} className={"fixed left-1/2 -translate-x-1/2 transition-all md:hidden"}>
+    }} className={"fixed left-1/2 -translate-x-1/2 transition-all lg:hidden"}>
         {!isInPreviewPage ?
             <Button rounded size={'xl'} className={'shadow'} style={{}} color='primary' variant={'tonal'}
                     iconLeft={<MaterialSymbolsVisibilityOutline/>}

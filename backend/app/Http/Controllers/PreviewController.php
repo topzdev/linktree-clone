@@ -21,7 +21,7 @@ class PreviewController extends Controller
 
         $data = [
             "appearance_settings" => $user->appearance_settings,
-            "links" => $user->links,
+            "links" => $user->links->where('is_enabled', '=', true)->values(),
             "socials" => $user->socials
         ];
         return response()->json($data);

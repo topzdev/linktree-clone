@@ -26,6 +26,7 @@ namespace App\Models{
  * @property string|null $btn_color
  * @property string|null $btn_style
  * @property string|null $btn_text_color
+ * @property string|null $btn_shadow_color
  * @property string|null $profile_bio
  * @property int $profile_image_style
  * @property string|null $profile_title
@@ -43,6 +44,7 @@ namespace App\Models{
  * @property-read \App\Models\Buttons|null $button
  * @property-read \App\Models\Fonts|null $font
  * @property-read mixed $profile_avatar_url
+ * @property-read mixed $profile_initials
  * @property-read \App\Models\Themes|null $theme
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings newModelQuery()
@@ -56,6 +58,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBgVideo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBtnColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBtnId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBtnShadowColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBtnStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereBtnTextColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppearanceSettings whereCreatedAt($value)
@@ -154,8 +157,48 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $title
+ * @property string|null $url
+ * @property int $type
+ * @property string|null $thumbnail
+ * @property int|null $position
+ * @property bool $is_enabled
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $thumbnail_url
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\LinksFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Links newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Links newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Links onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Links query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereIsEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Links withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Links withoutTrashed()
+ */
+	class Links extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $social_id
  * @property string $value
+ * @property int|null $position
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -164,6 +207,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Socials query()
  * @method static \Illuminate\Database\Eloquent\Builder|Socials whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Socials whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Socials wherePosition($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Socials whereSocialId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Socials whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Socials whereUserId($value)

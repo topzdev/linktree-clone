@@ -1,6 +1,6 @@
-
 import React from "react";
 import ReactQueryProviders from "@/components/providers/ReactQueryProvider";
+import SessionToLocalStorageProvider from "@/components/providers/SessionToLocalStorageProvider";
 
 type Props = {
     children?: React.ReactNode
@@ -8,7 +8,9 @@ type Props = {
 
 const Providers = async ({children}: Props) => {
     return <ReactQueryProviders>
-        {children}
+        <SessionToLocalStorageProvider>
+            {children}
+        </SessionToLocalStorageProvider>
     </ReactQueryProviders>
 
 

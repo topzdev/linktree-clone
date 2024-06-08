@@ -34,11 +34,14 @@ export default withAuth(
             return NextResponse.redirect(new URL(homeRoute, req.nextUrl));
         }
 
+
         return NextResponse.next();
     },
     {
         callbacks: {
-            authorized: ({token}) => true,
+            authorized: ({token}) => {
+                return true
+            },
         },
     },
 )
