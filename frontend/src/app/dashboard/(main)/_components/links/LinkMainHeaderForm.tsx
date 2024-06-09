@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import LinkInputField from "@/app/dashboard/(main)/_components/cards/LinkInputField";
+import LinkInputField from "@/app/dashboard/(main)/_components/links/LinkInputField";
 import {FieldArrayWithId, FormProvider, useForm} from "react-hook-form";
 import {LinkForm, LinksForm} from "@/app/dashboard/(main)/_components/links/LinksList";
 import {yupResolver} from "@hookform/resolvers/yup";

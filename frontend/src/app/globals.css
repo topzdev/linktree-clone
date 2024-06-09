@@ -412,7 +412,7 @@
     }
 
     .typo-small {
-        @apply text-sm leading-3;
+        @apply font-medium text-sm;
     }
 
     .typo-detail {

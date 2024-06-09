@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import LinkThumbnailUploader from "@/app/dashboard/(main)/_components/cards/LinkThumbnailUploader";
-import LinkInputField from "@/app/dashboard/(main)/_components/cards/LinkInputField";
+import LinkThumbnailUploader from "@/app/dashboard/(main)/_components/links/LinkThumbnailUploader";
+import LinkInputField from "@/app/dashboard/(main)/_components/links/LinkInputField";
 import {useMutation} from "@tanstack/react-query";
 import linkServices from "@/services/links";
 import {FetchError} from "ofetch";
