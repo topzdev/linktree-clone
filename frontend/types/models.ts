@@ -14,7 +14,7 @@ export type AppearanceSettings = {
     btn_text_color: string | null;
     btn_shadow_color: string | null;
     profile_bio: string;
-    profile_image_style: number;
+    profile_image_style: string;
     profile_title: string;
     profile_avatar: string;
     profile_initials: string | null

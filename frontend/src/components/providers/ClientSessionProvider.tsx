@@ -9,7 +9,7 @@ export default function ClientSessionProvider({
     children: React.ReactNode
     session: any
 }): React.ReactNode {
-    return <SessionProvider session={session}>
+    return <SessionProvider refetchOnWindowFocus={false} session={session}>
         {children}
     </SessionProvider>
 }
