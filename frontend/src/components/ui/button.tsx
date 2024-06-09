@@ -4,6 +4,7 @@ import {cva, type VariantProps} from "class-variance-authority";
 
 import {cn} from "@/lib/utils"
 import {Loader2} from "lucide-react";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export const iconSizes = {
     sm: 'text-lg',
@@ -104,6 +105,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )
     }
 )
+
+export const ButtonSkeleton = ({size, rounded, className}: ButtonProps) => {
+    return <Skeleton className={cn(buttonVariants({size, rounded, className}))}></Skeleton>
+}
+
 Button.displayName = "Button"
 
 export {Button, buttonVariants}

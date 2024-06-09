@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import {useBreakpoint} from "@/hooks/useBreakpoint";
 import AddButtons from "@/app/dashboard/(main)/_components/links/AddButtons";
 import profileServices from "@/services/profile";
-import ProfileForm from "@/app/dashboard/(main)/profile/_components/ProfileForm";
+import ProfileForm, {ProfileFormSkeleton} from "@/app/dashboard/(main)/profile/_components/ProfileForm";
 
 type Props = {
     children?: React.ReactNode
@@ -31,7 +31,8 @@ const DashboardProfilePage = (props: Props) => {
                    Profile
                 </Typography>
             </div>
-            {data && <ProfileForm value={data}/> }
+            {isLoading && <ProfileFormSkeleton />}
+            {!isLoading && data && <ProfileForm value={data}/> }
         </div>
     </DashboardContainer>
 }

@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {cn} from '@/lib/utils';
 import {Controller} from 'react-hook-form';
-import InputWrapper, {InputWrapperProps} from "@/components/ui/input-wrapper";
+import InputWrapper, {InputWrapperProps, InputWrapperSkeleton} from "@/components/ui/input-wrapper";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export const inputStyling = ({error}: Pick<InputProps, 'error'>) => {
     return [
@@ -33,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     type={type}
                     className={cn(
                         inputStyling({error}),
-                        'h-[52px]',
+                        'h-[48px] md:h-[52px]',
                         inputClassName
                     )}
                     ref={ref}
@@ -63,6 +64,12 @@ export const FormInput = ({name, control, ...props}: ControlledProp) => {
         />
     );
 };
+
+export const InputSkeleton = ({}: InputProps) => {
+    return <InputWrapperSkeleton>
+        <Skeleton className={'h-[48px] md:h-[52px] rounded-2xl w-full'} />
+    </InputWrapperSkeleton>
+}
 
 Input.displayName = 'Input';
 

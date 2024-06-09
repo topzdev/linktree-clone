@@ -1,9 +1,11 @@
 import React from "react";
-import InputWrapper, {InputWrapperProps} from "@/components/ui/input-wrapper";
+import InputWrapper, {InputWrapperProps, InputWrapperSkeleton} from "@/components/ui/input-wrapper";
 import Typography from "@/components/ui/typography";
 import Image from "next/image";
 import {RadioGroup, RadioGroupItem, RadioGroupProps} from "@/components/ui/radio-group";
 import {Controller} from "react-hook-form";
+import {Skeleton} from "@/components/ui/skeleton";
+import {InputProps} from "@/components/ui/input";
 
 type ChooserItem = {
     title: string,
@@ -56,9 +58,9 @@ export const FormItemChooser = ({name, control, ...props}: ControlledProp) => {
             render={({field: {ref, ...field}, fieldState, formState}) => (
                 <ItemChooser
                     {...props}
-                    onValueChange={(e) => {
-                        field.onChange(e)
-                    }}
+                    value={field.value}
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
                     error={fieldState.error?.message}
                 />
             )}
@@ -66,5 +68,12 @@ export const FormItemChooser = ({name, control, ...props}: ControlledProp) => {
     );
 };
 
-
+export const ItemChooserSkeleton = ({}: InputProps) => {
+    return <InputWrapperSkeleton>
+        <div className={'flex flex-row gap-x-4'}>
+            <Skeleton className={'w-[150px] min-h-[150px] rounded-2xl'} />
+            <Skeleton className={'w-[150px] min-h-[150px] rounded-2xl'} />
+        </div>
+    </InputWrapperSkeleton>
+}
 export default ItemChooser;

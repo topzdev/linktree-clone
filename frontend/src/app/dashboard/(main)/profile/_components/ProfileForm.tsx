@@ -10,12 +10,12 @@ import {UpdateThumbnail} from "@/services/links";
 import {FetchError} from "ofetch";
 import profileServices, {ReturnProfile} from "@/services/profile";
 import AvatarUploader from "@/app/dashboard/(main)/profile/_components/AvatarUploader";
-import {Button} from "@/components/ui/button";
-import {FormInput} from "@/components/ui/input";
+import {ButtonSkeleton} from "@/components/ui/button";
+import {FormInput, InputSkeleton} from "@/components/ui/input";
 import AutoSave from "@/components/utils/AutoSave";
-import {FormTextarea} from "@/components/ui/textarea";
-import {FormItemChooser} from "@/components/ui/item-chooser";
-import ConsoleLog from "@/components/utils/ConsoleLog";
+import {FormTextarea, TextareaSkeleton} from "@/components/ui/textarea";
+import {FormItemChooser, ItemChooserSkeleton} from "@/components/ui/item-chooser";
+import {Skeleton} from "@/components/ui/skeleton";
 
 type Props = {
     children?: React.ReactNode,
@@ -144,7 +144,8 @@ const ProfileForm = ({value}: Props) => {
 
     return <Card>
         <CardContent className={'flex flex-col gap-y-4'}>
-            <AvatarUploader initials={value.profile_initials} title={value?.profile_title} loading={useUpdateAvatar.isPending ||  useDeleteAvatar.isPending}
+            <AvatarUploader initials={value.profile_initials} title={value?.profile_title}
+                            loading={useUpdateAvatar.isPending || useDeleteAvatar.isPending}
                             onImageUpload={handleAvatarUpload} onImageRemove={handleAvatarRemove} image={avatar}/>
 
             <FormProvider {...methods}>
@@ -161,14 +162,29 @@ const ProfileForm = ({value}: Props) => {
                             placeholder={'Enter URL here'}/>
                     </div>
                     <div className="col-span-12">
-                        <FormTextarea control={control}
-                                      name={'profile_bio'}
-                                      label={'Profile Bio'}
-                                      placeholder={'Enter Bio here'}/>
+                        <FormTextarea
+                            control={control} name={'profile_bio'}
+                            label={'Profile Bio'}
+                            placeholder={'Enter Bio here'}/>
                     </div>
                     <AutoSave defaultValues={value} onSubmit={onSubmit}/>
                 </form>
             </FormProvider>
+        </CardContent>
+    </Card>
+}
+
+export const ProfileFormSkeleton = () => {
+    return <Card>
+        <CardContent className={'flex flex-col justify-center items-center gap-y-4'}>
+            <Skeleton className="rounded-full h-[144px] w-[144px]"/>
+            <div className={'flex max-md:flex-col gap-x-5 w-full'}>
+                <ButtonSkeleton className={'w-full'} size={'lg'}/>
+                <ButtonSkeleton className={'w-full'} size={'lg'}/>
+            </div>
+            <ItemChooserSkeleton/>
+            <InputSkeleton/>
+            <TextareaSkeleton/>
         </CardContent>
     </Card>
 }

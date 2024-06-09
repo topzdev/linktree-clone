@@ -76,7 +76,7 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, initial
                     className="hidden"
                 />
             </Avatar>
-            <div className={'flex gap-x-4 w-full'}>
+            <div className={'flex max-md:flex-col gap-2 md:gap-4 w-full'}>
                 <Button disabled={loading} className={'w-full'} size={'lg'} rounded onClick={handleClick}>Upload Image</Button>
                 <Button disabled={loading || !preview} className={'w-full'} size={'lg'} color={'accent'} variant="outlined" rounded onClick={handleDelete}>Remove</Button>
             </div>

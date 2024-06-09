@@ -2,6 +2,7 @@ import React from "react";
 import {cn} from "@/lib/utils";
 import {Label} from "@/components/ui/label";
 import Typography from "@/components/ui/typography";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export type InputWrapperProps = {
     children?: React.ReactNode,
@@ -34,6 +35,13 @@ const InputWrapper = ({className, error, hint, label, children, id}: InputWrappe
                 {hint}
             </Typography>
         )}
+    </div>
+}
+
+export const InputWrapperSkeleton = ({children}: InputWrapperProps) => {
+    return <div className={cn('flex flex-col w-full gap-y-1')}>
+        <Skeleton className="h-5 max-w-[160px] rounded-2xl" />
+        {children}
     </div>
 }
 

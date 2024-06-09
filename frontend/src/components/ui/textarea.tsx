@@ -1,9 +1,10 @@
 import * as React from "react"
 
 import {cn} from "@/lib/utils"
-import InputWrapper, {InputWrapperProps} from "@/components/ui/input-wrapper";
+import InputWrapper, {InputWrapperProps, InputWrapperSkeleton} from "@/components/ui/input-wrapper";
 import {Input, InputProps, inputStyling} from "@/components/ui/input";
 import {Controller} from "react-hook-form";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export type TextareaProps =
     React.TextareaHTMLAttributes<HTMLTextAreaElement>
@@ -57,6 +58,12 @@ export const FormTextarea = ({name, control, ...props}: ControlledProp) => {
         />
     );
 };
+
+export const TextareaSkeleton = ({}: InputProps) => {
+    return <InputWrapperSkeleton>
+        <Skeleton className={'h-[118px] rounded-2xl w-full'} />
+    </InputWrapperSkeleton>
+}
 
 
 Textarea.displayName = "Textarea"
