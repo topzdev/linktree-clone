@@ -1,6 +1,7 @@
 import {apiClient} from "@/lib/ofetch";
 import {AppearanceSettings} from "../../types/models";
 import {UpdateThumbnail} from "@/services/links";
+import {ButtonForm} from "@/app/dashboard/(main)/buttons/_components/ButtonsForm";
 
 const basePath = '/buttons'
 
@@ -13,7 +14,7 @@ const buttonsServices = {
     getOne: async () => {
         return apiClient.get<ReturnButtonsSettings>(`${basePath}`);
     },
-    update: async (data?: UpdateButtonsSettings) => {
+    update: async (data?: ButtonForm) => {
         return apiClient.post<ReturnButtonsSettings>(`${basePath}/update/`, {
             body: data
         })

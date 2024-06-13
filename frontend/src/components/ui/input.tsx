@@ -13,7 +13,8 @@ export const inputStyling = ({error}: Pick<InputProps, 'error'>) => {
 }
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-    inputClassName?: string
+    inputClassName?: string,
+    type?: Pick<React.InputHTMLAttributes<HTMLInputElement>, 'type'> | 'hex'
 } & InputWrapperProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -24,10 +25,32 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
          className,
          inputClassName,
          type,
+         onKeyDown,
          ...props
      }, ref) => {
 
         const inputWrapperProps = {id: props.id, error, hint, className, label}
+
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+
+            if (onKeyDown) {
+                onKeyDown(e)
+            } else {
+                if (type === 'hex') {
+                    const char = e.key;
+                    const hexRegex = /^[0-9a-fA-F#]$/;
+
+                    // Allow control keys: backspace, delete, tab, arrow keys, etc.
+                    const controlKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+
+                    if (!hexRegex.test(char) && !controlKeys.includes(char)) {
+                        e.preventDefault(); // Prevent the character from being entered
+                    }
+                }
+            }
+
+        };
+
         return (
             <InputWrapper {...inputWrapperProps}>
                 <input
@@ -39,6 +62,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     )}
                     ref={ref}
                     {...props}
+                    onKeyDown={handleKeyDown}
                 />
             </InputWrapper>
         );
@@ -67,7 +91,7 @@ export const FormInput = ({name, control, ...props}: ControlledProp) => {
 
 export const InputSkeleton = ({}: InputProps) => {
     return <InputWrapperSkeleton>
-        <Skeleton className={'h-[48px] md:h-[52px] rounded-2xl w-full'} />
+        <Skeleton className={'h-[48px] md:h-[52px] rounded-2xl w-full'}/>
     </InputWrapperSkeleton>
 }
 

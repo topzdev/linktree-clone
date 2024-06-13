@@ -2,12 +2,10 @@
 
 import React from "react";
 import Typography from "@/components/ui/typography";
-import ProfileForm, {ProfileFormSkeleton} from "@/app/dashboard/(main)/profile/_components/ProfileForm";
 import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardContainer";
-import ButtonsForm from "@/app/dashboard/(main)/buttons/_components/ButtonsForm";
+import ButtonsForm, {ButtonsFormSkeleton} from "@/app/dashboard/(main)/buttons/_components/ButtonsForm";
 import profileCssVariables from "@/lib/profileCssVariables";
 import {useQuery} from "@tanstack/react-query";
-import profileServices from "@/services/profile";
 import buttonsServices from "@/services/buttons";
 
 type Props = {
@@ -35,7 +33,8 @@ const DashboardButtonPage = (props: Props) => {
                 </Typography>
             </div>
 
-            <ButtonsForm/>
+            {isLoading && <ButtonsFormSkeleton/>}
+            {!isLoading && data && <ButtonsForm value={data}/>}
         </div>
     </DashboardContainer>
 }

@@ -23,6 +23,7 @@ const roundedClassname = 'rounded-xl';
 const circularClassname = 'rounded-full';
 
 type ButtonStyleItem = {
+    id: string,
     "title": string,
     "key": string,
     "group_id": number,
@@ -32,6 +33,7 @@ type ButtonStyleItem = {
 
 export const buttonsStyle  = {
     fill: {
+        id: 1,
         className: [''],
         "title": "Fill",
         "key": "fill",
@@ -42,6 +44,7 @@ export const buttonsStyle  = {
         }
     },
     fillrounded: {
+        id: 2,
         "title": "Fill Rounded",
         "key": "fillrounded",
         "group_id": 1,
@@ -52,6 +55,7 @@ export const buttonsStyle  = {
         }
     },
     fillcircular: {
+        id: 3,
         "title": "Fill Circular",
         "key": "fillcircular",
         "group_id": 1,
@@ -62,6 +66,7 @@ export const buttonsStyle  = {
         }
     },
     outline: {
+        id: 4,
         "title": "Outline",
         "key": "outline",
         "group_id": 2,
@@ -72,6 +77,7 @@ export const buttonsStyle  = {
         }
     },
     outlinerounded: {
+        id: 5,
         "title": "Outline Rounded",
         "key": "outlinerounded",
         "group_id": 2,
@@ -82,6 +88,7 @@ export const buttonsStyle  = {
         }
     },
     outlinecircular: {
+        id: 6,
         "title": "Outline Circular",
         "key": "outlinecircular",
         "group_id": 2,
@@ -92,6 +99,7 @@ export const buttonsStyle  = {
         }
     },
     softshadow: {
+        id: 7,
         "title": "Soft shadow",
         "key": "softshadow",
         "group_id": 3,
@@ -103,6 +111,7 @@ export const buttonsStyle  = {
         }
     },
     softshadowrounded: {
+        id: 8,
         "title": "Soft shadow Rounded",
         "key": "softshadowrounded",
         "group_id": 3,
@@ -114,6 +123,7 @@ export const buttonsStyle  = {
         }
     },
     softshadowcircular: {
+        id: 9,
         "title": "Soft shadow Circular",
         "key": "softshadowcircular",
         "group_id": 3,
@@ -125,6 +135,7 @@ export const buttonsStyle  = {
         }
     },
     hardshadow: {
+        id: 10,
         "title": "Hardshadow",
         "key": "hardshadow",
         "group_id": 4,
@@ -136,6 +147,7 @@ export const buttonsStyle  = {
         }
     },
     hardshadowrounded: {
+        id: 11,
         "title": "Hard shadow Rounded",
         "key": "hardshadowrounded",
         "group_id": 4,
@@ -147,6 +159,7 @@ export const buttonsStyle  = {
         }
     },
     hardshadowcircular: {
+        id: 12,
         "title": "Hard shadow Circular",
         "key": "hardshadowcircular",
         "group_id": 4,
