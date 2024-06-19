@@ -19,13 +19,7 @@ const DashboardButtonPage = (props: Props) => {
         queryFn: () => buttonsServices.getOne(),
     })
 
-    return <DashboardContainer style={{
-        ...profileCssVariables(({
-            btn_color: '#000',
-            btn_text_color: '#fff',
-            btn_shadow_color: '#000'
-        }))
-    }}>
+    return <DashboardContainer>
         <div className="flex flex-col gap-y-5 w-full">
             <div className={'flex flex-col relative'}>
                 <Typography as="h1" variant={'h2'}>

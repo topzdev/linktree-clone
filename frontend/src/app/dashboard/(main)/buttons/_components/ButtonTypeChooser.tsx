@@ -44,10 +44,10 @@ export const buttonsStyles = [
     },
 ]
 const ButtonTypeChooser = ({value, onChange}: Props) => {
-    return <div className={'flex flex-col w-full gap-y-5'}>
+    return <div className={'flex flex-col w-full gap-y-4 md:gap-y-5'}>
         {buttonsStyles.map(item =>
             <InputWrapper key={item.name} label={item.name} className={'w-full'}>
-                <div className={'grid grid-cols-12 w-full gap-x-2.5'}>
+                <div className={'grid grid-cols-12 w-full gap-x-2 md:gap-x-2.5'}>
                     {item.items.map(button => <ButtonsItem key={button.key} buttonType={button.key}
                                                            active={value === button.id}
                                                            onClick={() => onChange ? onChange(button.id) : null}/>)

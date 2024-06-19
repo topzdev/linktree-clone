@@ -14,6 +14,7 @@ import {
     ButtonTypeChooserSkeleton,
     FormButtonTypeChooser
 } from "@/app/dashboard/(main)/buttons/_components/ButtonTypeChooser";
+import profileCssVariables from "@/lib/profileCssVariables";
 
 type Props = {
     children?: React.ReactNode,
@@ -89,20 +90,26 @@ const ButtonsForm = ({value}: Props) => {
     }, [isSubmitSuccessful, submittedData, reset]);
 
 
-    return <Card className={'flex'}>
+    return <Card className={'flex'} style={{
+        ...profileCssVariables(({
+            btn_color: getValues('btn_color') || '#000',
+            btn_text_color: getValues('btn_text_color') || '#fff',
+            btn_shadow_color: getValues('btn_shadow_color') || '#c5c5c5'
+        }))
+    }}>
         <FormProvider {...methods}>
             <CardContent className={'flex flex-col w-full gap-y-5'}>
                 <FormButtonTypeChooser control={control} name={'btn_id'}/>
 
-                <div className="grid grid-cols-12 gap-5">
-                    <div className="col-span-6">
+                <div className="grid grid-cols-12 gap-3 md:gap-5">
+                    <div className="col-span-12 md:col-span-6">
                         <FormColorPicker
                             control={control}
                             name={'btn_color'}
                             label={'Background Color'}
                             placeholder='Background Color'/>
                     </div>
-                    <div className="col-span-6">
+                    <div className="col-span-12 md:col-span-6">
                         <FormColorPicker
                             control={control}
                             name={'btn_text_color'}
@@ -110,7 +117,7 @@ const ButtonsForm = ({value}: Props) => {
                             placeholder='Font Color'/>
                     </div>
                     {hasShadowButtonType &&
-                        <div className="col-span-6">
+                        <div className="col-span-12 md:col-span-6">
                             <FormColorPicker
                                 control={control}
                                 name={'btn_shadow_color'}
@@ -130,10 +137,10 @@ export const ButtonsFormSkeleton = () => {
         <CardContent className={'flex flex-col w-full gap-y-5'}>
             <ButtonTypeChooserSkeleton/>
             <div className="grid grid-cols-12 gap-5">
-                <div className="col-span-6">
+                <div className="col-span-12 md:col-span-6">
                     <ColorPickerSkeleton/>
                 </div>
-                <div className="col-span-6">
+                <div className="col-span-12 md:col-span-6">
                     <ColorPickerSkeleton/>
                 </div>
             </div>

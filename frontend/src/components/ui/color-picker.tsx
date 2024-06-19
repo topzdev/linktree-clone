@@ -48,12 +48,12 @@ const ColorPicker = ({
     }
 
     return <InputWrapper className={cn('flex w-full', className)} {...inputWrapperProps}>
-        <div className="flex gap-x-2.5">
+        <div className="flex gap-x-2 md:gap-x-2.5">
             <Popover open={popover} onOpenChange={setPopover}>
                 <PopoverTrigger>
                     <div style={{
                         background: color,
-                    }} className={'min-h-[52px] w-[52px] min-w-[52px] rounded-2xl border border-border'}>
+                    }} className={'min-h-[48px] w-[48px] min-w-[48px] md:min-h-[52px] md:w-[52px] md:min-w-[52px] rounded-2xl border border-border'}>
                     </div>
                 </PopoverTrigger>
                 <PopoverContent align={'start'}>
@@ -69,7 +69,7 @@ const ColorPicker = ({
                 </PopoverContent>
             </Popover>
 
-            <Input type={'hex'} value={color} error={error} onChange={(e) => pickColor(e.target.value)}/>
+            <Input className="w-full" type={'hex'} value={color} error={error} onChange={(e) => pickColor(e.target.value)}/>
         </div>
     </InputWrapper>
 }
