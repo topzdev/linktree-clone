@@ -52,9 +52,12 @@ Route::middleware(['auth:sanctum'])->prefix('fonts')->controller(FontsController
 Route::middleware(['auth:sanctum'])->prefix('socials')->controller(SocialsController::class)->group(function () {
     Route::get('/', 'all');
     Route::get('/user', 'index');
+    Route::get('/{id}', 'getOne');
     Route::post('/', 'add');
     Route::delete('/{id}', 'destroy');
     Route::post('/update/position', 'updatePosition');
+    Route::post('/update/visibility/{id}', 'updateVisibility');
+    Route::post('/update/align', 'updateSocialAlignment');
     Route::post('/update/{id}', 'update');
 });
 

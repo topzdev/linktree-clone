@@ -15,6 +15,7 @@ const typographies = {
     h3: {className: 'typo-h3', element: 'h3'},
     h4: {className: 'typo-h4', element: 'h4'},
     p: {className: 'typo-p', element: 'p'},
+    'p-ui': {className: 'typo-p-ui', element: 'p'},
     body: {className: 'typo-body', element: 'p'},
     'body-medium': {className: 'typo-body-medium', element: 'p'},
     small: {className: 'typo-small', element: 'p'},
