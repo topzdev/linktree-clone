@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {IconButton} from "@/components/ui/icon-button";
 import MaterialSymbolsDragIndicator from "@/components/icons/MaterialSymbolsDragIndicator";
 import {Social} from "../../../../../../types/models";
@@ -7,6 +7,8 @@ import socialIcons from "@/data/social-icons";
 import {Switch} from "@/components/ui/switch";
 import MaterialSymbolsEditOutlineRounded from "@/components/icons/MaterialSymbolsEditOutlineRounded";
 import {ListItem, ListItemProps} from "@/components/ui/list";
+import pageRoutes from "@/configs/page-routes";
+import Link from "next/link";
 
 type Props = {
     children?: React.ReactNode,
@@ -24,15 +26,19 @@ const SocialItem = React.forwardRef<HTMLLIElement, Props>( ({data, handle, updat
     }
 
     const info = socialIcons.find((item) => item.id === data.social_id);
+    const editLink = useMemo(() => pageRoutes.dashboard.socials.edit(data.id).href, [data.id])
+
     return <ListItem {...props}
                      leftAdornment={<IconButton className={'!px-0 !min-w-5'}
                                                 {...handle}>
                          <MaterialSymbolsDragIndicator/>
                      </IconButton>}
                      rightAdornment={<div className={'flex items-center ml-auto text-secondary-foreground'}>
-                         <IconButton>
-                             <MaterialSymbolsEditOutlineRounded/>
-                         </IconButton>
+                        <Link href={editLink}>
+                            <IconButton>
+                                <MaterialSymbolsEditOutlineRounded/>
+                            </IconButton>
+                        </Link>
                          <Switch checked={enabled} onCheckedChange={handleEnable}/>
                      </div>}
                     ref={ref}

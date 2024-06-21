@@ -13,6 +13,8 @@ const List = React.forwardRef<HTMLUListElement, ListProps>(({className, children
     }
 })
 
+List.displayName = 'List';
+
 export type ListItemProps = {
     leftAdornment?: React.ReactNode;
     rightAdornment?: React.ReactNode;
@@ -33,5 +35,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({
         {rightAdornment && <div className={'flex items-center'}>{rightAdornment}</div>}
     </li>
 })
+
+ListItem.displayName = 'ListItem';
 
 export default List;

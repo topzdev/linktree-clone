@@ -29,17 +29,13 @@ const SocialListModal = (props: Props) => {
         return debouncedSearchTerm !== '' ? socialIcons.filter(item => item.title.includes(debouncedSearchTerm)) : socialIcons
     }, [debouncedSearchTerm]);
 
-    const isAdded = (social_id: string) => {
-        return !!added?.socials.filter(item => item.social_id === social_id).length;
+    const addedSocial = (social_id: string) => {
+        return added?.socials.filter(item => item.social_id === social_id)[0];
     }
 
     useEffect(() => {
         if (!open) {
             router.push(pageRoutes.dashboard.socials.href);
-        }
-
-        return() => {
-            setOpen(false);
         }
     }, [open, setOpen]);
 
@@ -56,9 +52,7 @@ const SocialListModal = (props: Props) => {
                 </DialogHeader>
 
                 <List className="overflow-y-scroll max-h-[500px]  -mr-5">
-                    {icons.map(item => <li>
-                        <SocialListItem added={isAdded(item.id)} key={item.id} info={item}/>
-                    </li>)}
+                    {icons.map(item => <SocialListItem added={addedSocial(item.id)} key={item.id} info={item}/>)}
                 </List>
 
             </DialogContent>

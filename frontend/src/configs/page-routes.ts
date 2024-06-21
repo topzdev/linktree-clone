@@ -33,8 +33,13 @@ const pageRoutes = {
 
                 return {
                     href: subPath,
-                    add: {
-                        href: subPath + '/add'
+                    list: {
+                        href: subPath + '/list'
+                    },
+                    add:(social_id: string) => {
+                        return  {
+                            href: subPath + '/add/' + social_id
+                        }
                     },
                     edit: (id: string) => {
                         return {

@@ -89,7 +89,7 @@ const SocialForm = ({value}: Props) => {
     }
 
     return <Card>
-        <CardHeader action={<Link href={pageRoutes.dashboard.socials.add.href}>
+        <CardHeader action={<Link href={pageRoutes.dashboard.socials.list.href}>
             <Button rounded size={'lg'}>Add Social</Button>
         </Link>
         }>

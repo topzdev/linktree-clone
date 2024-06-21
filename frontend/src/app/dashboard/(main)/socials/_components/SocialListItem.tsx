@@ -1,20 +1,32 @@
+"use client"
 import React from "react";
-import SocialIcon from "@/app/(public)/[username]/_components/socials/SocialIcon";
 import Typography from "@/components/ui/typography";
 import {IconButton} from "@/components/ui/icon-button";
 import MaterialSymbolsChevronRightRounded from "@/components/icons/MaterialSymbolsChevronRightRounded";
 import {ListItem} from "@/components/ui/list";
 import MaterialSymbolsEditOutlineRounded from "@/components/icons/MaterialSymbolsEditOutlineRounded";
 import MaterialSymbolsCheckRounded from "@/components/icons/MaterialSymbolsCheckRounded";
+import {useRouter} from "next/navigation";
+import pageRoutes from "@/configs/page-routes";
+import {SocialIcon} from "@/app/dashboard/(main)/socials/_components/SocialListModal";
+import {Social} from "../../../../../../types/models";
 
 type Props = {
     children?: React.ReactNode,
     info: SocialIcon,
-    added?: boolean;
+    added?: Social;
 }
 
 const SocialListItem = ({info, added}: Props) => {
-    return <ListItem rightAdornment={added ?
+    const router = useRouter();
+
+    const gotoPage = () => {
+        const {add, edit} = pageRoutes.dashboard.socials;
+        router.push(!!added ? edit(added.id).href : add(info.id).href)
+    }
+
+
+    return <ListItem onClick={gotoPage} rightAdornment={added ?
         <IconButton>
             <MaterialSymbolsEditOutlineRounded/>
         </IconButton> :
@@ -30,7 +42,7 @@ const SocialListItem = ({info, added}: Props) => {
             }
             <Typography className={'flex items-center gap-x-2'}>
                 {info?.title}
-                {added &&
+                {!!added &&
                     <MaterialSymbolsCheckRounded className={'text-green-500 text-2xl'}/>
                 }
             </Typography>

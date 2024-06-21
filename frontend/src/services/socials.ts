@@ -12,16 +12,16 @@ const socialsServices = {
     getAll: async () => {
         return apiClient.get<UserSocials>(`${basePath}/user`);
     },
-    getOne: async () => {
-        return apiClient.get<Social>(`${basePath}`);
+    getOne: async (id: string) => {
+        return apiClient.get<Social>(`${basePath}/${id}`);
     },
     add: async (data?: any) => {
         return apiClient.post<Social>(`${basePath}/`, {
             body: data
         })
     },
-    update: async (data?: any) => {
-        return apiClient.post<Social>(`${basePath}/update/`, {
+    update: async (id: number, data?: any) => {
+        return apiClient.post<Social>(`${basePath}/update/${id}`, {
             body: data
         })
     },

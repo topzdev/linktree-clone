@@ -7,10 +7,6 @@ type Props = {
     children?: React.ReactNode
 }
 
-export const metadata: Metadata = {
-    title: 'Settings',
-}
-
 const Page = ({children}: Props) => {
     return <>
         <DashboardSettingsPage/>
