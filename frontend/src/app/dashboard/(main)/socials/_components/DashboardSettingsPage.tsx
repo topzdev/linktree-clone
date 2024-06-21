@@ -7,17 +7,15 @@ import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardCont
 import Typography from "@/components/ui/typography";
 import ButtonsForm, {ButtonsFormSkeleton} from "@/app/dashboard/(main)/buttons/_components/ButtonsForm";
 import socialsServices from "@/services/socials";
-import SocialForm, {SocialFormSkeleton} from "@/app/dashboard/(main)/settings/_components/SocialsForm";
+import SocialForm, {SocialFormSkeleton} from "@/app/dashboard/(main)/socials/_components/SocialsForm";
+import useFetchSocials from "@/hooks/useFetchSocials";
 
 type Props = {
     children?: React.ReactNode
 }
 
 const DashboardSettingsPage = (props: Props) => {
-    const {data, isLoading} = useQuery({
-        queryKey: ['socials'],
-        queryFn: () => socialsServices.getAll(),
-    })
+    const {isLoading, data} = useFetchSocials();
 
     return <DashboardContainer>
         <div className="flex flex-col gap-y-5 w-full">

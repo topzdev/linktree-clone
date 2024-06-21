@@ -28,9 +28,21 @@ const pageRoutes = {
             analytics: {
                 href: `${_path}/analytics`
             },
-            settings: {
-                href: `${_path}/settings`
-            },
+            socials: (() => {
+                const subPath = _path + '/socials';
+
+                return {
+                    href: subPath,
+                    add: {
+                        href: subPath + '/add'
+                    },
+                    edit: (id: string) => {
+                        return {
+                            href: subPath + '/edit/'+ id
+                        }
+                    }
+                }
+            })(),
             preview: {
                 href: `${_path}/preview`
             },

@@ -6,12 +6,15 @@ import {FormProvider, useFieldArray, useForm} from "react-hook-form";
 import socialsServices, {UserSocials} from "@/services/socials";
 import {Social} from "../../../../../../types/models";
 import {DragDropContext, Draggable, Droppable, DropResult} from "react-beautiful-dnd";
-import AutoSave from "@/components/utils/AutoSave";
 import {useMutation} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import Typography from "@/components/ui/typography";
 import {Button} from "@/components/ui/button";
-import SocialItem from "@/app/dashboard/(main)/settings/_components/SocialItem";
+import SocialItem from "@/app/dashboard/(main)/socials/_components/SocialItem";
+import Link from "next/link";
+import pageRoutes from "@/configs/page-routes";
+import List from "@/components/ui/list";
+import AutoSave from "@/components/utils/AutoSave";
 
 type Props = {
     children?: React.ReactNode,
@@ -86,7 +89,10 @@ const SocialForm = ({value}: Props) => {
     }
 
     return <Card>
-        <CardHeader action={<Button rounded size={'lg'}>Add Social</Button>}>
+        <CardHeader action={<Link href={pageRoutes.dashboard.socials.add.href}>
+            <Button rounded size={'lg'}>Add Social</Button>
+        </Link>
+        }>
             <Typography variant="h4">Link your social media</Typography>
             <Typography variant="p-ui" foreground="secondary">Add and edit icons linking to your social profiles, email
                 and more. Reorder icons by drag and drop.</Typography>
@@ -97,24 +103,23 @@ const SocialForm = ({value}: Props) => {
                     <DragDropContext onDragEnd={handleDragEnd}>
                         <Droppable droppableId="items">
                             {(provided: any) => (
-                                <ul {...provided.droppableProps} ref={provided.innerRef}
-                                    className={'flex flex-col w-full'}>
+                                <List {...provided.droppableProps} ref={provided.innerRef}
+                                      className={'flex flex-col w-full'}>
                                     {fields.map((item, index) => (
                                         <Draggable key={item.id} draggableId={item._id} index={index}>
                                             {(provided: any) => (
-                                                <li
+                                                <SocialItem
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
-                                                    className={'pb-2.5 w-full'}
-                                                >
-                                                    <SocialItem updateVisibility={useUpdateVisibility.mutate} handle={provided.dragHandleProps} data={item}
-                                                    />
-                                                </li>
+                                                    updateVisibility={useUpdateVisibility.mutate}
+                                                    handle={provided.dragHandleProps}
+                                                    data={item}
+                                                />
                                             )}
                                         </Draggable>
                                     ))}
                                     {provided.placeholder}
-                                </ul>
+                                </List>
                             )}
                         </Droppable>
                     </DragDropContext>

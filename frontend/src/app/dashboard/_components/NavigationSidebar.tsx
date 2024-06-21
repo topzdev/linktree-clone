@@ -53,7 +53,7 @@ export const links = [
         icon: <MaterialSymbolsAnalyticsOutline/>
     },
     {
-        href: pageRoutes.dashboard.settings.href,
+        href: pageRoutes.dashboard.socials.href,
         label: 'Settings',
         icon: <MaterialSymbolsSettingsOutline/>
     },
