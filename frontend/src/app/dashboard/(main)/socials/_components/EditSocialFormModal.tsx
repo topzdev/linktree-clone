@@ -3,13 +3,13 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useParams, useRouter} from "next/navigation";
 import pageRoutes from "@/configs/page-routes";
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogHeader, DialogHeaderSkeleton, DialogTitle} from "@/components/ui/dialog";
 import socialIcons from "@/data/social-icons";
 import {useForm} from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {FormInput} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {FormInput, InputSkeleton} from "@/components/ui/input";
+import {Button, ButtonSkeleton} from "@/components/ui/button";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import useDashboardStore from "@/stores/dashboard";
@@ -119,38 +119,58 @@ const EditSocialFormModal = (props: Props) => {
         await useUpdateContent.mutate(value);
     });
 
-    return <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
-        <DialogContent back={handleBack}
-                       className={cn('flex flex-col overflow-hidden gap-y-4', isLoading ? 'opacity-70' : '')}>
-            <DialogHeader>
-                <DialogTitle>Edit {social?.title}</DialogTitle>
-            </DialogHeader>
+    return <>
 
-            <form className={'flex flex-col gap-y-2.5'} onSubmit={onSubmit}>
-                <FormInput
-                    placeholder={`Enter your ${social?.title} URL`}
-                    control={control}
-                    name={'value'}
-                />
-                <Typography className={'cursor-pointer break-words'} onClick={handleFill}
-                            variant={'small'}>{social?.example}</Typography>
-            </form>
-            <div className="flex flex-col gap-y-2">
-                <Button
-                    onClick={onSubmit}
-                    disabled={useUpdateContent.isPending}
-                    loading={useUpdateContent.isPending}
-                    size={'lg'} rounded>Save</Button>
-                <Button
-                    onClick={() => useDeleteSocial.mutate()}
-                    color={'accent'}
-                    variant={'outlined'}
-                    disabled={useDeleteSocial.isPending}
-                    loading={useDeleteSocial.isPending}
-                    size={'lg'} rounded>Remove Icon</Button>
-            </div>
-        </DialogContent>
-    </Dialog>
+        <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
+            <DialogContent back={handleBack}
+                           className={cn('flex flex-col overflow-hidden gap-y-4')}>
+                {isLoading && <EditSocialFormModalSkeleton/>}
+                {!isLoading && info && <>
+                    <DialogHeader>
+                        <DialogTitle>Edit {social?.title}</DialogTitle>
+                    </DialogHeader>
+
+                    <form className={'flex flex-col gap-y-2.5'} onSubmit={onSubmit}>
+                        <FormInput
+                            placeholder={`Enter your ${social?.title} URL`}
+                            control={control}
+                            name={'value'}
+                        />
+                        <Typography className={'cursor-pointer break-words'} onClick={handleFill}
+                                    variant={'small'}>{social?.example}</Typography>
+                    </form>
+                    <div className="flex flex-col gap-y-2">
+                        <Button
+                            onClick={onSubmit}
+                            disabled={useUpdateContent.isPending}
+                            loading={useUpdateContent.isPending}
+                            size={'lg'} rounded>Save</Button>
+                        <Button
+                            onClick={() => useDeleteSocial.mutate()}
+                            color={'accent'}
+                            variant={'outlined'}
+                            disabled={useDeleteSocial.isPending}
+                            loading={useDeleteSocial.isPending}
+                            size={'lg'} rounded>Remove Icon</Button>
+                    </div>
+                </>}
+            </DialogContent>
+        </Dialog>
+    </>
+}
+
+const EditSocialFormModalSkeleton = () => {
+    return <>
+        <DialogHeaderSkeleton/>
+
+        <InputSkeleton/>
+
+        <div className={'flex flex-col gap-y-2'}>
+            <ButtonSkeleton/>
+            <ButtonSkeleton/>
+        </div>
+    </>
+
 }
 
 export default EditSocialFormModal;

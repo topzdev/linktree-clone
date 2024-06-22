@@ -7,6 +7,7 @@ import {cn} from "@/lib/utils"
 import {IconButton} from "@/components/ui/icon-button";
 import MaterialSymbolsCloseRounded from "@/components/icons/MaterialSymbolsCloseRounded";
 import MaterialSymbolsChevronLeftRounded from "@/components/icons/MaterialSymbolsChevronLeftRounded";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const Dialog = DialogPrimitive.Root
 
@@ -78,7 +79,14 @@ const DialogHeader = ({
         {...props}
     />
 )
-DialogHeader.displayName = "DialogHeader"
+DialogHeader.displayName = "DialogHeader";
+
+export const DialogHeaderSkeleton = () => {
+    return <div className={'flex w-full'}>
+        <Skeleton className={'w-[250px] h-[30px] mx-auto'}/>
+    </div>
+}
+
 
 const DialogFooter = ({
                           className,
