@@ -28,12 +28,12 @@ export const schema = yup.object().shape({
     value: yup.string().required().label('URL'),
 });
 
-export type AddSocialForm = yup.InferType<typeof schema>;
+export type EditSocialForm = yup.InferType<typeof schema>;
 
 const EditSocialFormModal = (props: Props) => {
     const fetchSocials = useFetchSocials();
     const {id} = useParams();
-    const {data:info, isLoading} = useQuery({
+    const {data: info, isLoading} = useQuery({
         queryKey: ['one-social-' + id],
         queryFn: () => socialsServices.getOne(id),
     })
@@ -79,7 +79,7 @@ const EditSocialFormModal = (props: Props) => {
     }
 
     const useUpdateContent = useMutation({
-        mutationFn: (data: AddSocialForm) => {
+        mutationFn: (data: EditSocialForm) => {
             return socialsServices.update(info?.id, data);
         },
         async onSuccess(data, variables, context) {
@@ -96,7 +96,7 @@ const EditSocialFormModal = (props: Props) => {
         },
     })
 
-    const useDeleteSocial  = useMutation({
+    const useDeleteSocial = useMutation({
         mutationFn: () => {
             return socialsServices.delete(info?.id);
         },
@@ -119,38 +119,38 @@ const EditSocialFormModal = (props: Props) => {
         await useUpdateContent.mutate(value);
     });
 
-    return <>
-        <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
-            <DialogContent back={handleBack} className={cn('overflow-hidden gap-y-4', isLoading ? 'opacity-70' : '')}>
-                <DialogHeader>
-                    <DialogTitle>Edit {social?.title}</DialogTitle>
-                </DialogHeader>
+    return <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
+        <DialogContent back={handleBack}
+                       className={cn('flex flex-col overflow-hidden gap-y-4', isLoading ? 'opacity-70' : '')}>
+            <DialogHeader>
+                <DialogTitle>Edit {social?.title}</DialogTitle>
+            </DialogHeader>
 
-                <form className={'flex flex-col gap-y-2.5'} onSubmit={onSubmit}>
-                    <FormInput
-                        placeholder={`Enter your ${social?.title} URL`}
-                        control={control}
-                        name={'value'}
-                    />
-                    <Typography className={'cursor-pointer'} onClick={handleFill} variant={'small'}>{social?.example}</Typography>
-                </form>
-                <div className="flex flex-col gap-y-2">
-                    <Button
-                        onClick={onSubmit}
-                        disabled={useUpdateContent.isPending}
-                        loading={useUpdateContent.isPending}
-                        size={'lg'} rounded>Save</Button>
-                    <Button
-                        onClick={() => useDeleteSocial.mutate()}
-                        color={'accent'}
-                        variant={'outlined'}
-                        disabled={useDeleteSocial.isPending}
-                        loading={useDeleteSocial.isPending}
-                        size={'lg'} rounded>Remove Icon</Button>
-                </div>
-            </DialogContent>
-        </Dialog>
-    </>
+            <form className={'flex flex-col gap-y-2.5'} onSubmit={onSubmit}>
+                <FormInput
+                    placeholder={`Enter your ${social?.title} URL`}
+                    control={control}
+                    name={'value'}
+                />
+                <Typography className={'cursor-pointer break-words'} onClick={handleFill}
+                            variant={'small'}>{social?.example}</Typography>
+            </form>
+            <div className="flex flex-col gap-y-2">
+                <Button
+                    onClick={onSubmit}
+                    disabled={useUpdateContent.isPending}
+                    loading={useUpdateContent.isPending}
+                    size={'lg'} rounded>Save</Button>
+                <Button
+                    onClick={() => useDeleteSocial.mutate()}
+                    color={'accent'}
+                    variant={'outlined'}
+                    disabled={useDeleteSocial.isPending}
+                    loading={useDeleteSocial.isPending}
+                    size={'lg'} rounded>Remove Icon</Button>
+            </div>
+        </DialogContent>
+    </Dialog>
 }
 
 export default EditSocialFormModal;

@@ -9,7 +9,7 @@ const iconButtonVariants = cva(
     {
         variants: {
             size: {
-                sm: "h-[32px] min-w-[32px] rounded-md text-sm ",
+                sm: "h-[32px] min-w-[32px] rounded-md md:text-sm ",
                 base: "h-[40px] min-w-[40px] rounded-md text-lg",
                 lg: "h-[48px] min-w-[48px] rounded-md text-md",
                 xl: "h-[55px] min-w-[55px] rounded-md text-lg",

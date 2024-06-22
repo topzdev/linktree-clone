@@ -7,7 +7,7 @@ import {Skeleton} from "@/components/ui/skeleton";
 
 export const inputStyling = ({error}: Pick<InputProps, 'error'>) => {
     return [
-        'flex border border-slate-100 bg-slate-100 w-full rounded-2xl px-3.5 md:px-5 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-50 text-base',
+        'flex border border-slate-100 bg-slate-100 w-full rounded-2xl px-3.5 md:px-5 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-50 text-sm md:text-base',
         error && 'bg-red-100 border-red-500 !ring-red-500'
     ]
 }

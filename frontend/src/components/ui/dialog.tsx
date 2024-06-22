@@ -43,19 +43,19 @@ const DialogContent = React.forwardRef<
         <DialogPrimitive.Content
             ref={ref}
             className={cn(
-                "fixed left-[50%] top-[50%] z-50 grid w-[90vw] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-lg",
+                "fixed left-[50%] top-[50%] z-50 grid w-[90vw] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-4 lg:p-5 md:p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-lg",
                 className
             )}
             {...props}
         >
             {children}
-            {(back || leftAction) && <div className={"absolute left-4 top-4"}>
+            {(back || leftAction) && <div className={"absolute left-2 lg:left-3 md:left-4 top-2 lg:top-3 md:top-4 "}>
                 {leftAction ? leftAction :  <IconButton color={'accent'} onClick={back} className={'ml-auto !mt-0 text-3xl'}>
                     <MaterialSymbolsChevronLeftRounded/>
                 </IconButton>}
             </div>}
             <DialogPrimitive.Close
-                className="absolute right-4 top-4 rounded-sm ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                className="absolute right-2 lg:right-3 md:right-4 top-2 lg:top-3 md:top-4 rounded-sm ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
                 <IconButton color={'accent'} asChild size="sm" className={'ml-auto !mt-0 text-2xl'}>
                     <MaterialSymbolsCloseRounded/>
                 </IconButton>

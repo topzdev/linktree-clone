@@ -1,5 +1,6 @@
 import React from "react";
 import {cn} from "@/lib/utils";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export type TypographyProps = {
     children?: React.ReactNode,
@@ -46,5 +47,12 @@ const Typography = ({as: Element, variant = 'p', foreground = 'inherit', childre
     return TypographyComponent;
 
 }
+
+export const TypographySkeleton = (props: TypographyProps) => {
+    return <Skeleton className={'w-auto'}>
+        <Typography className="opacity-0 select-none" {...props}/>
+    </Skeleton>
+}
+
 
 export default Typography;

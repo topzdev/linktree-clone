@@ -1,12 +1,8 @@
 "use client"
 
 import React from "react";
-import {useQuery} from "@tanstack/react-query";
-import buttonsServices from "@/services/buttons";
 import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardContainer";
 import Typography from "@/components/ui/typography";
-import ButtonsForm, {ButtonsFormSkeleton} from "@/app/dashboard/(main)/buttons/_components/ButtonsForm";
-import socialsServices from "@/services/socials";
 import SocialForm, {SocialFormSkeleton} from "@/app/dashboard/(main)/socials/_components/SocialsForm";
 import useFetchSocials from "@/hooks/useFetchSocials";
 

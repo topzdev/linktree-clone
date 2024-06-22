@@ -8,12 +8,12 @@ import {Social} from "../../../../../../types/models";
 import {DragDropContext, Draggable, Droppable, DropResult} from "react-beautiful-dnd";
 import {useMutation} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
-import Typography from "@/components/ui/typography";
-import {Button} from "@/components/ui/button";
+import Typography, {TypographySkeleton} from "@/components/ui/typography";
+import {Button, ButtonSkeleton} from "@/components/ui/button";
 import SocialItem from "@/app/dashboard/(main)/socials/_components/SocialItem";
 import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
-import List from "@/components/ui/list";
+import List, {ListItemSkeleton} from "@/components/ui/list";
 import AutoSave from "@/components/utils/AutoSave";
 
 type Props = {
@@ -89,10 +89,11 @@ const SocialForm = ({value}: Props) => {
     }
 
     return <Card>
-        <CardHeader action={<Link href={pageRoutes.dashboard.socials.list.href}>
-            <Button rounded size={'lg'}>Add Social</Button>
-        </Link>
-        }>
+        <CardHeader className={'max-md:flex-col max-md:gap-y-3 !pb-0'}
+                    action={<Link className='w-full' href={pageRoutes.dashboard.socials.list.href}>
+                        <Button className={'w-full'} rounded size={'lg'}>Add Social</Button>
+                    </Link>
+                    }>
             <Typography variant="h4">Link your social media</Typography>
             <Typography variant="p-ui" foreground="secondary">Add and edit icons linking to your social profiles, email
                 and more. Reorder icons by drag and drop.</Typography>
@@ -133,7 +134,26 @@ const SocialForm = ({value}: Props) => {
 export const SocialFormSkeleton = () => {
     return <Card>
         <CardContent className={'flex flex-col justify-center items-center gap-y-4'}>
+            <div className='flex max-md:flex-col gap-4 mb-4'>
+                <div className={'flex flex-col items-start gap-y-2.5'}>
+                    <TypographySkeleton>Link your social media</TypographySkeleton>
+                    <TypographySkeleton>Add and edit icons linking to your social profiles, email
+                        and more. Reorder icons by drag and drop.</TypographySkeleton>
+                </div>
+                <ButtonSkeleton className={'min-w-[150px]'}/>
+            </div>
 
+            <List className={'w-full gap-y-2'}>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+                <ListItemSkeleton/>
+            </List>
         </CardContent>
     </Card>
 }

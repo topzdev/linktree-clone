@@ -48,11 +48,6 @@ export const links = [
         icon: <MaterialSymbolsFontDownloadOutline/>
     },
     {
-        href: pageRoutes.dashboard.analytics.href,
-        label: 'Analytics',
-        icon: <MaterialSymbolsAnalyticsOutline/>
-    },
-    {
         href: pageRoutes.dashboard.socials.href,
         label: 'Settings',
         icon: <MaterialSymbolsSettingsOutline/>

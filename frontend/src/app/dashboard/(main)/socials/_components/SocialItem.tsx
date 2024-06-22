@@ -29,6 +29,7 @@ const SocialItem = React.forwardRef<HTMLLIElement, Props>( ({data, handle, updat
     const editLink = useMemo(() => pageRoutes.dashboard.socials.edit(data.id).href, [data.id])
 
     return <ListItem {...props}
+        className={'max-md:px-2'}
                      leftAdornment={<IconButton className={'!px-0 !min-w-5'}
                                                 {...handle}>
                          <MaterialSymbolsDragIndicator/>
