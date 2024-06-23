@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardSettingsPage from "@/app/dashboard/(main)/socials/_components/DashboardSettingsPage";
+import DashboardSettingsPage from "@/app/dashboard/(main)/settings/_components/DashboardSettingsPage";
 import {Metadata} from "next";
 
 type Props = {

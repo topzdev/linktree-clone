@@ -29,21 +29,21 @@ const pageRoutes = {
                 href: `${_path}/analytics`
             },
             socials: (() => {
-                const subPath = _path + '/socials';
-
+                const subPath = _path + '/settings';
+                const sectionHash = '#socials'
                 return {
-                    href: subPath,
+                    href: subPath + sectionHash,
                     list: {
-                        href: subPath + '/list'
+                        href: subPath + '/list' + sectionHash
                     },
                     add:(social_id: string) => {
                         return  {
-                            href: subPath + '/add/' + social_id
+                            href: subPath + '/add/' + social_id + sectionHash
                         }
                     },
                     edit: (id: string) => {
                         return {
-                            href: subPath + '/edit/'+ id
+                            href: subPath + '/edit/'+ id + sectionHash
                         }
                     }
                 }

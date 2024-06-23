@@ -6,7 +6,7 @@ type Props = {
     children?: React.ReactNode
 }
 
-const AddSocialFormModal = dynamic(() => import('@/app/dashboard/(main)/socials/_components/AddSocialFormModal'), {ssr: false})
+const AddSocialFormModal = dynamic(() => import('@/app/dashboard/(main)/settings/_components/AddSocialFormModal'), {ssr: false})
 
 export const metadata: Metadata = {
     title: 'Add Social',

@@ -10,7 +10,7 @@ import {useMutation} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import Typography, {TypographySkeleton} from "@/components/ui/typography";
 import {Button, ButtonSkeleton} from "@/components/ui/button";
-import SocialItem from "@/app/dashboard/(main)/socials/_components/SocialItem";
+import SocialItem from "@/app/dashboard/(main)/settings/_components/SocialItem";
 import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
 import List, {ListItemSkeleton} from "@/components/ui/list";

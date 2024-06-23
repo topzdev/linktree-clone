@@ -8,7 +8,7 @@ import MaterialSymbolsEditOutlineRounded from "@/components/icons/MaterialSymbol
 import MaterialSymbolsCheckRounded from "@/components/icons/MaterialSymbolsCheckRounded";
 import {useRouter} from "next/navigation";
 import pageRoutes from "@/configs/page-routes";
-import {SocialIcon} from "@/app/dashboard/(main)/socials/_components/SocialListModal";
+import {SocialIcon} from "@/app/dashboard/(main)/settings/_components/SocialListModal";
 import {Social} from "../../../../../../types/models";
 
 type Props = {

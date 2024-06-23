@@ -7,7 +7,7 @@ type Props = {
 }
 
 
-const SocialListModal = dynamic(() => import('@/app/dashboard/(main)/socials/_components/SocialListModal'), {ssr: false})
+const SocialListModal = dynamic(() => import('@/app/dashboard/(main)/settings/_components/SocialListModal'), {ssr: false})
 
 
 export const metadata: Metadata = {

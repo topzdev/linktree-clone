@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation";
 import {Input} from "@/components/ui/input";
 import MaterialSymbolsSearchRounded from "@/components/icons/MaterialSymbolsSearchRounded";
 import socialIcons from "@/data/social-icons";
-import SocialListItem from "@/app/dashboard/(main)/socials/_components/SocialListItem";
+import SocialListItem from "@/app/dashboard/(main)/settings/_components/SocialListItem";
 import List from "@/components/ui/list";
 import pageRoutes from "@/configs/page-routes";
 import { useDebounce } from "@uidotdev/usehooks";

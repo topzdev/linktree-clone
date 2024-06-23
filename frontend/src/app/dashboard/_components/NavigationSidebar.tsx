@@ -43,11 +43,6 @@ export const links = [
         icon: <MaterialSymbolsSmartButtonSharp/>
     },
     {
-        href: pageRoutes.dashboard.fonts.href,
-        label: 'Fonts',
-        icon: <MaterialSymbolsFontDownloadOutline/>
-    },
-    {
         href: pageRoutes.dashboard.socials.href,
         label: 'Settings',
         icon: <MaterialSymbolsSettingsOutline/>
