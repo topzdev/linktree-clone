@@ -7,6 +7,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-arvo"
     },
     {
         "id": 2,
@@ -16,6 +17,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-barlow"
     },
     {
         "id": 3,
@@ -25,6 +27,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0.4",
         "group_id": 3,
+        "className": "font-bebas-neue"
     },
     {
         "id": 4,
@@ -34,6 +37,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-bitter"
     },
     {
         "id": 5,
@@ -43,6 +47,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-calistoga"
     },
     {
         "id": 6,
@@ -52,6 +57,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-capriola"
     },
     {
         "id": 7,
@@ -61,6 +67,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-courgette"
     },
     {
         "id": 8,
@@ -70,6 +77,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-crimson-text"
     },
     {
         "id": 9,
@@ -79,6 +87,7 @@ const fonts = [
         "font_weight": "500",
         "letter_spacing": "0.4",
         "group_id": 2,
+        "className": "font-dm-sans"
     },
     {
         "id": 10,
@@ -88,6 +97,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-eb-garamond"
     },
     {
         "id": 11,
@@ -97,6 +107,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0.2",
         "group_id": 3,
+        "className": "font-fredoka-one"
     },
     {
         "id": 12,
@@ -106,6 +117,7 @@ const fonts = [
         "font_weight": "600",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-gothic-a1"
     },
     {
         "id": 13,
@@ -115,6 +127,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-hepta-slab"
     },
     {
         "id": 14,
@@ -124,6 +137,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-ibm-plex-sans"
     },
     {
         "id": 15,
@@ -133,6 +147,7 @@ const fonts = [
         "font_weight": "500",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-ibm-plex-serif"
     },
     {
         "id": 16,
@@ -142,6 +157,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-inter"
     },
     {
         "id": 17,
@@ -151,6 +167,7 @@ const fonts = [
         "font_weight": "700",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-karla"
     },
     {
         "id": 18,
@@ -160,6 +177,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-kite-one"
     },
     {
         "id": 19,
@@ -169,6 +187,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-lato"
     },
     {
         "id": 20,
@@ -178,6 +197,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-libre-baskerville"
     },
     {
         "id": 21,
@@ -187,6 +207,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-lora"
     },
     {
         "id": 22,
@@ -196,6 +217,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-merriweather"
     },
     {
         "id": 23,
@@ -205,6 +227,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-montserrat"
     },
     {
         "id": 24,
@@ -214,6 +237,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-nanum-pen-script"
     },
     {
         "id": 25,
@@ -223,6 +247,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-noto-serif"
     },
     {
         "id": 26,
@@ -232,6 +257,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-nova-round"
     },
     {
         "id": 27,
@@ -241,6 +267,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-oswald"
     },
     {
         "id": 28,
@@ -250,6 +277,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-pacifico"
     },
     {
         "id": 29,
@@ -259,6 +287,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-playfair-display"
     },
     {
         "id": 30,
@@ -268,6 +297,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-poppins"
     },
     {
         "id": 31,
@@ -277,6 +307,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-pt-serif"
     },
     {
         "id": 32,
@@ -286,6 +317,7 @@ const fonts = [
         "font_weight": "500",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-quicksand"
     },
     {
         "id": 33,
@@ -295,6 +327,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-raleway"
     },
     {
         "id": 34,
@@ -304,6 +337,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-roboto"
     },
     {
         "id": 35,
@@ -313,6 +347,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-roboto-slab"
     },
     {
         "id": 36,
@@ -322,6 +357,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "-0.4",
         "group_id": 3,
+        "className": "font-rock-salt"
     },
     {
         "id": 37,
@@ -331,6 +367,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-rubik"
     },
     {
         "id": 38,
@@ -340,6 +377,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-source-serif-pro"
     },
     {
         "id": 39,
@@ -349,6 +387,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-space-mono"
     },
     {
         "id": 40,
@@ -358,6 +397,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 3,
+        "className": "font-special-elite"
     },
     {
         "id": 41,
@@ -367,6 +407,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 2,
+        "className": "font-work-sans"
     },
     {
         "id": 42,
@@ -376,6 +417,7 @@ const fonts = [
         "font_weight": "400",
         "letter_spacing": "0",
         "group_id": 1,
+        "className": "font-zilla-slab"
     }
 ]
 
