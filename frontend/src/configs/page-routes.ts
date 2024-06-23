@@ -28,9 +28,26 @@ const pageRoutes = {
             analytics: {
                 href: `${_path}/analytics`
             },
-            settings: {
-                href: `${_path}/settings`
-            },
+            socials: (() => {
+                const subPath = _path + '/settings';
+                const sectionHash = '#socials'
+                return {
+                    href: subPath + sectionHash,
+                    list: {
+                        href: subPath + '/list' + sectionHash
+                    },
+                    add:(social_id: string) => {
+                        return  {
+                            href: subPath + '/add/' + social_id + sectionHash
+                        }
+                    },
+                    edit: (id: string) => {
+                        return {
+                            href: subPath + '/edit/'+ id + sectionHash
+                        }
+                    }
+                }
+            })(),
             preview: {
                 href: `${_path}/preview`
             },

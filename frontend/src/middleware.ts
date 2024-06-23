@@ -8,7 +8,7 @@ const protectedRoutes = [
     pageRoutes.dashboard.buttons.href,
     pageRoutes.dashboard.fonts.href,
     pageRoutes.dashboard.profile.href,
-    pageRoutes.dashboard.settings.href,
+    pageRoutes.dashboard.socials.href,
     pageRoutes.dashboard.theme.href,
     pageRoutes.dashboard.preview.href,
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Socials;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SocialsController extends Controller
@@ -16,8 +17,24 @@ class SocialsController extends Controller
 
     public function index()
     {
+
         $user_id = auth()->id();
-        return response()->json(auth()->user()->socials);
+        $settings = auth()->user()->appearance_settings;
+        $socials = auth()->user()->socials;
+        return response()->json([
+            "socials" => $socials,
+            'alignment' => $settings->social_align
+        ]);
+    }
+
+    public function getOne(String $id)
+    {
+        $user_id = auth()->id();
+        $social = Socials::find([
+            "user_id" => $user_id,
+            "id" => $id
+        ])->first();
+        return response()->json($social);
     }
 
     public function add(Request $request)
@@ -97,5 +114,29 @@ class SocialsController extends Controller
         }
         $socials = auth()->user()->socials;
         return response()->json($socials);
+    }
+
+    public function updateVisibility(String $id,Request $request)
+    {
+        $user_id = auth()->id();
+        $social = Socials::where(['id' => $id, 'user_id' => $user_id])->first();
+
+        $social->enabled = !$social->enabled;
+        $social->save();
+
+        return response()->json($social->enabled);
+    }
+
+    public function updateSocialAlignment(Request $request)
+    {
+        $request->validate([
+            'position' => 'integer|required',
+        ]);
+
+        $settings = auth()->user()->appearance_settings;
+        $settings->social_align = $request->position;
+        $settings->update();
+
+        return response()->json($settings->social_align);
     }
 }

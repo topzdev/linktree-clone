@@ -12,6 +12,8 @@ class Socials extends Model
     protected $fillable = [
         'social_id',
         'value',
-        'user_id'
+        'user_id',
+        'enabled',
+        'position'
     ];
 }

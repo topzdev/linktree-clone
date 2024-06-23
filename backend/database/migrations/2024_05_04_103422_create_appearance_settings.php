@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('profile_avatar')->nullable();
             $table->string('font_color')->nullable();
             $table->string('font_style')->nullable();
+            $table->integer('social_align')->default(2)->nullable();//top = 1, bottom = 2
             $table->unsignedBigInteger('bg_id')->default(1);
             $table->foreign('bg_id')->references('id')->on('backgrounds');
             $table->unsignedBigInteger('btn_id')->default(1);

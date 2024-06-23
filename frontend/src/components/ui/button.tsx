@@ -75,7 +75,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
          iconLeft,
          color = 'primary',
          size = 'base',
-         rounded,
+         rounded = true,
          asChild = false,
          loading = false,
          ...props
@@ -106,7 +106,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 )
 
-export const ButtonSkeleton = ({size, rounded, className}: ButtonProps) => {
+export const ButtonSkeleton = ({size, rounded = true, className}: ButtonProps) => {
     return <Skeleton className={cn(buttonVariants({size, rounded, className}))}></Skeleton>
 }
 

@@ -402,6 +402,9 @@
     .typo-p {
         @apply leading-7 text-base;
     }
+    .typo-p-ui {
+        @apply text-base;
+    }
 
     .typo-body {
         @apply text-sm leading-6;

@@ -1,5 +1,6 @@
 import React from "react";
 import {cn} from "@/lib/utils";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export type TypographyProps = {
     children?: React.ReactNode,
@@ -7,14 +8,14 @@ export type TypographyProps = {
     className?: string,
     as?: keyof JSX.IntrinsicElements;
     foreground?: keyof typeof foregrounds
-}
-
+} &  React.DetailedHTMLProps<React.HTMLAttributes<any>, any>
 const typographies = {
     h1: {className: 'typo-h1', element: 'h1'},
     h2: {className: 'typo-h2', element: 'h2'},
     h3: {className: 'typo-h3', element: 'h3'},
     h4: {className: 'typo-h4', element: 'h4'},
     p: {className: 'typo-p', element: 'p'},
+    'p-ui': {className: 'typo-p-ui', element: 'p'},
     body: {className: 'typo-body', element: 'p'},
     'body-medium': {className: 'typo-body-medium', element: 'p'},
     small: {className: 'typo-small', element: 'p'},
@@ -35,15 +36,23 @@ const foregrounds = {
     disabled: 'text-foreground-disabled',
 }
 
-const Typography = ({as: Element, variant = 'p', foreground = 'inherit', children, className}: TypographyProps) => {
+const Typography = ({as: Element, variant = 'p', foreground = 'inherit', children, className, ...props}: TypographyProps) => {
     const as = Element ? Element : typographies[variant]['element'];
     const elementStyle = typographies[variant]['className'];
     const foregroundStyle = foregrounds[foreground];
     const TypographyComponent = React.createElement(as, {
         className: cn(elementStyle, foregroundStyle, className),
+        ...props
     }, children);
     return TypographyComponent;
 
 }
+
+export const TypographySkeleton = (props: TypographyProps) => {
+    return <Skeleton className={'w-auto'}>
+        <Typography className="opacity-0 select-none" {...props}/>
+    </Skeleton>
+}
+
 
 export default Typography;

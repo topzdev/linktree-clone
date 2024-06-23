@@ -84,6 +84,7 @@ export type Social = {
     value: string;
     position: number;
     user_id: number;
+    enabled: boolean;
     created_at: string | null;
     updated_at: string;
 }

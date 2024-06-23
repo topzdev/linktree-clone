@@ -14,7 +14,7 @@ export type InputWrapperProps = {
 }
 
 const InputWrapper = ({className, error, hint, label, children, id}: InputWrapperProps) => {
-    return <div className={cn('flex flex-col gap-y-1', className)}>
+    return <div className={cn('flex flex-col gap-y-1.5', className)}>
         {label && <Label htmlFor={id}>{label}</Label>}
 
         {children}

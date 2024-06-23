@@ -28,6 +28,7 @@ class AppearanceSettings extends Model
         'profile_title',
         'font_color',
         'font_style',
+        'socials_align',
         'bg_id',
         'btn_id',
         'font_id',
@@ -35,15 +36,15 @@ class AppearanceSettings extends Model
         'user_id',
     ];
 
-
     protected function casts()
     {
         return [
-            'profile_image_style' => 'integer',
+            'profile_image_style' => 'string',
             'theme_id' => "integer",
             'font_id' => "integer",
             'bg_id' => "integer",
             'btn_id' => "integer",
+            'social_align' => "integer"
         ];
     }
 
@@ -101,6 +102,12 @@ class AppearanceSettings extends Model
     {
         $userId = auth()->id();
         return AppearanceSettings::find(['user_id' => $userId])->first();
+    }
+
+    public static function buttonSettings()
+    {
+        $userId = auth()->id();
+        return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'btn_color', 'btn_text_color', 'btn_shadow_color', 'btn_id'])->first();
     }
 
     public function user(): BelongsTo

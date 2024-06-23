@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('value');
             $table->integer('position')->nullable();
             $table->foreignId('user_id')->constrained();
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
