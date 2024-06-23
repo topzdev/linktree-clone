@@ -41,11 +41,16 @@ const links = [
         label: 'Buttons',
         icon: <MaterialSymbolsSmartButtonSharp/>
     },
+    {
+        href: pageRoutes.dashboard.settings.href,
+        label: 'Settings',
+        icon: <MaterialSymbolsSettingsOutline/>
+    },
 ]
 
 const moreLinks = [
     {
-        href: pageRoutes.dashboard.fonts.href,
+        href: pageRoutes.dashboard.settings.href,
         label: 'Fonts',
         icon: <MaterialSymbolsFontDownloadOutline/>
     },
@@ -55,7 +60,7 @@ const moreLinks = [
         icon: <MaterialSymbolsAnalyticsOutline/>
     },
     {
-        href: pageRoutes.dashboard.socials.href,
+        href: pageRoutes.dashboard.settings.href,
         label: 'Settings',
         icon: <MaterialSymbolsSettingsOutline/>
     },
@@ -71,9 +76,9 @@ const MobileNavigationBottomBar = ({className, ...props}: Props) => {
                 className={cn('fixed bottom-0 left-0 w-screen bg-background border ', className)}>
         <ul className={'flex h-full w-full'}>
             {links.map(item => <li className={'w-full h-full'} key={item.label + 'MobileNav'}><MobileNavigationBottomLink className={'w-full h-full'} {...item}/></li>)}
-            <li className="w-full h-full">
-                <MobileNavigationBottomLink className={'w-full h-full'} icon={<MaterialSymbolsMoreHoriz/>} label={'More'} />
-            </li>
+            {/*<li className="w-full h-full">*/}
+            {/*    <MobileNavigationBottomLink className={'w-full h-full'} icon={<MaterialSymbolsMoreHoriz/>} label={'More'} />*/}
+            {/*</li>*/}
         </ul>
     </div>
 }

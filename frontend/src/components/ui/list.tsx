@@ -19,6 +19,7 @@ List.displayName = 'List';
 export type ListItemProps = {
     leftAdornment?: React.ReactNode;
     rightAdornment?: React.ReactNode;
+    selected?: boolean;
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({
@@ -26,10 +27,12 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(({
                                                                             leftAdornment,
                                                                             rightAdornment,
                                                                             children,
+
+                                                                            selected,
                                                                             ...props
                                                                         }, ref) => {
     return <li
-        className={cn('flex items-center text-foreground-secondary hover:bg-slate-100 rounded-lg px-2 md:px-3 py-2 md:py-2.5 cursor-pointer select-none', className)} {...props}
+        className={cn('flex items-center text-foreground-primary hover:bg-slate-100 rounded-lg px-2 md:px-3 py-2 md:py-2.5 cursor-pointer select-none', selected ? 'bg-primary-100 hover:bg-primary-100 text-primary' : '', className)} {...props}
         ref={ref}>
         {leftAdornment && <div className={'flex items-center'}>{leftAdornment}</div>}
         {children}

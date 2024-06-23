@@ -22,31 +22,47 @@ const pageRoutes = {
             buttons: {
                 href: `${_path}/buttons`
             },
-            fonts: {
-                href: `${_path}/fonts`
-            },
             analytics: {
                 href: `${_path}/analytics`
             },
-            socials: (() => {
+
+            settings: (() => {
                 const subPath = _path + '/settings';
-                const sectionHash = '#socials'
+
                 return {
-                    href: subPath + sectionHash,
-                    list: {
-                        href: subPath + '/list' + sectionHash
-                    },
-                    add:(social_id: string) => {
-                        return  {
-                            href: subPath + '/add/' + social_id + sectionHash
-                        }
-                    },
-                    edit: (id: string) => {
+                    href: subPath,
+                    fonts: (() => {
+                        const subPath = _path + '/settings';
+                        const sectionHash = '#fonts'
                         return {
-                            href: subPath + '/edit/'+ id + sectionHash
+                            href: subPath + sectionHash,
+                            list: {
+                                href: subPath + '/list' + sectionHash
+                            },
                         }
-                    }
+                    })(),
+                    socials: (() => {
+                        const subPath = _path + '/settings';
+                        const sectionHash = '#socials'
+                        return {
+                            href: subPath + sectionHash,
+                            list: {
+                                href: subPath + '/list' + sectionHash
+                            },
+                            add:(social_id: string) => {
+                                return  {
+                                    href: subPath + '/add/' + social_id + sectionHash
+                                }
+                            },
+                            edit: (id: string) => {
+                                return {
+                                    href: subPath + '/edit/'+ id + sectionHash
+                                }
+                            }
+                        }
+                    })(),
                 }
+
             })(),
             preview: {
                 href: `${_path}/preview`

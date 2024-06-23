@@ -26,7 +26,7 @@ const SocialItem = React.forwardRef<HTMLLIElement, Props>( ({data, handle, updat
     }
 
     const info = socialIcons.find((item) => item.id === data.social_id);
-    const editLink = useMemo(() => pageRoutes.dashboard.socials.edit(data.id).href, [data.id])
+    const editLink = useMemo(() => pageRoutes.dashboard.settings.socials.edit(data.id).href, [data.id])
 
     return <ListItem {...props}
         className={'max-md:px-2'}

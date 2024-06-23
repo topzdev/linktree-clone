@@ -15,7 +15,7 @@ import {FetchError} from "ofetch";
 import useDashboardStore from "@/stores/dashboard";
 import {useToast} from "@/components/ui/use-toast";
 import socialsServices from "@/services/socials";
-import useFetchSocials from "@/hooks/useFetchSocials";
+import useFetchSocials from "@/hooks/api/useFetchSocials";
 import Typography from "@/components/ui/typography";
 
 type Props = {
@@ -46,7 +46,7 @@ const AddSocialFormModal = (props: Props) => {
     })
     useEffect(() => {
         if (!open) {
-            router.push(pageRoutes.dashboard.socials.href);
+            router.push(pageRoutes.dashboard.settings.socials.href);
         }
     }, [open, setOpen]);
 
@@ -110,7 +110,8 @@ const AddSocialFormModal = (props: Props) => {
                         control={control}
                         name={'value'}
                     />
-                    <Typography className={'cursor-pointer'} onClick={handleFill} variant={'small'}>{social?.example}</Typography>
+                    <Typography className={'cursor-pointer'} onClick={handleFill}
+                                variant={'small'}>{social?.example}</Typography>
 
                     <Button
                         disabled={useUpdateContent.isPending}

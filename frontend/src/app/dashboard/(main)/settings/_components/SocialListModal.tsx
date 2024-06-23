@@ -9,8 +9,8 @@ import socialIcons from "@/data/social-icons";
 import SocialListItem from "@/app/dashboard/(main)/settings/_components/SocialListItem";
 import List from "@/components/ui/list";
 import pageRoutes from "@/configs/page-routes";
-import { useDebounce } from "@uidotdev/usehooks";
-import useFetchSocials from "@/hooks/useFetchSocials";
+import {useDebounce} from "@uidotdev/usehooks";
+import useFetchSocials from "@/hooks/api/useFetchSocials";
 
 type Props = {
     children?: React.ReactNode
@@ -35,7 +35,7 @@ const SocialListModal = (props: Props) => {
 
     useEffect(() => {
         if (!open) {
-            router.push(pageRoutes.dashboard.socials.href);
+            router.push(pageRoutes.dashboard.settings.socials.href);
         }
     }, [open, setOpen]);
 
