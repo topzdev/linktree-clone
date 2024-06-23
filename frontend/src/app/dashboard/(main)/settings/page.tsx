@@ -1,12 +1,11 @@
 import React from "react";
-import DashboardSettingsPage from "@/app/dashboard/(main)/settings/_components/DashboardSettingsPage";
 import {Metadata} from "next";
 
 type Props = {
     children?: React.ReactNode
 }
 export const metadata: Metadata = {
-    title: 'Socials',
+    title: 'Settings',
 }
 const Page = (props: Props) => {
     return <></>

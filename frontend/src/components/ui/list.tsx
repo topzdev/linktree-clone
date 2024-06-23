@@ -1,6 +1,7 @@
 import React from "react";
 import {cn} from "@/lib/utils";
 import {Skeleton} from "@/components/ui/skeleton";
+import Typography from "@/components/ui/typography";
 
 type ListProps = {
     children?: React.ReactNode
@@ -8,13 +9,30 @@ type ListProps = {
 
 const List = React.forwardRef<HTMLUListElement, ListProps>(({className, children, ...props}, ref) => {
     {
-        return <ul className={cn('flex flex-col', className)} {...props} ref={ref}>
+        return <ul className={cn('flex flex-col relative', className)} {...props} ref={ref}>
             {children}
         </ul>
     }
 })
 
 List.displayName = 'List';
+
+type ListGroupProps = {
+    children: React.ReactNode,
+    groupTitle: string,
+}
+
+export const ListGroup = ({groupTitle, children}: ListGroupProps) => {
+    return <li>
+        <ul>
+            {groupTitle && <li className="sticky top-0 bg-white py-2">
+                <Typography variant="overline" className={'font-bold'}>{groupTitle}</Typography>
+            </li>
+            }
+            {children}
+        </ul>
+    </li>
+}
 
 export type ListItemProps = {
     leftAdornment?: React.ReactNode;

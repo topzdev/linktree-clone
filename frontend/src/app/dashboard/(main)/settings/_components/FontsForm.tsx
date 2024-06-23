@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Card, CardContent} from "@/components/ui/card";
 import * as yup from "yup";
 import useDashboardStore from "@/stores/dashboard";
@@ -10,7 +10,7 @@ import {FetchError} from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
 import fontsServices, {ReturnFont} from "@/services/fonts";
 import {ColorPickerSkeleton, FormColorPicker} from "@/components/ui/color-picker";
-import {FormFontSelect} from "@/app/dashboard/(main)/settings/_components/FontSelect";
+import {FontSelectSkeleton, FormFontSelect} from "@/app/dashboard/(main)/settings/_components/FontSelect";
 
 type Props = {
     children?: React.ReactNode,
@@ -55,8 +55,6 @@ const FontsForm = ({value}: Props) => {
     }, [value]);
 
     const [submittedData, setSubmittedData] = React.useState({});
-
-    const [avatar, setAvatar] = useState(value.profile_avatar_url);
 
     const useUpdateContent = useMutation({
         mutationFn: (data: FontsForm) => {
@@ -108,6 +106,7 @@ const FontsForm = ({value}: Props) => {
 export const FontsFormSkeleton = () => {
     return <Card>
         <CardContent className={'flex flex-col justify-center items-center gap-y-4'}>
+            <FontSelectSkeleton/>
             <ColorPickerSkeleton/>
         </CardContent>
     </Card>
