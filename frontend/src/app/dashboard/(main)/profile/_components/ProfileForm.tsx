@@ -14,8 +14,11 @@ import {ButtonSkeleton} from "@/components/ui/button";
 import {FormInput, InputSkeleton} from "@/components/ui/input";
 import AutoSave from "@/components/utils/AutoSave";
 import {FormTextarea, TextareaSkeleton} from "@/components/ui/textarea";
-import {FormItemChooser, ItemChooserSkeleton} from "@/components/ui/item-chooser";
 import {Skeleton} from "@/components/ui/skeleton";
+import {
+    FormProfileStyleChooser,
+    ProfileStyleChooserSkeleton
+} from "@/app/dashboard/(main)/profile/_components/ProfileStyleChooser";
 
 type Props = {
     children?: React.ReactNode,
@@ -27,11 +30,11 @@ export const profileSchema = yup.object().shape({
     profile_avatar_url: yup.string(),
     profile_image_style: yup.string(),
     profile_title: yup.string(),
-    profile_bio: yup.string()
+    profile_bio: yup.string().nullable()
 });
 
 
-const imageStyles = [
+export const imageStyles = [
     {
         title: 'Avatar',
         image: '/image-style/1.png',
@@ -151,7 +154,7 @@ const ProfileForm = ({value}: Props) => {
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)} className={'grid grid-cols-12 gap-y-4'}>
                     <div className="col-span-12">
-                        <FormItemChooser control={control} name={'profile_image_style'} items={imageStyles}/>
+                        <FormProfileStyleChooser control={control} name={'profile_image_style'}/>
                     </div>
 
                     <div className="col-span-12">
@@ -182,7 +185,7 @@ export const ProfileFormSkeleton = () => {
                 <ButtonSkeleton className={'w-full'} size={'lg'}/>
                 <ButtonSkeleton className={'w-full'} size={'lg'}/>
             </div>
-            <ItemChooserSkeleton/>
+            <ProfileStyleChooserSkeleton/>
             <InputSkeleton/>
             <TextareaSkeleton/>
         </CardContent>
