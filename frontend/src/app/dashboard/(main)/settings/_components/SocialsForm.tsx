@@ -90,7 +90,7 @@ const SocialForm = ({value}: Props) => {
 
     return <Card>
         <CardHeader className={'max-md:flex-col max-md:gap-y-3 !pb-0'}
-                    action={<Link className='w-full' href={pageRoutes.dashboard.socials.list.href}>
+                    action={<Link href={pageRoutes.dashboard.settings.socials.list.href}>
                         <Button className={'w-full'} rounded size={'lg'}>Add Social</Button>
                     </Link>
                     }>

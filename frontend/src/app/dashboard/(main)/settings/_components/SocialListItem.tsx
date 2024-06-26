@@ -21,7 +21,7 @@ const SocialListItem = ({info, added}: Props) => {
     const router = useRouter();
 
     const gotoPage = () => {
-        const {add, edit} = pageRoutes.dashboard.socials;
+        const {add, edit} = pageRoutes.dashboard.settings.socials;
         router.push(!!added ? edit(added.id).href : add(info.id).href)
     }
 

@@ -6,9 +6,9 @@ const protectedRoutes = [
     pageRoutes.dashboard.links.href,
     pageRoutes.dashboard.analytics.href,
     pageRoutes.dashboard.buttons.href,
-    pageRoutes.dashboard.fonts.href,
     pageRoutes.dashboard.profile.href,
-    pageRoutes.dashboard.socials.href,
+    pageRoutes.dashboard.settings.socials.href,
+    pageRoutes.dashboard.settings.fonts.href,
     pageRoutes.dashboard.theme.href,
     pageRoutes.dashboard.preview.href,
 ];

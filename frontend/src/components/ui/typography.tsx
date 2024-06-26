@@ -8,7 +8,7 @@ export type TypographyProps = {
     className?: string,
     as?: keyof JSX.IntrinsicElements;
     foreground?: keyof typeof foregrounds
-} &  React.DetailedHTMLProps<React.HTMLAttributes<any>, any>
+} & React.DetailedHTMLProps<React.HTMLAttributes<any>, any>
 const typographies = {
     h1: {className: 'typo-h1', element: 'h1'},
     h2: {className: 'typo-h2', element: 'h2'},
@@ -36,7 +36,14 @@ const foregrounds = {
     disabled: 'text-foreground-disabled',
 }
 
-const Typography = ({as: Element, variant = 'p', foreground = 'inherit', children, className, ...props}: TypographyProps) => {
+const Typography = ({
+                        as: Element,
+                        variant = 'p',
+                        foreground = 'inherit',
+                        children,
+                        className,
+                        ...props
+                    }: TypographyProps) => {
     const as = Element ? Element : typographies[variant]['element'];
     const elementStyle = typographies[variant]['className'];
     const foregroundStyle = foregrounds[foreground];
@@ -48,9 +55,9 @@ const Typography = ({as: Element, variant = 'p', foreground = 'inherit', childre
 
 }
 
-export const TypographySkeleton = (props: TypographyProps) => {
+export const TypographySkeleton = ({...props}: TypographyProps) => {
     return <Skeleton className={'w-auto'}>
-        <Typography className="opacity-0 select-none" {...props}/>
+        <Typography {...props} className="opacity-0 select-none"></Typography>
     </Skeleton>
 }
 

@@ -3,7 +3,7 @@
 import React from "react";
 import Typography from "@/components/ui/typography";
 import SocialForm, {SocialFormSkeleton} from "@/app/dashboard/(main)/settings/_components/SocialsForm";
-import useFetchSocials from "@/hooks/useFetchSocials";
+import useFetchSocials from "@/hooks/api/useFetchSocials";
 
 type Props = {
     children?: React.ReactNode
