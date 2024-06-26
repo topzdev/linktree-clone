@@ -20,6 +20,7 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
+import FilePicker from "@/components/ui/file-picker";
 
 type Props = {
     children?: React.ReactNode,
@@ -77,7 +78,8 @@ const CustomThemeForm = ({value}: Props) => {
 
     useEffect(() => {
         reset({
-            bg_id: value.bg_id || 2,
+            // bg_id: value.bg_id || 1,
+            bg_id: 3,
             bg_color: value.bg_color,
             bg_color2: value.bg_color2,
             bg_position: value.bg_position || gradientPosition[0].value,
@@ -184,11 +186,11 @@ const ThemeFormField = ({control, bg_id}: ThemeFormFieldProps) => {
                 </>
             case 3:
                 return <div className='col-span-12'>
-                    File Picker here
+                    <FilePicker label={'Upload Image'}/>
                 </div>
             case 4:
                 return <div className='col-span-12'>
-                    File Picker here
+                    <FilePicker label={'Upload Video'}/>
                 </div>
         }
     }, [bg_id]);

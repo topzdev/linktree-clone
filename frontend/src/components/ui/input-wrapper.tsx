@@ -11,10 +11,10 @@ export type InputWrapperProps = {
     hint?: string,
     label?: string,
     id?: string,
-}
+} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-const InputWrapper = ({className, error, hint, label, children, id}: InputWrapperProps) => {
-    return <div className={cn('flex flex-col gap-y-1.5', className)}>
+const InputWrapper = ({className, error, hint, label, children, id, ...props}: InputWrapperProps) => {
+    return <div className={cn('flex flex-col gap-y-1.5', className)} {...props}>
         {label && <Label htmlFor={id}>{label}</Label>}
 
         {children}
@@ -40,7 +40,7 @@ const InputWrapper = ({className, error, hint, label, children, id}: InputWrappe
 
 export const InputWrapperSkeleton = ({children}: InputWrapperProps) => {
     return <div className={cn('flex flex-col w-full gap-y-1')}>
-        <Skeleton className="h-5 max-w-[160px] rounded-2xl" />
+        <Skeleton className="h-5 max-w-[160px] rounded-2xl"/>
         {children}
     </div>
 }
