@@ -58,7 +58,7 @@ class AppearanceSettings extends Model
     protected function profileInitials(): Attribute
     {
         return new Attribute(
-            get: function (){
+            get: function () {
                 $words = explode(' ', $this->profile_title); // Split the string by spaces into an array of words
                 $initials = '';
 
@@ -71,6 +71,7 @@ class AppearanceSettings extends Model
             }
         );
     }
+
     protected function profileAvatarUrl(): Attribute
     {
         return new Attribute(
@@ -108,6 +109,26 @@ class AppearanceSettings extends Model
     {
         $userId = auth()->id();
         return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'btn_color', 'btn_text_color', 'btn_shadow_color', 'btn_id'])->first();
+    }
+
+    public static function fontSettings()
+    {
+        $userId = auth()->id();
+        $font = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'user_id', 'font_id', 'font_color'])->first();
+        $font->appends = [];
+        return $font;
+    }
+
+    public static function themeSettings()
+    {
+
+        $userId = auth()->id();
+        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_video', 'bg_color', 'bg_color2', 'bg_id', 'bg_position'])->first();
+        $data->appends = [
+            'bg_image_url',
+            'bg_video_url',
+        ];
+        return $data;
     }
 
     public function user(): BelongsTo

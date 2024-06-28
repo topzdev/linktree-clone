@@ -42,8 +42,6 @@ export type Font = {
     font_weight: string;
     letter_spacing: string;
     group_id: number;
-    created_at: string | null;
-    updated_at: string | null;
 }
 
 export type Button = {

@@ -11,7 +11,7 @@ type Props = {
 
 const DashboardSettingsPage = (props: Props) => {
 
-    return <DashboardContainer className={'flex flex-col gap-y-6'}>
+    return <DashboardContainer className={'flex flex-col gap-y-12'}>
         <DashboardSettingsFontSection/>
         <DashboardSettingsSocialSection/>
     </DashboardContainer>

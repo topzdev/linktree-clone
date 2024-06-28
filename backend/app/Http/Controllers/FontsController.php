@@ -13,10 +13,15 @@ class FontsController extends Controller
         return response()->json(Fonts::all());
     }
 
+    public function getOne() {
+        $font = AppearanceSettings::fontSettings();
+        return response()->json($font);
+    }
+
     public function update(Request $request)
     {
         $request->validate([
-            "font_id" => "string",
+            "font_id" => "integer",
             "font_color" => "hex_color",
         ]);
 

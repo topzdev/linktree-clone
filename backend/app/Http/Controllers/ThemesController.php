@@ -13,6 +13,12 @@ class ThemesController extends Controller
         return response()->json(Themes::all());
     }
 
+    public function getOne()
+    {
+        $data = AppearanceSettings::themeSettings();
+        return response()->json($data);
+    }
+
     public function update(Request $request)
     {
         $request->validate([
@@ -37,17 +43,17 @@ class ThemesController extends Controller
 
         $settings = AppearanceSettings::userAppearanceSettings();
 
-        if($request->file('bg_image')) {
+        if ($request->file('bg_image')) {
             $uploaded = $uploader->uploadBackgroundImage($request->file('bg_image'));
             $settings->bg_image = $uploaded['source'];
         }
 
-        if($request->file('bg_video')) {
+        if ($request->file('bg_video')) {
             $uploaded = $uploader->uploadBackgroundVideo($request->file('bg_video'));
             $settings->bg_video = $uploaded['source'];
         }
 
-        $settings->fill($request->only('bg_id','bg_color', 'bg_color2', 'bg_position'));
+        $settings->fill($request->only('bg_id', 'bg_color', 'bg_color2', 'bg_position'));
         $settings->save();
 
         return response()->json($settings);
