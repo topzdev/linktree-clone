@@ -86,6 +86,6 @@ class User extends Authenticatable
 
     public function socials()
     {
-        return $this->hasMany(Socials::class)->orderBy('created_at', 'desc')->orderBy('position', 'asc');
+        return $this->hasMany(Socials::class)->orderBy('position', 'asc')->orderBy('created_at', 'desc');
     }
 }

@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum'])->prefix('profile')->controller(ProfileContro
 
 Route::middleware(['auth:sanctum'])->prefix('themes')->controller(ThemesController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/user', 'getOne');
     Route::post('/update', 'update');
     Route::post('/update/custom', 'updateCustomTheme');
 });
@@ -46,6 +47,7 @@ Route::middleware(['auth:sanctum'])->prefix('buttons')->controller(ButtonsContro
 
 Route::middleware(['auth:sanctum'])->prefix('fonts')->controller(FontsController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/user', 'getOne');
     Route::post('/update', 'update');
 });
 
