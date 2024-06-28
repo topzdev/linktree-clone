@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import InputWrapper, {InputWrapperProps} from "@/components/ui/input-wrapper";
 import {Input, InputProps} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
@@ -7,7 +7,7 @@ import {Controller} from "react-hook-form";
 
 type Props = {
     children?: React.ReactNode,
-    value: File | File[] | null,
+    value: File | File[] | string | null,
     onChange?: (value: any) => void;
 } & InputWrapperProps & Pick<InputProps, 'placeholder'> & Pick<HTMLInputElement, 'accept' | 'multiple'>
 const FilePicker = ({
@@ -26,6 +26,17 @@ const FilePicker = ({
     const inputRef = useRef<HTMLInputElement>(null);
     const [fileName, setFileName] = useState('');
 
+    useEffect(() => {
+        if (typeof value === "string") {
+            setFileName(value.substring(value.lastIndexOf('/') + 1));
+        }
+
+        if (value instanceof File) {
+            setFileName(value.name);
+        }
+
+    }, [value]);
+    //
     const handleOpenFileExplorer = () => {
         inputRef.current?.click();
     }
@@ -38,10 +49,11 @@ const FilePicker = ({
             setFileName('');
         }
         if (onChange) onChange(file);
+        if (inputRef.current) inputRef.current.value = '';
     };
 
     return <InputWrapper {...{label, error, hint}} className={cn(className)}>
-        <div className="flex flex-row gap-x-2.5 ">
+        <div className="flex flex-row items-center gap-x-2.5 ">
             <Input value={fileName} placeholder={placeholder} className={'w-full pointer-events-none select-none'}/>
             <Button size={'lg'} onClick={handleOpenFileExplorer}>Choose File</Button>
             <input accept={accept} multiple={multiple} type={'file'} ref={inputRef} hidden onChange={handleFileChange}/>

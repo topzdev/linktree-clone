@@ -35,7 +35,8 @@ class ThemesController extends Controller
         $request->validate([
             'bg_id' => "string",
             "bg_color" => "string|hex_color",
-            "bg_color2" => "string|hex_color",
+            "bg_from" => "string|hex_color",
+            "bg_to" => "string|hex_color",
             "bg_position" => "string",
             "bg_image" => "image|mimes:jpeg,png,jpg,gif,webp|max:2048", // Adjust validation rules as needed
             "bg_video" => "file|mimes:mp4,avi,mov|max:20480",
@@ -53,7 +54,7 @@ class ThemesController extends Controller
             $settings->bg_video = $uploaded['source'];
         }
 
-        $settings->fill($request->only('bg_id', 'bg_color', 'bg_color2', 'bg_position'));
+        $settings->fill($request->only('bg_id', 'bg_color', 'bg_from', 'bg_to', 'bg_position'));
         $settings->save();
 
         return response()->json($settings);

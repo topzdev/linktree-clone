@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('bg_color')->nullable();
-            $table->string('bg_color2')->nullable();
+            $table->string('bg_from')->nullable();
+            $table->string('bg_to')->nullable();
             $table->string('bg_position')->nullable();
             $table->string('bg_image')->nullable();
             $table->string('bg_video')->nullable();

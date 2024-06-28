@@ -5,7 +5,8 @@ export type AppearanceSettings = {
     created_at: string;
     updated_at: string;
     bg_color: string | null;
-    bg_color2: string | null;
+    bg_from: string | null;
+    bg_to: string | null;
     bg_position: string | null;
     bg_image: string | null;
     bg_video: string | null;

@@ -4,10 +4,13 @@ import {AppearanceSettings, Font} from "../../types/models";
 const basePath = '/themes'
 
 export type UpdateTheme = Pick<AppearanceSettings, 'theme_id'>;
-export type UpdateCustomTheme = Pick<AppearanceSettings, 'bg_color' | 'bg_color2' | 'bg_position' | 'bg_id' | 'bg_video' | 'bg_image'>;
+export type UpdateCustomTheme = Pick<AppearanceSettings, 'bg_color' | 'bg_from' | 'bg_to' | 'bg_position' | 'bg_id'> & {
+    bg_video: AppearanceSettings['bg_video'] | File,
+    bg_image: AppearanceSettings['bg_image'] | File
+}
 
 export type ReturnTheme =
-    Pick<AppearanceSettings, 'id' | 'theme_id' | 'bg_image' | 'bg_video' | 'bg_color' | 'bg_color2' | 'bg_id' | 'bg_position' | 'bg_video_url' | 'bg_image_url'>
+    Pick<AppearanceSettings, 'id' | 'theme_id' | 'bg_image' | 'bg_video' | 'bg_color' | 'bg_from' | 'bg_to' | 'bg_id' | 'bg_position' | 'bg_video_url' | 'bg_image_url'>
     & {
     font: Font;
 }

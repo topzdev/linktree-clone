@@ -14,7 +14,8 @@ class AppearanceSettings extends Model
 
     protected $fillable = [
         'bg_color',
-        'bg_color2',
+        'bg_from',
+        'bg_to',
         'bg_position',
         'bg_image',
         'bg_video',
@@ -123,7 +124,7 @@ class AppearanceSettings extends Model
     {
 
         $userId = auth()->id();
-        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_video', 'bg_color', 'bg_color2', 'bg_id', 'bg_position'])->first();
+        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_video', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position'])->first();
         $data->appends = [
             'bg_image_url',
             'bg_video_url',

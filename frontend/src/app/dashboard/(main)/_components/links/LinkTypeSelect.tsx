@@ -1,5 +1,4 @@
 import React from "react";
-import {SelectContentProps} from "@radix-ui/react-select";
 import MaterialSymbolsLinkRounded from "@/components/icons/MaterialSymbolsLinkRounded";
 import MaterialSymbolsFormatH1Rounded from "@/components/icons/MaterialSymbolsFormatH1Rounded";
 import {
@@ -41,7 +40,7 @@ const LinkTypeSelect = ({children, value, onValueChange, contentProps, ...props}
         <DropdownMenuContent {...contentProps}>
             {
                 menuItem.map(item =>
-                    <DropdownMenuItem onClick={() => onValueChange(item.value)}>
+                    <DropdownMenuItem key={item.value} onClick={() => onValueChange(item.value)}>
                         {item.icon}
                         <span className={'ml-2'}>{item.title}</span>
                         <DropdownMenuShortcut>{item.shortcut}</DropdownMenuShortcut>
