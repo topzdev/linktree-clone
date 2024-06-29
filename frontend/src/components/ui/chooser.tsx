@@ -47,7 +47,7 @@ export const ChooserItem = ({children, value, title, className, contentClassName
                            className={cn("flex items-center flex-col text-inherit border-0 min-w-[100px] h-auto gap-y-2 data-[state=checked]:text-primary group w-full bg-transparent", className)}
     >
         <div
-            className={cn('h-full w-full rounded-2xl border-transparent border-[3px]  bg-origin-border overflow-hidden relative group-data-[state=checked]:border-primary relative', contentClassName)}>
+            className={cn('h-full w-full rounded-2xl border-border border-[1px]  bg-origin-border overflow-hidden relative group-data-[state=checked]:border-primary  group-data-[state=checked]:border-[3px]', contentClassName)}>
             {children}
         </div>
 

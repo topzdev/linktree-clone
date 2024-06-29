@@ -17,8 +17,8 @@ type Props = {
     bg_to?: CustomThemeForm['bg_to'],
     position?: CustomThemeForm['bg_position'],
     loading?: boolean,
-    value?: number,
-} & ChooserProps
+    value: number,
+} & Omit<ChooserProps, 'value'>
 
 
 export const DEFAULT_FLAT_BG = '#1e293b';
