@@ -70,7 +70,7 @@ const ColorPicker = ({
                 </PopoverContent>
             </Popover>
 
-            <Input className="w-full" type={'hex'} value={color} error={error}
+            <Input className="w-full" type={'hex'} value={color}
                    onChange={(e) => pickColor(e.target.value)}/>
         </div>
     </InputWrapper>

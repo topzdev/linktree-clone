@@ -9,7 +9,7 @@ type Props = {
     children?: React.ReactNode,
     value: File | File[] | string | null,
     onChange?: (value: any) => void;
-} & InputWrapperProps & Pick<InputProps, 'placeholder'> & Pick<HTMLInputElement, 'accept' | 'multiple'>
+} & InputWrapperProps & Pick<InputProps, 'placeholder'> & Pick<HTMLInputElement, 'accept' | 'multiple' | 'defaultValue'>
 const FilePicker = ({
                         label,
                         error,
@@ -19,6 +19,7 @@ const FilePicker = ({
                         accept,
                         multiple,
                         onChange,
+                        defaultValue,
                         placeholder = 'No file chosen',
                         ...props
                     }: Props) => {
@@ -27,16 +28,11 @@ const FilePicker = ({
     const [fileName, setFileName] = useState('');
 
     useEffect(() => {
-        if (typeof value === "string") {
-            setFileName(value.substring(value.lastIndexOf('/') + 1));
+        if (typeof defaultValue === "string") {
+            setFileName(defaultValue.substring(defaultValue.lastIndexOf('/') + 1));
         }
+    }, [defaultValue]);
 
-        if (value instanceof File) {
-            setFileName(value.name);
-        }
-
-    }, [value]);
-    //
     const handleOpenFileExplorer = () => {
         inputRef.current?.click();
     }

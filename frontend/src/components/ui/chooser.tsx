@@ -3,7 +3,8 @@ import InputWrapper, {InputWrapperProps} from "@/components/ui/input-wrapper";
 import {RadioGroup, RadioGroupItem, RadioGroupProps} from "@/components/ui/radio-group";
 import {RadioGroupItemProps} from "@radix-ui/react-radio-group";
 import {cn} from "@/lib/utils";
-import Typography from "@/components/ui/typography";
+import Typography, {TypographySkeleton} from "@/components/ui/typography";
+import {Skeleton} from "@/components/ui/skeleton";
 
 type ChooserItem = {
     title: string,
@@ -24,8 +25,15 @@ const Chooser = ({children, className, error, hint, label, id, ...props}: Choose
     </InputWrapper>
 }
 
+export const ChooserSkeleton = ({className, children}: ChooserItemProps) => {
+    return <div className={cn('flex gap-x-4 w-full', className)}>
+        {children}
+    </div>
+}
+
+
 export type ChooserItemProps = {
-    value: string | number,
+    value?: string | number,
     title?: string,
     children?: React.ReactNode,
     contentClassName?: string,
@@ -34,7 +42,7 @@ export const ChooserItem = ({children, value, title, className, contentClassName
     return <RadioGroupItem key={value}
                            showIndicator={false}
                            value={value as any}
-                           id={value.toString()}
+                           id={value?.toString()}
                            {...props}
                            className={cn("flex items-center flex-col text-inherit border-0 min-w-[100px] h-auto gap-y-2 data-[state=checked]:text-primary group w-full bg-transparent", className)}
     >
@@ -48,5 +56,12 @@ export const ChooserItem = ({children, value, title, className, contentClassName
     </RadioGroupItem>
 };
 
+export const ChooserItemSkeleton = ({className}: ChooserItemProps) => {
+    return <div className={cn('flex flex-col items-center gap-y-2', className)}>
+        <Skeleton className={'rounded-2xl h-full w-full'}>
+        </Skeleton>
+        <TypographySkeleton variant={'small'}>Loading</TypographySkeleton>
+    </div>
+}
 
 export default Chooser;

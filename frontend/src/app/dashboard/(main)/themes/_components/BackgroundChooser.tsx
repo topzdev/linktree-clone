@@ -1,13 +1,12 @@
 import React, {useMemo} from "react";
 import {Controller} from "react-hook-form";
 import {InputProps} from "@/components/ui/input";
-import {InputWrapperSkeleton} from "@/components/ui/input-wrapper";
-import {Skeleton} from "@/components/ui/skeleton";
-import Chooser, {ChooserItem, ChooserProps} from "@/components/ui/chooser";
+import Chooser, {ChooserItem, ChooserItemSkeleton, ChooserProps, ChooserSkeleton} from "@/components/ui/chooser";
 import MaterialSymbolsImageOutline from "@/components/icons/MaterialSymbolsImageOutline";
 import MaterialSymbolsVideoCameraBackOutline from "@/components/icons/MaterialSymbolsVideoCameraBackOutline";
 import Image from 'next/image'
 import {CustomThemeForm} from "@/app/dashboard/(main)/themes/_components/CustomThemeForm";
+import {Loader2} from "lucide-react";
 
 type Props = {
     children?: React.ReactNode,
@@ -17,6 +16,8 @@ type Props = {
     bg_from?: CustomThemeForm['bg_from'],
     bg_to?: CustomThemeForm['bg_to'],
     position?: CustomThemeForm['bg_position'],
+    loading?: boolean,
+    value?: number,
 } & ChooserProps
 
 
@@ -24,7 +25,15 @@ export const DEFAULT_FLAT_BG = '#1e293b';
 export const DEFAULT_BG_FROM = '#1e293b'
 export const DEFAULT_BG_TO = '#444444';
 export const DEFAULT_BG_POSITION = '0deg';
-const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, ...props}: Props) => {
+
+const BackgroundChooserItemLoader = () => {
+    return <div
+        className={'absolute h-full w-full top-0 left-0 z-10 flex items-center justify-center bg-slate-500/50'}>
+        <Loader2
+            className="animate-spin text-white mr-1"/>
+    </div>
+}
+const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, loading, ...props}: Props) => {
 
     const imagePreview = useMemo(() => {
         if (typeof image === "string") {
@@ -66,17 +75,20 @@ const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, ..
     return <Chooser className={'grid grid-cols-4'} {...props}>
         <ChooserItem title={'Flat'} className="col-span-1 aspect-[132/204]"
                      value={1}>
-            <div className={'h-full w-full'} style={flatPreview}>
+            <div className={'h-full w-full flex items-center justify-center'} style={flatPreview}>
+                {loading && props.value === 1 && <BackgroundChooserItemLoader/>}
             </div>
         </ChooserItem>
         <ChooserItem title={'Gradient'} className="col-span-1 aspect-[132/204]"
                      value={2}>
-            <div className={'h-full w-full'} style={gradientPreview}>
+            <div className={'h-full w-full flex items-center justify-center'} style={gradientPreview}>
+                {loading && props.value === 2 && <BackgroundChooserItemLoader/>}
             </div>
         </ChooserItem>
         <ChooserItem title={'Image'} className="col-span-1 aspect-[132/204]"
                      contentClassName="bg-slate-100 flex !text-foreground-primary items-center justify-center"
                      value={3}>
+            {loading && props.value === 3 && <BackgroundChooserItemLoader/>}
             {imagePreview ?
                 (<Image
                     src={imagePreview}
@@ -91,9 +103,9 @@ const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, ..
         <ChooserItem title={'Video'} className="col-span-1 aspect-[132/204]"
                      contentClassName="bg-slate-100 flex !text-foreground-primary items-center justify-center"
                      value={4}>
-
+            {loading && props.value === 4 && <BackgroundChooserItemLoader/>}
             {videoPreview ?
-                (<video width={132} height={204} className={'h-full w-full object-cover absolute'}>
+                (<video key={videoPreview} width={132} height={204} className={'h-full w-full object-cover absolute'}>
                     <source src={videoPreview} type="video/mp4"/>
                 </video>) :
                 <MaterialSymbolsVideoCameraBackOutline className={'h-14 w-14'}/>
@@ -116,7 +128,7 @@ export const FormBackgroundChooser = ({name, control, ...props}: ControlledProp)
             render={({field: {ref, ...field}, fieldState, formState}) => (
                 <BackgroundChooser
                     {...props}
-                    value={field.value}
+                    value={field.value as number}
                     defaultValue={field.value}
                     onValueChange={(value) => field.onChange(Number(value))}
                     error={fieldState.error?.message}
@@ -127,12 +139,12 @@ export const FormBackgroundChooser = ({name, control, ...props}: ControlledProp)
 };
 
 export const BackgroundChooserSkeleton = ({}: InputProps) => {
-    return <InputWrapperSkeleton>
-        <div className={'flex flex-row gap-x-4'}>
-            <Skeleton className={'w-[150px] min-h-[150px] rounded-2xl'}/>
-            <Skeleton className={'w-[150px] min-h-[150px] rounded-2xl'}/>
-        </div>
-    </InputWrapperSkeleton>
+    return <ChooserSkeleton className={'grid grid-cols-4'}>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
+    </ChooserSkeleton>
 }
 
 export default BackgroundChooser;

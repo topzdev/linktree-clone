@@ -1,5 +1,6 @@
 import {apiClient} from "@/lib/ofetch";
 import {AppearanceSettings, Font} from "../../types/models";
+import {CustomThemeForm} from "@/app/dashboard/(main)/themes/_components/CustomThemeForm";
 
 const basePath = '/themes'
 
@@ -25,9 +26,30 @@ const themesServices = {
             body: data
         })
     },
-    updateCustom: async (data?: UpdateCustomTheme) => {
+    updateCustom: async (data: CustomThemeForm) => {
+        const formData = new FormData();
+        const id = data.bg_id;
+        formData.append('bg_id', id.toString());
+        switch (id) {
+            case 1:
+                data.bg_color && formData.append('bg_color', data.bg_color);
+                break;
+            case 2:
+                data.bg_from && formData.append('bg_from', data.bg_from);
+                data.bg_to && formData.append('bg_to', data.bg_to);
+                data.bg_position && formData.append('bg_position', data.bg_position);
+                break;
+            case 3:
+                data.bg_image && formData.append('bg_image', data.bg_image as File);
+                break;
+            case 4:
+                data.bg_video && formData.append('bg_video', data.bg_video as File);
+                break;
+
+        }
+
         return apiClient.post<ReturnTheme>(`${basePath}/update/custom`, {
-            body: data
+            body: formData
         })
     },
 }

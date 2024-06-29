@@ -5,12 +5,13 @@ import useDashboardStore from "@/stores/dashboard";
 import {useToast} from "@/components/ui/use-toast";
 import {Control, FormProvider, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import {FormColorPicker} from "@/components/ui/color-picker";
-import {ReturnTheme} from "@/services/themes";
+import {ColorPickerSkeleton, FormColorPicker} from "@/components/ui/color-picker";
+import themesServices, {ReturnTheme} from "@/services/themes";
 import {
+    BackgroundChooserSkeleton,
     DEFAULT_BG_FROM,
     DEFAULT_BG_POSITION,
     DEFAULT_BG_TO,
@@ -54,19 +55,42 @@ const gradientPosition = [
 
 export const themeSchema = yup.object().shape({
     bg_id: yup.number().required().label('Background'),
-    bg_video: yup.mixed().required().nullable().label('Background'),
-    bg_image: yup.mixed().required().nullable().label('Background'),
-    bg_video_url: yup.string().nullable(),
-    bg_image_url: yup.string().nullable(),
-    bg_color: yup.string().required().nullable().label('Background Color'),
-    bg_from: yup.string().required().nullable().label('Background From'),
-    bg_to: yup.string().required().nullable().label('Background To'),
-    bg_position: yup.string().required().nullable().label('Gradient Position'),
+    bg_image: yup.mixed().when('bg_id', {
+        is: (value: number) => value === 3,
+        then: (s) => s.notRequired(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Background Image'),
+    bg_video: yup.mixed().when('bg_id', {
+        is: (value: number) => value === 4,
+        then: (s) => s.notRequired(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Background Video'),
+    bg_color: yup.string().when('bg_id', {
+        is: (value: number) => value === 1,
+        then: (s) => s.required(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Background Color'),
+    bg_from: yup.string().when('bg_id', {
+        is: (value: number) => value === 2,
+        then: (s) => s.required(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Background From'),
+    bg_to: yup.string().when('bg_id', {
+        is: (value: number) => value === 2,
+        then: (s) => s.required(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Background To'),
+    bg_position: yup.string().when('bg_id', {
+        is: (value: number) => value === 2,
+        then: (s) => s.required(),
+        otherwise: (s) => s.notRequired()
+    }).nullable().label('Gradient Position'),
 });
 
 
 export type CustomThemeForm = yup.InferType<typeof themeSchema>
 const CustomThemeForm = ({value}: Props) => {
+    const queryClient = useQueryClient();
     const updatePreview = useDashboardStore(state => state.updatePreview);
     const {toast} = useToast();
 
@@ -92,8 +116,8 @@ const CustomThemeForm = ({value}: Props) => {
             bg_from: value.bg_from || DEFAULT_BG_FROM,
             bg_to: value.bg_to || DEFAULT_BG_TO,
             bg_position: value.bg_position || DEFAULT_BG_POSITION,
-            bg_image: value.bg_image_url,
-            bg_video: value.bg_video_url
+            bg_image: null,
+            bg_video: null
         })
     }, [value]);
 
@@ -101,9 +125,17 @@ const CustomThemeForm = ({value}: Props) => {
 
     const useUpdateContent = useMutation({
         mutationFn: (data: CustomThemeForm) => {
-            // return themesServices.updateCustom(data);
+            return themesServices.updateCustom(data);
         },
         onSuccess(data, variables, context) {
+            if (variables.bg_id === 3 || variables.bg_id === 4) {
+                queryClient.setQueryData(
+                    ['theme'],
+                    (oldData: ReturnTheme) => {
+                        return {...data};
+                    },
+                )
+            }
             updatePreview();
         },
         onError(error: FetchError, variables, context) {
@@ -130,17 +162,20 @@ const CustomThemeForm = ({value}: Props) => {
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)} className={'grid grid-cols-12 gap-y-4'}>
                     <div className="col-span-12">
-                        <FormBackgroundChooser image={getValues('bg_image')}
-                                               video={getValues('bg_video')}
-                                               bg_color={getValues('bg_color')}
-                                               bg_from={getValues('bg_from')}
-                                               bg_to={getValues('bg_to')}
-                                               position={getValues('bg_position')}
-                                               control={control}
-                                               name={'bg_id'}/>
+                        <FormBackgroundChooser
+                            loading={useUpdateContent.isPending}
+                            image={value.bg_image_url}
+                            video={value.bg_video_url}
+                            bg_color={getValues('bg_color')}
+                            bg_from={getValues('bg_from')}
+                            bg_to={getValues('bg_to')}
+                            position={getValues('bg_position')}
+                            control={control}
+                            name={'bg_id'}/>
                     </div>
                     <div className="col-span-12 grid grid-cols-12 gap-5">
-                        <ThemeFormField control={control} bg_id={getValues('bg_id')}/>
+                        <ThemeFormField defaultBgImage={value.bg_image_url} defaultBgVideo={value.bg_video_url}
+                                        control={control} bg_id={getValues('bg_id')}/>
                     </div>
                     <AutoSave defaultValues={value} onSubmit={onSubmit}/>
                 </form>
@@ -152,9 +187,11 @@ const CustomThemeForm = ({value}: Props) => {
 
 type ThemeFormFieldProps = {
     control: Control<CustomThemeForm>,
-    bg_id: CustomThemeForm['bg_id']
+    bg_id: CustomThemeForm['bg_id'],
+    defaultBgImage: string | null,
+    defaultBgVideo: string | null,
 }
-const ThemeFormField = ({control, bg_id}: ThemeFormFieldProps) => {
+const ThemeFormField = ({defaultBgImage, defaultBgVideo, control, bg_id}: ThemeFormFieldProps) => {
     switch (bg_id) {
         case 1:
         default:
@@ -207,11 +244,18 @@ const ThemeFormField = ({control, bg_id}: ThemeFormFieldProps) => {
             </>
         case 3:
             return <div key={'bg_image'} className='col-span-12'>
-                <FormFilePicker accept={'image/*'} control={control} name={'bg_image'} label={'Upload Image'}/>
+                <FormFilePicker defaultValue={defaultBgImage as string}
+                                accept={'image/*'} control={control}
+                                name={'bg_image'}
+                                label={'Upload Image'}/>
             </div>
         case 4:
             return <div key={'bg_video'} className='col-span-12'>
-                <FormFilePicker accept={'video/*'} control={control} name={'bg_video'} label={'Upload Video'}/>
+                <FormFilePicker defaultValue={defaultBgVideo as string}
+                                accept={'video/*'}
+                                control={control}
+                                name={'bg_video'}
+                                label={'Upload Video'}/>
             </div>
     }
 
@@ -221,7 +265,13 @@ const ThemeFormField = ({control, bg_id}: ThemeFormFieldProps) => {
 export const CustomThemeSkeleton = () => {
     return <Card>
         <CardContent className={'flex flex-col justify-center items-center gap-y-4'}>
+            <BackgroundChooserSkeleton/>
 
+            <div className="grid grid-cols-12 gap-5 w-full">
+                <div className="col-span-6">
+                    <ColorPickerSkeleton/>
+                </div>
+            </div>
         </CardContent>
     </Card>
 }
