@@ -19,8 +19,18 @@ class PreviewController extends Controller
             ], 400);
         }
 
+        $appearance_settings = $user->appearance_settings->toArray();
+        $theme = $appearance_settings['theme'];
+
+        unset($appearance_settings['theme']);
+
+        // if settings has theme selected, replace the appearance settings with the theme properties
+        if($appearance_settings['theme_id']) {
+            $appearance_settings = array_merge($appearance_settings, $theme);
+        }
+
         $data = [
-            "appearance_settings" => $user->appearance_settings,
+            "appearance_settings" => $appearance_settings,
             "links" => $user->links->where('is_enabled', '=', true)->values(),
             "socials" => $user->socials
         ];

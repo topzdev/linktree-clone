@@ -32,11 +32,11 @@ class Themes extends Model
     ];
 
     protected $appends = [
-//        'preview_url',
-//        'bg_image_url',
-//        'bg_image_m_url',
-//        'bg_video_url',
-//        'bg_video_m_url'
+        'preview_url',
+        'bg_image_url',
+        'bg_image_m_url',
+        'bg_video_url',
+        'bg_video_m_url'
     ];
 
     protected $with = [
@@ -62,13 +62,13 @@ class Themes extends Model
     protected function bgImageUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->bg_image ? asset('/themes/images'.$this->bg_image) : null
+            get: fn() => $this->bg_image ? asset('/themes/backgrounds'.$this->bg_image) : null
         );
     }
     protected function bgImageMUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->bg_image ? asset('/themes/images'.$this->bg_image) : null
+            get: fn() => $this->bg_image ? asset('/themes/backgrounds'.$this->bg_image) : null
         );
     }
 

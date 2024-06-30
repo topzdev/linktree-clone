@@ -24,7 +24,7 @@ const ProfilePage = ({username}: Props) => {
     })
 
     if (!data) return <></>
-    const appearance_settings = {...data.appearance_settings};
+    const appearance_settings = data.appearance_settings;
     const links = data.links;
     const socials = data.socials;
 
@@ -81,8 +81,8 @@ const ProfilePage = ({username}: Props) => {
             ...backgroundStyle
         }}
         className="max-h-screen overflow-hidden relative">
-        {images && <picture className={'absolute top-0 left-0 h-full w-full'}>
-            <source media={`(max-width: 767px)`} srcSet={images?.mobile}/>
+        {images.desktop && images.mobile && <picture className={'absolute top-0 left-0 h-full w-full'}>
+            {images.mobile && <source media={`(max-width: 767px)`} srcSet={images?.mobile}/>}
             <source media={`(min-width: 768px)`} srcSet={images?.desktop}/>
             <img className={'h-full w-full object-cover object-center'} alt={'Theme Background'} src={images?.desktop}/>
         </picture>}

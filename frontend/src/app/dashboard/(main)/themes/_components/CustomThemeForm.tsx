@@ -128,14 +128,18 @@ const CustomThemeForm = ({value}: Props) => {
             return themesServices.updateCustom(data);
         },
         onSuccess(data, variables, context) {
-            if (variables.bg_id === 3 || variables.bg_id === 4) {
-                queryClient.setQueryData(
-                    ['theme'],
-                    (oldData: ReturnTheme) => {
-                        return {...data};
-                    },
-                )
-            }
+            queryClient.setQueryData(
+                ['theme'],
+                (oldData: ReturnTheme) => {
+                    return {
+                        ...oldData,
+                        bg_id: data.bg_id,
+                        theme_id: data.theme_id,
+                        bg_image: data.bg_image,
+                        bg_video: data.bg_video
+                    };
+                },
+            )
             updatePreview();
         },
         onError(error: FetchError, variables, context) {

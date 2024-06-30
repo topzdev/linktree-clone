@@ -104,6 +104,7 @@ class AppearanceSettings extends Model
             get: fn() => $this->bg_video ? asset($this->bg_video) : null
         );
     }
+
     protected function bgVideoMUrl(): Attribute
     {
         return new Attribute(
@@ -171,7 +172,7 @@ class AppearanceSettings extends Model
 
     public function theme(): HasOne
     {
-        return $this->hasOne(Themes::class, 'id', 'theme_id');
+        return  $this->hasOne(Themes::class, 'id', 'theme_id')->with(['button', 'background', 'font']);
     }
 
 }

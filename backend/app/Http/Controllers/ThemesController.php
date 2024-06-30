@@ -30,6 +30,7 @@ class ThemesController extends Controller
         ]);
         $settings = AppearanceSettings::themeSettings();
         $settings->fill($request->only('theme_id'));
+        $settings->bg_id = null;
         $settings->save();
         return response()->json($settings);
     }
@@ -50,7 +51,11 @@ class ThemesController extends Controller
 
         $settings = AppearanceSettings::themeSettings();
 
+
         $settings->fill($request->only('bg_id', 'bg_color', 'bg_from', 'bg_to', 'bg_position'));
+
+        // when custom theme updated, set theme_id as null so that it will preview what bg selected in custom theme
+        $settings->theme_id = null;
 
         if ($request->file('bg_image')) {
             if ($settings->bg_image) {

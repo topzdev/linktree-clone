@@ -8,7 +8,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import themesServices, {GetOneReturn} from "@/services/themes";
+import themesServices, {GetOneReturn, ReturnTheme} from "@/services/themes";
 import {FormThemeChooser, ThemeChooserSkeleton} from "@/app/dashboard/(main)/themes/_components/ThemeChooser";
 
 type Props = {
@@ -55,6 +55,16 @@ const ThemesForm = ({value}: Props) => {
             return themesServices.update(data);
         },
         onSuccess(data, variables, context) {
+            queryClient.setQueryData(
+                ['theme'],
+                (oldData: ReturnTheme) => {
+                    return {
+                        ...oldData,
+                        bg_id: data.bg_id,
+                        theme_id: data.theme_id,
+                    };
+                },
+            )
             updatePreview();
         },
         onError(error: FetchError, variables, context) {

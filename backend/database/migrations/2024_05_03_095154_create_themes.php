@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('btn_shadow_color')->nullable();
             $table->string('font_color')->nullable();
             $table->string('font_style')->nullable();
-            $table->unsignedBigInteger('bg_id')->default(1);
+            $table->unsignedBigInteger('bg_id')->nullable()->default(1);
             $table->foreign('bg_id')->references('id')->on('backgrounds');
             $table->unsignedBigInteger('btn_id')->default(1);
             $table->foreign('btn_id')->references('id')->on('buttons');
