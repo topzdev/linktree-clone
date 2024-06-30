@@ -1,6 +1,7 @@
 import {apiClient} from "@/lib/ofetch";
-import {AppearanceSettings, Font} from "../../types/models";
+import {AppearanceSettings, Font, Theme} from "../../types/models";
 import {CustomThemeForm} from "@/app/dashboard/(main)/themes/_components/CustomThemeForm";
+import {ThemesForm} from "@/app/dashboard/(main)/themes/_components/ThemesForm";
 
 const basePath = '/themes'
 
@@ -16,12 +17,18 @@ export type ReturnTheme =
     font: Font;
 }
 
+export type ThemesPreview = Pick<Theme, 'id' | 'title' | 'key' | 'preview_url'>;
+
+export type GetOneReturn = ReturnTheme & {
+    themes: ThemesPreview[]
+}
+
 
 const themesServices = {
     getOne: async () => {
-        return apiClient.get<ReturnTheme>(`${basePath}/user`);
+        return apiClient.get<GetOneReturn>(`${basePath}/user`);
     },
-    update: async (data?: UpdateTheme) => {
+    update: async (data?: ThemesForm) => {
         return apiClient.post<ReturnTheme>(`${basePath}/update/`, {
             body: data
         })

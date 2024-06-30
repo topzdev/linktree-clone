@@ -17,7 +17,7 @@ type Props = {
     bg_to?: CustomThemeForm['bg_to'],
     position?: CustomThemeForm['bg_position'],
     loading?: boolean,
-    value: number,
+    value?: number,
 } & Omit<ChooserProps, 'value'>
 
 

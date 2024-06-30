@@ -15,10 +15,13 @@ class Themes extends Model
         'title',
         'key',
         'bg_color',
-        'bg_color2',
+        'bg_from',
+        'bg_to',
         'bg_position',
         'bg_image',
+        'bg_image_m',
         'bg_video',
+        'bg_video_m',
         'bg_style',
         'bg_text_color',
         'font_color',
@@ -29,14 +32,16 @@ class Themes extends Model
     ];
 
     protected $appends = [
-        'preview_url',
-        'bg_image_url',
-        'bg_video_url'
+//        'preview_url',
+//        'bg_image_url',
+//        'bg_image_m_url',
+//        'bg_video_url',
+//        'bg_video_m_url'
     ];
 
     protected $with = [
-        'button',
-        'font'
+//        'button',
+//        'font'
     ];
 
     protected function casts()
@@ -60,12 +65,30 @@ class Themes extends Model
             get: fn() => $this->bg_image ? asset('/themes/images'.$this->bg_image) : null
         );
     }
+    protected function bgImageMUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_image ? asset('/themes/images'.$this->bg_image) : null
+        );
+    }
 
     protected function bgVideoUrl(): Attribute
     {
         return new Attribute(
             get: fn() => $this->bg_video ? asset('/themes/videos'.$this->bg_video) : null
         );
+    }
+
+    protected function bgVideoMUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_video ? asset('/themes/videos'.$this->bg_video) : null
+        );
+    }
+
+   public function background(): HasOne
+    {
+        return $this->hasOne(Backgrounds::class, 'id', 'bg_id');
     }
 
     public function button(): HasOne

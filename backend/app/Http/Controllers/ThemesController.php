@@ -15,17 +15,23 @@ class ThemesController extends Controller
 
     public function getOne()
     {
-        $data = AppearanceSettings::themeSettings();
-        return response()->json($data);
+        $data = AppearanceSettings::themeSettings()->toArray();
+        $themes = Themes::all(['id','title','key', 'preview']);
+        $themes->append(['preview_url']);
+        return response()->json(array_merge($data, [
+            "themes" => $themes
+        ]));
     }
 
     public function update(Request $request)
     {
         $request->validate([
-            "theme_id" => "required|string|exists:themes,id"
+            "theme_id" => "required|integer|exists:themes,id"
         ]);
-        $data = AppearanceSettings::userAppearanceSettings()->fill($request->only('theme_id'));
-        return response()->json($data);
+        $settings = AppearanceSettings::themeSettings();
+        $settings->fill($request->only('theme_id'));
+        $settings->save();
+        return response()->json($settings);
     }
 
     public function updateCustomTheme(Request $request)
@@ -33,7 +39,7 @@ class ThemesController extends Controller
         $uploader = new AssetsManagerController();
 
         $request->validate([
-            'bg_id' => "string",
+            'bg_id' => "integer",
             "bg_color" => "string|hex_color",
             "bg_from" => "string|hex_color",
             "bg_to" => "string|hex_color",
@@ -42,19 +48,29 @@ class ThemesController extends Controller
             "bg_video" => "file|mimes:mp4,avi,mov|max:20480",
         ]);
 
-        $settings = AppearanceSettings::userAppearanceSettings();
+        $settings = AppearanceSettings::themeSettings();
+
+        $settings->fill($request->only('bg_id', 'bg_color', 'bg_from', 'bg_to', 'bg_position'));
 
         if ($request->file('bg_image')) {
+            if ($settings->bg_image) {
+                $uploader->delete($settings->bg_image);
+            }
+
             $uploaded = $uploader->uploadBackgroundImage($request->file('bg_image'));
             $settings->bg_image = $uploaded['source'];
         }
 
         if ($request->file('bg_video')) {
+            if ($settings->bg_video) {
+                $uploader->delete($settings->bg_video);
+            }
+
             $uploaded = $uploader->uploadBackgroundVideo($request->file('bg_video'));
             $settings->bg_video = $uploaded['source'];
         }
 
-        $settings->fill($request->only('bg_id', 'bg_color', 'bg_from', 'bg_to', 'bg_position'));
+
         $settings->save();
 
         return response()->json($settings);

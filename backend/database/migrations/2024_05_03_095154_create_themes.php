@@ -16,22 +16,27 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('key');
+            $table->string('preview')->nullable();
+            // Theme Appearance Attributes
             $table->string('bg_color')->nullable();
-            $table->string('bg_color2')->nullable();
+            $table->string('bg_from')->nullable();
+            $table->string('bg_to')->nullable();
             $table->string('bg_position')->nullable();
             $table->string('bg_image')->nullable();
+            $table->string('bg_image_m')->nullable();
             $table->string('bg_video')->nullable();
-            $table->string('bg_style')->nullable();
-            $table->string('bg_text_color')->nullable();
+            $table->string('bg_video_m')->nullable();
             $table->string('btn_color')->nullable();
+            $table->string('btn_style')->nullable();
             $table->string('btn_text_color')->nullable();
+            $table->string('btn_shadow_color')->nullable();
             $table->string('font_color')->nullable();
             $table->string('font_style')->nullable();
-            $table->string('preview')->nullable();
+            $table->unsignedBigInteger('bg_id')->default(1);
+            $table->foreign('bg_id')->references('id')->on('backgrounds');
             $table->unsignedBigInteger('btn_id')->default(1);
             $table->foreign('btn_id')->references('id')->on('buttons');
-            $table->unsignedBigInteger('font_id')->default(1);
-            $table->foreign('font_id')->references('id')->on('fonts');
+            $table->foreignId('font_id')->nullable()->constrained();
         });
     }
 

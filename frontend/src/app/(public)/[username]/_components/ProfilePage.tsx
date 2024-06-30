@@ -9,6 +9,7 @@ import {useQuery} from "@tanstack/react-query";
 import profileCssVariables from "@/lib/profileCssVariables";
 import SocialIconsList from "@/app/(public)/[username]/_components/SocialIconsList";
 import AppLogo from "@/components/common/AppLogo";
+import {getImageProps} from 'next/image';
 
 type Props = {
     children?: React.ReactNode,
@@ -23,21 +24,45 @@ const ProfilePage = ({username}: Props) => {
     })
 
     if (!data) return <></>
-    const appearance_settings = data.appearance_settings;
+    const appearance_settings = {...data.appearance_settings};
     const links = data.links;
     const socials = data.socials;
 
-    const backgrounds = [appearance_settings.bg_color, appearance_settings.bg_color2].filter(item => item);
     const backgroundStyle: React.CSSProperties = {};
-
+    let images = {
+        mobile: "",
+        desktop: "",
+    };
     backgroundStyle.color = appearance_settings.font_color || 'var(--foreground)';
-    switch (appearance_settings.background?.key) {
-        case 'flat':
-            backgroundStyle.background = backgrounds[0] || '#fff';
+    switch (appearance_settings.bg_id) {
+        case 1:
+            backgroundStyle.background = appearance_settings.bg_color || '#fff';
             break;
-        case 'gradient':
+        case 2:
             const position = appearance_settings.bg_position || '180deg'
-            backgroundStyle.background = `linear-gradient(${position},${backgrounds[0]},${backgrounds[1]})`;
+            backgroundStyle.background = `linear-gradient(${position},${appearance_settings.bg_to},${appearance_settings.bg_from})`;
+            break;
+        case 3:
+            const common = {alt: 'Theme Background'}
+
+            if (appearance_settings.bg_image_url) {
+                const desktop = getImageProps({
+                    ...common,
+                    width: 1920, height: 1080,
+                    src: appearance_settings.bg_image_url
+                });
+                images.desktop = desktop.props.src;
+            }
+            if (appearance_settings.bg_image_m_url) {
+                const mobile = getImageProps({
+                    ...common,
+                    width: 887, height: 1921,
+                    src: appearance_settings.bg_image_m_url
+                });
+                images.mobile = mobile.props.src;
+            }
+
+
             break;
         default:
             backgroundStyle.background = 'var(--background)';
@@ -45,22 +70,31 @@ const ProfilePage = ({username}: Props) => {
             break;
     }
 
+
     return <div
         style={{
             ...profileCssVariables({
-                btn_shadow_color: data.appearance_settings.btn_shadow_color,
-                btn_text_color: data.appearance_settings.btn_text_color,
-                btn_color: data.appearance_settings.btn_color
+                btn_shadow_color: appearance_settings.btn_shadow_color,
+                btn_text_color: appearance_settings.btn_text_color,
+                btn_color: appearance_settings.btn_color
             }),
             ...backgroundStyle
         }}
-        className="py-[95px] md:py-[100px] min-h-screen">
-        {}
-        <div className='px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
-            <ProfileInfo data={data.appearance_settings}/>
-            <LinkListContainer button={data.appearance_settings.button} links={links}/>
-            <SocialIconsList socials={socials}></SocialIconsList>
-            <AppLogo/>
+        className="max-h-screen overflow-hidden relative">
+        {images && <picture className={'absolute top-0 left-0 h-full w-full'}>
+            <source media={`(max-width: 767px)`} srcSet={images?.mobile}/>
+            <source media={`(min-width: 768px)`} srcSet={images?.desktop}/>
+            <img className={'h-full w-full object-cover object-center'} alt={'Theme Background'} src={images?.desktop}/>
+        </picture>}
+
+        <div className={'py-[95px] md:py-[100px] h-full w-full overflow-auto max-h-screen relative z-100'}>
+            <div
+                className='px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
+                <ProfileInfo data={appearance_settings}/>
+                <LinkListContainer button={appearance_settings.button} links={links}/>
+                <SocialIconsList socials={socials}></SocialIconsList>
+                <AppLogo/>
+            </div>
         </div>
     </div>
 }

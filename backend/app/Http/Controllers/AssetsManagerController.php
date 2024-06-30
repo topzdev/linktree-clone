@@ -36,10 +36,10 @@ class AssetsManagerController extends Controller
 
     public function uploadBackgroundImage(UploadedFile $file)
     {
-        return $this->upload('backgrounds_images', $file);
+        return $this->upload('images', $file);
     }
     public function uploadBackgroundVideo(UploadedFile $file)
     {
-        return $this->upload('backgrounds_videos', $file);
+        return $this->upload('videos', $file);
     }
 }

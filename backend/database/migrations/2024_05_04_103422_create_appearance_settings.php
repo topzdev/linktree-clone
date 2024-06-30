@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('bg_to')->nullable();
             $table->string('bg_position')->nullable();
             $table->string('bg_image')->nullable();
+            $table->string('bg_image_m')->nullable();
             $table->string('bg_video')->nullable();
+            $table->string('bg_video_m')->nullable();
             $table->string('btn_color')->nullable();
             $table->string('btn_style')->nullable();
             $table->string('btn_text_color')->nullable();

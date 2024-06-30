@@ -18,7 +18,9 @@ class AppearanceSettings extends Model
         'bg_to',
         'bg_position',
         'bg_image',
+        'bg_image_m',
         'bg_video',
+        'bg_video_m',
         'btn_color',
         'btn_style',
         'btn_text_color',
@@ -53,7 +55,9 @@ class AppearanceSettings extends Model
         'profile_avatar_url',
         'profile_initials',
         'bg_image_url',
+        'bg_image_m_url',
         'bg_video_url',
+        'bg_video_m_url',
     ];
 
     protected function profileInitials(): Attribute
@@ -87,7 +91,20 @@ class AppearanceSettings extends Model
         );
     }
 
+    protected function bgImageMUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_image_m ? asset($this->bg_image_m) : null
+        );
+    }
+
     protected function bgVideoUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_video ? asset($this->bg_video) : null
+        );
+    }
+    protected function bgVideoMUrl(): Attribute
     {
         return new Attribute(
             get: fn() => $this->bg_video ? asset($this->bg_video) : null

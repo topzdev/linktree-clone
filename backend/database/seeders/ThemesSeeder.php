@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Themes;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class ThemesSeeder extends Seeder
 {
@@ -15,6 +15,35 @@ class ThemesSeeder extends Seeder
     {
         $file = file_get_contents(resource_path('/data/themes.json'));
         $data = json_decode($file, true);
-        Themes::insert($data);
+
+        $items = array_map(function ($item) {
+            return Arr::only($item, [
+                'title',
+                'key',
+                'preview',
+                'bg_color',
+                'bg_from',
+                'bg_to',
+                'bg_position',
+                'bg_image',
+                'bg_image_m',
+                'bg_video',
+                'btn_color',
+                'btn_style',
+                'btn_text_color',
+                'btn_shadow_color',
+                'font_color',
+                'font_style',
+                'bg_id',
+                'bg_id',
+                'backgrounds',
+                'btn_id',
+                'btn_id',
+                'buttons',
+                'font_id',
+            ]);
+        }, $data);
+//        dd($items);
+        Themes::insert($items);
     }
 }

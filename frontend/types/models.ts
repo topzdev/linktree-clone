@@ -8,8 +8,12 @@ export type AppearanceSettings = {
     bg_from: string | null;
     bg_to: string | null;
     bg_position: string | null;
-    bg_image: string | null;
     bg_video: string | null;
+    bg_video_url?: string | null;
+    bg_image: string | null;
+    bg_image_m: string | null;
+    bg_image_url?: string | null;
+    bg_image_m_url?: string | null;
     btn_color: string;
     btn_style: string | null;
     btn_text_color: string | null;
@@ -27,12 +31,43 @@ export type AppearanceSettings = {
     theme_id: number | null;
     user_id: number;
     profile_avatar_url: string;
-    bg_image_url: string | null;
-    bg_video_url: string | null;
     font?: Font;
     button?: Button;
     background?: Background;
     theme?: any | null;
+}
+
+export type Theme = {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    title: string;
+    key: string;
+    bg_color: string | null;
+    bg_from: string | null;
+    bg_to: string | null;
+    bg_position: string | null;
+    bg_video: string | null;
+    bg_video_url?: string | null;
+    bg_image: string | null;
+    bg_image_m: string | null;
+    bg_image_url?: string | null;
+    bg_image_m_url?: string | null;
+    preview: string | null,
+    preview_url?: string | null;
+    btn_color: string;
+    btn_style: string | null;
+    btn_text_color: string | null;
+    btn_shadow_color: string | null;
+    profile_image_style: string;
+    font_color: string | null;
+    font_style: string | null;
+    bg_id: number;
+    btn_id: number;
+    font_id: number;
+    font?: Font;
+    button?: Button;
+    background?: Background;
 }
 
 export type Font = {

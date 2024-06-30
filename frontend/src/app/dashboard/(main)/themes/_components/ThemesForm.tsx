@@ -8,12 +8,12 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {FetchError} from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import {ReturnTheme} from "@/services/themes";
+import themesServices, {GetOneReturn} from "@/services/themes";
 import {FormThemeChooser, ThemeChooserSkeleton} from "@/app/dashboard/(main)/themes/_components/ThemeChooser";
 
 type Props = {
     children?: React.ReactNode,
-    value: ReturnTheme
+    value: GetOneReturn
 }
 
 
@@ -52,7 +52,7 @@ const ThemesForm = ({value}: Props) => {
 
     const useUpdateContent = useMutation({
         mutationFn: (data: ThemesForm) => {
-            // return themesServices.updateCustom(data);
+            return themesServices.update(data);
         },
         onSuccess(data, variables, context) {
             updatePreview();
@@ -81,7 +81,7 @@ const ThemesForm = ({value}: Props) => {
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)} className={'grid grid-cols-12 gap-y-4'}>
                     <div className="col-span-12">
-                        <FormThemeChooser control={control} name={'theme_id'}/>
+                        <FormThemeChooser items={value.themes} control={control} name={'theme_id'}/>
                     </div>
                     <AutoSave defaultValues={value} onSubmit={onSubmit}/>
                 </form>

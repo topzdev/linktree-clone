@@ -14,6 +14,7 @@ type ChooserItem = {
 
 export type ChooserProps = {
     children?: React.ReactNode,
+    value?: any,
 } & InputWrapperProps & RadioGroupProps;
 
 const Chooser = ({children, className, error, hint, label, id, ...props}: ChooserProps) => {
