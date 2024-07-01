@@ -177,7 +177,7 @@ const CustomThemeForm = ({value}: Props) => {
                             control={control}
                             name={'bg_id'}/>
                     </div>
-                    <div className="col-span-12 grid grid-cols-12 gap-5">
+                    <div className="col-span-12 grid grid-cols-12 gap-3 md:gap-4">
                         <ThemeFormField defaultBgImage={value.bg_image_url} defaultBgVideo={value.bg_video_url}
                                         control={control} bg_id={getValues('bg_id')}/>
                     </div>
@@ -200,7 +200,7 @@ const ThemeFormField = ({defaultBgImage, defaultBgVideo, control, bg_id}: ThemeF
         case 1:
         default:
             return <div key={'bg_color'}
-                        className="col-span-6">
+                        className="col-span-12 sm:col-span-6">
                 <FormColorPicker
                     control={control}
                     name={'bg_color'}
@@ -211,7 +211,7 @@ const ThemeFormField = ({defaultBgImage, defaultBgVideo, control, bg_id}: ThemeF
             return <>
                 <div
                     key={'bg_from'}
-                    className="col-span-6">
+                    className="col-span-12 sm:col-span-6">
                     <FormColorPicker
                         control={control}
                         name={'bg_from'}
@@ -221,7 +221,7 @@ const ThemeFormField = ({defaultBgImage, defaultBgVideo, control, bg_id}: ThemeF
 
                 <div
                     key={'bg_to'}
-                    className="col-span-6">
+                    className="col-span-12 sm:col-span-6">
                     <FormColorPicker
                         control={control}
                         name={'bg_to'}
@@ -229,7 +229,7 @@ const ThemeFormField = ({defaultBgImage, defaultBgVideo, control, bg_id}: ThemeF
                         placeholder={'Pick to background color'}/>
                 </div>
 
-                <div className="col-span-6">
+                <div className="col-span-12 sm:col-span-6">
                     <FormSelect label={'Position'} control={control} name={'bg_position'}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select gradient position"/>
@@ -272,7 +272,7 @@ export const CustomThemeSkeleton = () => {
             <BackgroundChooserSkeleton/>
 
             <div className="grid grid-cols-12 gap-5 w-full">
-                <div className="col-span-6">
+                <div className="col-span-12 sm:col-span-6">
                     <ColorPickerSkeleton/>
                 </div>
             </div>

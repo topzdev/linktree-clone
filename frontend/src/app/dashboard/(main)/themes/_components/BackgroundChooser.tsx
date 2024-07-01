@@ -72,20 +72,20 @@ const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, lo
     }, [bg_from, bg_to, position])
 
 
-    return <Chooser className={'grid grid-cols-4'} {...props}>
-        <ChooserItem title={'Flat'} className="col-span-1 aspect-[132/204]"
+    return <Chooser className={'grid grid-cols-4 gap-x-2 sm:gap-x-4'} {...props}>
+        <ChooserItem title={'Flat'} className="col-span-1 aspect-[132/204] min-w-full w-full"
                      value={1}>
             <div className={'h-full w-full flex items-center justify-center'} style={flatPreview}>
                 {loading && props.value === 1 && <BackgroundChooserItemLoader/>}
             </div>
         </ChooserItem>
-        <ChooserItem title={'Gradient'} className="col-span-1 aspect-[132/204]"
+        <ChooserItem title={'Gradient'} className="col-span-1 aspect-[132/204] min-w-full w-full"
                      value={2}>
             <div className={'h-full w-full flex items-center justify-center'} style={gradientPreview}>
                 {loading && props.value === 2 && <BackgroundChooserItemLoader/>}
             </div>
         </ChooserItem>
-        <ChooserItem title={'Image'} className="col-span-1 aspect-[132/204]"
+        <ChooserItem title={'Image'} className="col-span-1 aspect-[132/204] min-w-full w-full"
                      contentClassName="bg-slate-100 flex !text-foreground-primary items-center justify-center"
                      value={3}>
             {loading && props.value === 3 && <BackgroundChooserItemLoader/>}
@@ -97,10 +97,10 @@ const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, lo
                     style={{
                         objectFit: 'cover', // cover, contain, none
                     }}></Image>) :
-                <MaterialSymbolsImageOutline className={'h-14 w-14'}/>
+                <MaterialSymbolsImageOutline className={'h-10 w-10 md:h-14 md:w-14'}/>
             }
         </ChooserItem>
-        <ChooserItem title={'Video'} className="col-span-1 aspect-[132/204]"
+        <ChooserItem title={'Video'} className="col-span-1 aspect-[132/204] min-w-full w-full"
                      contentClassName="bg-slate-100 flex !text-foreground-primary items-center justify-center"
                      value={4}>
             {loading && props.value === 4 && <BackgroundChooserItemLoader/>}
@@ -108,7 +108,7 @@ const BackgroundChooser = ({video, image, bg_color, bg_from, bg_to, position, lo
                 (<video key={videoPreview} width={132} height={204} className={'h-full w-full object-cover absolute'}>
                     <source src={videoPreview} type="video/mp4"/>
                 </video>) :
-                <MaterialSymbolsVideoCameraBackOutline className={'h-14 w-14'}/>
+                <MaterialSymbolsVideoCameraBackOutline className={'h-10 w-10 md:h-14 md:w-14'}/>
             }
         </ChooserItem>
 
@@ -140,10 +140,10 @@ export const FormBackgroundChooser = ({name, control, ...props}: ControlledProp)
 
 export const BackgroundChooserSkeleton = ({}: InputProps) => {
     return <ChooserSkeleton className={'grid grid-cols-4'}>
-        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
-        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
-        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
-        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204] min-w-full w-full'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204] min-w-full w-full'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204] min-w-full w-full'}/>
+        <ChooserItemSkeleton className={'col-span-1 aspect-[132/204] min-w-full w-full'}/>
     </ChooserSkeleton>
 }
 

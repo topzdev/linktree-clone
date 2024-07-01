@@ -13,8 +13,9 @@ type Props = {
 
 const ThemeChooser = ({loading, items, ...props}: Props) => {
 
-    return <Chooser className={'grid grid-cols-4 gap-4'} {...props}>
-        {items.map(item => <ChooserItem key={item.id} title={item.title} className="col-span-1 aspect-[132/204]"
+    return <Chooser className={'grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4'} {...props}>
+        {items.map(item => <ChooserItem key={item.id} title={item.title}
+                                        className="col-span-1 aspect-[132/204] w-full min-w-full"
                                         value={item.id}>
             {item.preview_url && <Image
                 src={item.preview_url}
@@ -51,7 +52,7 @@ export const FormThemeChooser = ({name, control, ...props}: ControlledProp) => {
 };
 
 export const ThemeChooserSkeleton = ({}: InputProps) => {
-    return <ChooserSkeleton className={'grid grid-cols-4 gap-4'}>
+    return <ChooserSkeleton className={'grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4'}>
         <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
         <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>
         <ChooserItemSkeleton className={'col-span-1 aspect-[132/204]'}/>

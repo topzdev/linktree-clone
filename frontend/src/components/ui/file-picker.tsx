@@ -4,6 +4,7 @@ import {Input, InputProps} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
 import {Controller} from "react-hook-form";
+import MaterialSymbolsFileOpenRounded from "@/components/icons/MaterialSymbolsFileOpenRounded";
 
 type Props = {
     children?: React.ReactNode,
@@ -51,7 +52,13 @@ const FilePicker = ({
     return <InputWrapper {...{label, error, hint}} className={cn(className)}>
         <div className="flex flex-row items-center gap-x-2.5 ">
             <Input value={fileName} placeholder={placeholder} className={'w-full pointer-events-none select-none'}/>
-            <Button size={'lg'} onClick={handleOpenFileExplorer}>Choose File</Button>
+            <Button size={'lg'} onClick={handleOpenFileExplorer}>
+                <span class={'hidden lg:block'}>Choose File</span>
+                <span class={'flex items-center lg:hidden'}>
+                 Choose
+                <MaterialSymbolsFileOpenRounded className="ml-1"/>
+                </span>
+            </Button>
             <input accept={accept} multiple={multiple} type={'file'} ref={inputRef} hidden onChange={handleFileChange}/>
         </div>
     </InputWrapper>
