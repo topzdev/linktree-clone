@@ -37,6 +37,7 @@ export type AppearanceSettings = {
     button?: Button;
     background?: Background;
     theme?: any | null;
+    social_align?: number
 }
 
 export type Theme = {

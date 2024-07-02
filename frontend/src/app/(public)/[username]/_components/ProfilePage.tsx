@@ -98,8 +98,11 @@ const ProfilePage = ({username}: Props) => {
             <div
                 className='px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
                 <ProfileInfo data={appearance_settings}/>
+                {appearance_settings.social_align === 1 && <SocialIconsList socials={socials}></SocialIconsList>}
+
                 <LinkListContainer button={appearance_settings.button} links={links}/>
-                <SocialIconsList socials={socials}></SocialIconsList>
+
+                {appearance_settings.social_align === 2 && <SocialIconsList socials={socials}></SocialIconsList>}
                 <AppLogo/>
             </div>
         </div>

@@ -5,7 +5,7 @@ const basePath = '/socials'
 
 export type UserSocials = {
     socials: Social[],
-    alignment: 2,
+    alignment: number,
 }
 
 const socialsServices = {
@@ -36,7 +36,7 @@ const socialsServices = {
         return apiClient.post<boolean>(`${basePath}/update/visibility/${id}`)
     },
     updateSocialAlign: async (position: number) => {
-        return apiClient.post<1|2>(`${basePath}/update/align/`, {
+        return apiClient.post<1 | 2>(`${basePath}/update/align/`, {
             body: {
                 position
             }

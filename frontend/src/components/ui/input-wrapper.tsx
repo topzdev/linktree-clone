@@ -38,9 +38,15 @@ const InputWrapper = ({className, error, hint, label, children, id, ...props}: I
     </div>
 }
 
-export const InputWrapperSkeleton = ({children}: InputWrapperProps) => {
+export type InputWrapperSkeletonProps = {
+    withLabel?: boolean
+} & InputWrapperProps;
+
+export const InputWrapperSkeleton = ({children, withLabel = true}: InputWrapperSkeletonProps) => {
     return <div className={cn('flex flex-col w-full gap-y-1')}>
-        <Skeleton className="h-5 max-w-[160px] rounded-2xl"/>
+        {withLabel &&
+            <Skeleton className="h-5 max-w-[160px] rounded-2xl"/>
+        }
         {children}
     </div>
 }
