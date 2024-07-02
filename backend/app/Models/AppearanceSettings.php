@@ -142,10 +142,12 @@ class AppearanceSettings extends Model
     {
 
         $userId = auth()->id();
-        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_video', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position'])->first();
+        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_image_m', 'bg_video' ,'bg_video_m', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position'])->first();
         $data->appends = [
             'bg_image_url',
             'bg_video_url',
+            'bg_image_m_url',
+            'bg_video_m_url',
         ];
         return $data;
     }

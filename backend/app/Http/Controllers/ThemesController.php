@@ -46,7 +46,9 @@ class ThemesController extends Controller
             "bg_to" => "string|hex_color",
             "bg_position" => "string",
             "bg_image" => "image|mimes:jpeg,png,jpg,gif,webp|max:2048", // Adjust validation rules as needed
+            "bg_image_m" => "image|mimes:jpeg,png,jpg,gif,webp|max:2048", // Adjust validation rules as needed
             "bg_video" => "file|mimes:mp4,avi,mov|max:20480",
+            "bg_video_m" => "file|mimes:mp4,avi,mov|max:20480",
         ]);
 
         $settings = AppearanceSettings::themeSettings();
@@ -66,6 +68,15 @@ class ThemesController extends Controller
             $settings->bg_image = $uploaded['source'];
         }
 
+        if ($request->file('bg_image_m')) {
+            if ($settings->bg_image_m) {
+                $uploader->delete($settings->bg_image_m);
+            }
+
+            $uploaded = $uploader->uploadBackgroundImage($request->file('bg_image_m'));
+            $settings->bg_image_m = $uploaded['source'];
+        }
+
         if ($request->file('bg_video')) {
             if ($settings->bg_video) {
                 $uploader->delete($settings->bg_video);
@@ -73,6 +84,15 @@ class ThemesController extends Controller
 
             $uploaded = $uploader->uploadBackgroundVideo($request->file('bg_video'));
             $settings->bg_video = $uploaded['source'];
+        }
+
+        if ($request->file('bg_video_m')) {
+            if ($settings->bg_video_m) {
+                $uploader->delete($settings->bg_video_m);
+            }
+
+            $uploaded = $uploader->uploadBackgroundVideo($request->file('bg_video_m'));
+            $settings->bg_video_m = $uploaded['source'];
         }
 
 
