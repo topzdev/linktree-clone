@@ -53,7 +53,12 @@ const ButtonsForm = ({value}: Props) => {
     } = methods
 
     useEffect(() => {
-        reset(value as ButtonForm);
+        reset({
+            btn_id: value.btn_id || 1,
+            btn_shadow_color: value.btn_shadow_color || '#555',
+            btn_color: value.btn_color || '#000',
+            btn_text_color: value.btn_text_color || '#fff',
+        });
     }, [value]);
 
     const hasShadowButtonType = useMemo(() => {

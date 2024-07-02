@@ -9,7 +9,9 @@ export type AppearanceSettings = {
     bg_to: string | null;
     bg_position: string | null;
     bg_video: string | null;
+    bg_video_m: string | null;
     bg_video_url?: string | null;
+    bg_video_m_url?: string | null;
     bg_image: string | null;
     bg_image_m: string | null;
     bg_image_url?: string | null;

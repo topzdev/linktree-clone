@@ -117,7 +117,9 @@ const CustomThemeForm = ({value}: Props) => {
             bg_to: value.bg_to || DEFAULT_BG_TO,
             bg_position: value.bg_position || DEFAULT_BG_POSITION,
             bg_image: null,
-            bg_video: null
+            bg_video: null,
+            bg_image_m: null,
+            bg_video_m: null,
         })
     }, [value]);
 

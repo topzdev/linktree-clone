@@ -33,6 +33,7 @@ const ProfilePage = ({username}: Props) => {
         mobile: "",
         desktop: "",
     };
+    let video = '';
     backgroundStyle.color = appearance_settings.font_color || 'var(--foreground)';
     switch (appearance_settings.bg_id) {
         case 1:
@@ -61,8 +62,11 @@ const ProfilePage = ({username}: Props) => {
                 });
                 images.mobile = mobile.props.src;
             }
-
-
+            break;
+        case 4:
+            if (appearance_settings.bg_video_url) {
+                video = appearance_settings.bg_video_url;
+            }
             break;
         default:
             backgroundStyle.background = 'var(--background)';
@@ -81,6 +85,9 @@ const ProfilePage = ({username}: Props) => {
             ...backgroundStyle
         }}
         className="max-h-screen overflow-hidden relative">
+        {video && <video autoPlay muted loop className={'absolute top-0 left-0 h-screen object-cover w-screen'}>
+            <source className={'h-full w-full object-cover object-center'} src={video} type="video/mp4"/>
+        </video>}
         {images.desktop && images.mobile && <picture className={'absolute top-0 left-0 h-full w-full'}>
             {images.mobile && <source media={`(max-width: 767px)`} srcSet={images?.mobile}/>}
             <source media={`(min-width: 768px)`} srcSet={images?.desktop}/>
