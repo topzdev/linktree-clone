@@ -7,7 +7,8 @@ export type TypographyProps = {
     variant?: keyof typeof typographies;
     className?: string,
     as?: keyof JSX.IntrinsicElements;
-    foreground?: keyof typeof foregrounds
+    foreground?: keyof typeof foregrounds;
+    htmlFor?: string,
 } & React.DetailedHTMLProps<React.HTMLAttributes<any>, any>
 const typographies = {
     h1: {className: 'typo-h1', element: 'h1'},
