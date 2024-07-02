@@ -14,10 +14,13 @@ class AppearanceSettings extends Model
 
     protected $fillable = [
         'bg_color',
-        'bg_color2',
+        'bg_from',
+        'bg_to',
         'bg_position',
         'bg_image',
+        'bg_image_m',
         'bg_video',
+        'bg_video_m',
         'btn_color',
         'btn_style',
         'btn_text_color',
@@ -52,13 +55,15 @@ class AppearanceSettings extends Model
         'profile_avatar_url',
         'profile_initials',
         'bg_image_url',
+        'bg_image_m_url',
         'bg_video_url',
+        'bg_video_m_url',
     ];
 
     protected function profileInitials(): Attribute
     {
         return new Attribute(
-            get: function (){
+            get: function () {
                 $words = explode(' ', $this->profile_title); // Split the string by spaces into an array of words
                 $initials = '';
 
@@ -71,6 +76,7 @@ class AppearanceSettings extends Model
             }
         );
     }
+
     protected function profileAvatarUrl(): Attribute
     {
         return new Attribute(
@@ -85,7 +91,21 @@ class AppearanceSettings extends Model
         );
     }
 
+    protected function bgImageMUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_image_m ? asset($this->bg_image_m) : null
+        );
+    }
+
     protected function bgVideoUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->bg_video ? asset($this->bg_video) : null
+        );
+    }
+
+    protected function bgVideoMUrl(): Attribute
     {
         return new Attribute(
             get: fn() => $this->bg_video ? asset($this->bg_video) : null
@@ -110,6 +130,28 @@ class AppearanceSettings extends Model
         return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'btn_color', 'btn_text_color', 'btn_shadow_color', 'btn_id'])->first();
     }
 
+    public static function fontSettings()
+    {
+        $userId = auth()->id();
+        $font = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'user_id', 'font_id', 'font_color'])->first();
+        $font->appends = [];
+        return $font;
+    }
+
+    public static function themeSettings()
+    {
+
+        $userId = auth()->id();
+        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_image_m', 'bg_video' ,'bg_video_m', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position'])->first();
+        $data->appends = [
+            'bg_image_url',
+            'bg_video_url',
+            'bg_image_m_url',
+            'bg_video_m_url',
+        ];
+        return $data;
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -132,7 +174,7 @@ class AppearanceSettings extends Model
 
     public function theme(): HasOne
     {
-        return $this->hasOne(Themes::class, 'id', 'theme_id');
+        return  $this->hasOne(Themes::class, 'id', 'theme_id')->with(['button', 'background', 'font']);
     }
 
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import InputWrapper, {InputWrapperProps, InputWrapperSkeleton} from "@/components/ui/input-wrapper";
-import {Input, InputProps, InputSkeleton} from "@/components/ui/input";
+import {Input, InputProps} from "@/components/ui/input";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Controller} from "react-hook-form";
 import {cn} from "@/lib/utils";
@@ -9,7 +9,7 @@ import {Skeleton} from "@/components/ui/skeleton";
 type ColorPickerProps = {
     children?: React.ReactNode,
     onChange?: (color: string) => void;
-} & InputWrapperProps & Omit< InputProps, 'onChange'>;
+} & InputWrapperProps & Omit<InputProps, 'onChange'>;
 
 const defaultSolidColors = [
     '#000',
@@ -38,7 +38,7 @@ const ColorPicker = ({
     const [popover, setPopover] = useState(false);
 
     useEffect(() => {
-        setColor(value as string);
+        setColor(value as string || '#000');
     }, [value]);
 
     const pickColor = (color: string) => {
@@ -53,7 +53,8 @@ const ColorPicker = ({
                 <PopoverTrigger>
                     <div style={{
                         background: color,
-                    }} className={'min-h-[48px] w-[48px] min-w-[48px] md:min-h-[52px] md:w-[52px] md:min-w-[52px] rounded-2xl border border-border'}>
+                    }}
+                         className={'min-h-[48px] w-[48px] min-w-[48px] md:min-h-[52px] md:w-[52px] md:min-w-[52px] rounded-2xl border border-border'}>
                     </div>
                 </PopoverTrigger>
                 <PopoverContent align={'start'}>
@@ -69,7 +70,8 @@ const ColorPicker = ({
                 </PopoverContent>
             </Popover>
 
-            <Input className="w-full" type={'hex'} value={color} error={error} onChange={(e) => pickColor(e.target.value)}/>
+            <Input className="w-full" type={'hex'} value={color}
+                   onChange={(e) => pickColor(e.target.value)}/>
         </div>
     </InputWrapper>
 }

@@ -57,7 +57,7 @@ const Typography = ({
 
 export const TypographySkeleton = ({...props}: TypographyProps) => {
     return <Skeleton className={'w-auto'}>
-        <Typography {...props} className="opacity-0 select-none"></Typography>
+        <Typography {...props} className="opacity-0 select-none"/>
     </Skeleton>
 }
 

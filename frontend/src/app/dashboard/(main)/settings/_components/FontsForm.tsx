@@ -17,12 +17,12 @@ type Props = {
     value: ReturnFont
 }
 
-
+const DEFAULT_FONT = 16 // Inter;
+const DEFAULT_FONT_COLOR = '#000';
 export const fontsSchema = yup.object().shape({
     font_id: yup.number().required().label('Font Family'),
-    font_color: yup.string().required().label('Font Color'),
+    font_color: yup.string().nullable().required().label('Font Color'),
 });
-
 
 export type FontsForm = yup.InferType<typeof fontsSchema>
 const FontsForm = ({value}: Props) => {
@@ -31,10 +31,6 @@ const FontsForm = ({value}: Props) => {
 
     const methods = useForm<FontsForm>({
         mode: 'onChange',
-        defaultValues: {
-            font_id: value.font_id,
-            font_color: value.font_color,
-        },
         resolver: yupResolver(fontsSchema),
     });
 
@@ -49,8 +45,8 @@ const FontsForm = ({value}: Props) => {
 
     useEffect(() => {
         reset({
-            font_id: value.font_id,
-            font_color: value.font_color,
+            font_id: value.font_id || DEFAULT_FONT,
+            font_color: value.font_color || DEFAULT_FONT_COLOR,
         })
     }, [value]);
 

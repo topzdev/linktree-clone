@@ -83,14 +83,14 @@ const FontSelect = ({value, onChange, label, ...props}: Props) => {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
                 <div
-                    className={cn('flex border border-border rounded-lg items-center  gap-x-3 md:gap-x-4 p-3 md:p-4 py-2.5 md:py-3 cursor-pointer select-none group hover:bg-slate-100') + ' ' + selected.className}>
+                    className={cn('flex border border-border rounded-lg items-center  gap-x-3 md:gap-x-4 p-3 md:p-4 py-2.5 md:py-3 cursor-pointer select-none group hover:bg-slate-100') + ' ' + selected?.className}>
                     <div
                         className={'flex items-center justify-center  h-[40px] w-[40px] md:h-[50px] md:w-[50px] bg-slate-100 rounded-lg text-xl font-bold group-hover:bg-white'}>
                         Aa
                     </div>
 
                     <Typography className={'text-lg md:text-xl'}>
-                        {selected.title}
+                        {selected?.title}
                     </Typography>
 
                 </div>
@@ -107,14 +107,14 @@ const FontSelect = ({value, onChange, label, ...props}: Props) => {
 
                 <List className="overflow-y-scroll h-[500px] max-h-[500px]  -mr-5">
                     {items.map(item => <ListGroup groupTitle={item.name}>
-                        {item.items.map(sub => <ListItem selected={preSelected.id === sub.id} key={sub.key}
+                        {item.items.map(sub => <ListItem selected={preSelected?.id === sub.id} key={sub.key}
                                                          className={itemFont(sub.id).className}
                                                          onClick={() => _setValue(sub.id)}>
                             <Typography className={'text-lg'}>
                                 {sub.title}
                             </Typography>
 
-                            {selected.id === sub.id &&
+                            {selected?.id === sub.id &&
                                 <MaterialSymbolsCheckRounded className={'text-green-500 text-2xl'}/>
                             }
                         </ListItem>)}

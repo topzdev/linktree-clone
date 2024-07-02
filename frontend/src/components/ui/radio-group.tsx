@@ -24,7 +24,7 @@ RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
 
 const RadioGroupItem = React.forwardRef<
     React.ElementRef<typeof RadioGroupPrimitive.Item>,
-    React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & { showIndicator?: boolean }
+    React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & { showIndicator?: boolean, value: any }
 >(({className, children, showIndicator = true, ...props}, ref) => {
     return (
         <RadioGroupPrimitive.Item

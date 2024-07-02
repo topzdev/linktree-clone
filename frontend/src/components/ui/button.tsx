@@ -33,10 +33,10 @@ const buttonVariants = cva(
     {
         variants: {
             size: {
-                sm: "h-[32px] rounded-md px-2.5 text-sm ",
-                base: "h-[40px] rounded-md px-4 text-lg",
-                lg: "h-[48px] rounded-md px-5 text-md",
-                xl: "h-[55px] rounded-md px-5 text-lg",
+                sm: "h-[29px] md:h-[32px] rounded-md px-2.5 text-sm ",
+                base: "h-[37px] md:h-[40px] rounded-md px-4 text-base",
+                lg: "h-[45px] md:h-[48px] rounded-md px-5 text-base",
+                xl: "h-[52px] md:h-[55px] rounded-md px-5 text-lg",
             },
 
             rounded: {
