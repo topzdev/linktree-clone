@@ -54,7 +54,12 @@ const ProfileForm = ({value}: Props) => {
 
     const methods = useForm<ProfileForm>({
         mode: 'onChange',
-        defaultValues: value,
+        defaultValues: {
+            profile_bio: value.profile_bio || '',
+            profile_title: value.profile_title || '',
+            profile_image_style: value.profile_image_style || '1',
+            profile_avatar_url: value.profile_avatar_url
+        },
         resolver: yupResolver(profileSchema),
     });
 
@@ -154,7 +159,8 @@ const ProfileForm = ({value}: Props) => {
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)} className={'grid grid-cols-12 gap-y-4'}>
                     <div className="col-span-12">
-                        <FormProfileStyleChooser control={control} name={'profile_image_style'}/>
+                        <FormProfileStyleChooser
+                            control={control} name={'profile_image_style'}/>
                     </div>
 
                     <div className="col-span-12">

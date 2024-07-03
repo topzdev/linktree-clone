@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "next",
+    "prettier"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-max-props-per-line": [
+      0,
+      {
+        "maximum": 1
+      }
+    ],
+    "react/jsx-props-multiline": [
+      "error",
+      {
+        "maxSingular": 2,
+        "maxMulti": 1,
+        "when": "always"
+      }
+    ]
+  }
+}
