@@ -109,9 +109,8 @@ const ProfilePage = ({username}: Props) => {
         <div className={'pb-[95px] md:pb-[100px] h-full w-full overflow-auto max-h-screen relative z-100'}>
             <ProfileInfo className="max-w-[700px] !mx-auto mb-10 " data={appearance_settings}/>
             <div
-                className='px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
+                className='px-3 md:px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]'>
                 {appearance_settings.social_align === 1 && <SocialIconsList socials={socials}></SocialIconsList>}
-
                 <LinkListContainer button={appearance_settings.button} links={links}/>
 
                 {appearance_settings.social_align === 2 && <SocialIconsList socials={socials}></SocialIconsList>}

@@ -10,7 +10,7 @@ type Props = {
 }
 
 const LinkListContainer = ({links, button}: Props) => {
-    return <div className={'flex flex-col gap-y-4 w-full'}>
+    return <div className={'flex flex-col gap-y-4 md:gap-y-4 w-full'}>
         {links.map(item => {
             switch (item.type) {
                 case 1:
