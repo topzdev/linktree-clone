@@ -20,7 +20,7 @@ import {
     DEFAULT_BG_TO,
     DEFAULT_FLAT_BG,
     FormBackgroundChooser,
-} from "@/app/dashboard/(main)/themes/_components/BackgroundChooser";
+} from "@/app/dashboard/(main)/appearance/_components/custom/BackgroundChooser";
 import {
     FormSelect,
     SelectContent,

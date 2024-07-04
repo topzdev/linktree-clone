@@ -1,19 +1,17 @@
-"use client";
-
 import React from "react";
 import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardContainer";
-import DashboardSettingsSocialSection from "@/app/dashboard/(main)/settings/_components/DashboardSettingsSocialSection";
+import ThemesSection from "@/app/dashboard/(main)/appearance/_components/themes/ThemesSection";
 
 type Props = {
     children?: React.ReactNode;
 };
 
-const DashboardSettingsPage = (props: Props) => {
+const DashboardThemesPage = (props: Props) => {
     return (
         <DashboardContainer className={"flex flex-col gap-y-12"}>
-            <DashboardSettingsSocialSection />
+            <ThemesSection />
         </DashboardContainer>
     );
 };
 
-export default DashboardSettingsPage;
+export default DashboardThemesPage;

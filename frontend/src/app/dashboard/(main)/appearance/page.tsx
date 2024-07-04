@@ -1,12 +1,12 @@
 import React from "react";
-import ButtonSection from "@/app/dashboard/(main)/appearance/_components/buttons/ButtonSection";
+import DashboardCustomPage from "@/app/dashboard/(main)/appearance/_components/DashboardCustomPage";
 
 type Props = {
     children?: React.ReactNode;
 };
 
 const Page = (props: Props) => {
-    return <ButtonSection />;
+    return <DashboardCustomPage />;
 };
 
 export default Page;

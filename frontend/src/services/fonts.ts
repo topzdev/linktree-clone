@@ -1,13 +1,15 @@
-import {apiClient} from "@/lib/ofetch";
-import {AppearanceSettings, Font} from "../../types/models";
-import {FontsForm} from "@/app/dashboard/(main)/settings/_components/FontsForm";
+import { apiClient } from "@/lib/ofetch";
+import { AppearanceSettings, Font } from "../../types/models";
+import { FontsForm } from "@/app/dashboard/(main)/appearance/_components/buttons/FontsForm";
 
-const basePath = '/fonts'
+const basePath = "/fonts";
 
-export type ReturnFont = Pick<AppearanceSettings, 'id' | 'user_id' | 'font_id' | 'font_color'> & {
+export type ReturnFont = Pick<
+    AppearanceSettings,
+    "id" | "user_id" | "font_id" | "font_color"
+> & {
     font: Font;
-}
-
+};
 
 const fontsServices = {
     getOne: async () => {
@@ -15,9 +17,9 @@ const fontsServices = {
     },
     update: async (data?: FontsForm) => {
         return apiClient.post<ReturnFont>(`${basePath}/update/`, {
-            body: data
-        })
+            body: data,
+        });
     },
-}
+};
 
 export default fontsServices;

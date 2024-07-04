@@ -5,38 +5,33 @@ import useDashboardStore from "@/stores/dashboard";
 import { useToast } from "@/components/ui/use-toast";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FetchError } from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import fontsServices, { ReturnFont } from "@/services/fonts";
+import themesServices, { GetOneReturn, ReturnTheme } from "@/services/themes";
 import {
-    ColorPickerSkeleton,
-    FormColorPicker,
-} from "@/components/ui/color-picker";
-import {
-    FontSelectSkeleton,
-    FormFontSelect,
-} from "@/app/dashboard/(main)/appearance/_components/buttons/FontSelect";
+    FormThemeChooser,
+    ThemeChooserSkeleton,
+} from "@/app/dashboard/(main)/appearance/_components/themes/ThemeChooser";
 
 type Props = {
     children?: React.ReactNode;
-    value: ReturnFont;
+    value: GetOneReturn;
 };
 
-const DEFAULT_FONT = 16; // Inter;
-const DEFAULT_FONT_COLOR = "#000";
-export const positionSchema = yup.object().shape({
-    position: yup.number().required().label("Position"),
+export const themesSchema = yup.object().shape({
+    theme_id: yup.number().nullable(),
 });
 
-export type FontsForm = yup.InferType<typeof positionSchema>;
-const FontsForm = ({ value }: Props) => {
+export type ThemesForm = yup.InferType<typeof themesSchema>;
+const ThemesForm = ({ value }: Props) => {
+    const queryClient = useQueryClient();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
-    const methods = useForm<FontsForm>({
+    const methods = useForm<ThemesForm>({
         mode: "onChange",
-        resolver: yupResolver(positionSchema),
+        resolver: yupResolver(themesSchema),
     });
 
     const {
@@ -51,17 +46,24 @@ const FontsForm = ({ value }: Props) => {
 
     useEffect(() => {
         reset({
-            position: value.font_id || DEFAULT_FONT,
+            theme_id: value.theme_id,
         });
     }, [value]);
 
     const [submittedData, setSubmittedData] = React.useState({});
 
     const useUpdateContent = useMutation({
-        mutationFn: (data: FontsForm) => {
-            return fontsServices.update(data);
+        mutationFn: (data: ThemesForm) => {
+            return themesServices.update(data);
         },
         onSuccess(data, variables, context) {
+            queryClient.setQueryData(["theme"], (oldData: ReturnTheme) => {
+                return {
+                    ...oldData,
+                    bg_id: data.bg_id,
+                    theme_id: data.theme_id,
+                };
+            });
             updatePreview();
         },
         onError(error: FetchError, variables, context) {
@@ -72,7 +74,7 @@ const FontsForm = ({ value }: Props) => {
             });
         },
     });
-    const onSubmit = async (data: FontsForm) => {
+    const onSubmit = async (data: ThemesForm) => {
         await useUpdateContent.mutate(data);
         setSubmittedData(data);
     };
@@ -92,17 +94,10 @@ const FontsForm = ({ value }: Props) => {
                         className={"grid grid-cols-12 gap-y-4"}
                     >
                         <div className="col-span-12">
-                            <FormFontSelect
+                            <FormThemeChooser
+                                items={value.themes}
                                 control={control}
-                                name={"font_id"}
-                            />
-                        </div>
-                        <div className="col-span-12">
-                            <FormColorPicker
-                                control={control}
-                                name={"font_color"}
-                                label={"Font Color"}
-                                placeholder={"Enter Font Color"}
+                                name={"theme_id"}
                             />
                         </div>
                         <AutoSave defaultValues={value} onSubmit={onSubmit} />
@@ -113,17 +108,16 @@ const FontsForm = ({ value }: Props) => {
     );
 };
 
-export const FontsFormSkeleton = () => {
+export const ThemesFormSkeleton = () => {
     return (
         <Card>
             <CardContent
                 className={"flex flex-col items-center justify-center gap-y-4"}
             >
-                <FontSelectSkeleton />
-                <ColorPickerSkeleton />
+                <ThemeChooserSkeleton />
             </CardContent>
         </Card>
     );
 };
 
-export default FontsForm;
+export default ThemesForm;

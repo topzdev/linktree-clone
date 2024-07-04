@@ -25,18 +25,19 @@ type Props = {
 
 const DEFAULT_FONT = 16; // Inter;
 const DEFAULT_FONT_COLOR = "#000";
-export const positionSchema = yup.object().shape({
-    position: yup.number().required().label("Position"),
+export const fontsSchema = yup.object().shape({
+    font_id: yup.number().required().label("Font Family"),
+    font_color: yup.string().nullable().required().label("Font Color"),
 });
 
-export type FontsForm = yup.InferType<typeof positionSchema>;
+export type FontsForm = yup.InferType<typeof fontsSchema>;
 const FontsForm = ({ value }: Props) => {
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
     const methods = useForm<FontsForm>({
         mode: "onChange",
-        resolver: yupResolver(positionSchema),
+        resolver: yupResolver(fontsSchema),
     });
 
     const {
@@ -51,7 +52,8 @@ const FontsForm = ({ value }: Props) => {
 
     useEffect(() => {
         reset({
-            position: value.font_id || DEFAULT_FONT,
+            font_id: value.font_id || DEFAULT_FONT,
+            font_color: value.font_color || DEFAULT_FONT_COLOR,
         });
     }, [value]);
 
