@@ -20,7 +20,7 @@ export type ChooserProps = {
 const Chooser = ({children, className, error, hint, label, id, ...props}: ChooserProps) => {
     const inputWrapperProps = {error, hint, label, id};
     return <InputWrapper {...inputWrapperProps}>
-        <RadioGroup   {...props} className={cn('flex flex-row gap-x-4', className)}>
+        <RadioGroup   {...props} inputClassName={cn('flex flex-row gap-x-4', className)}>
             {children}
         </RadioGroup>
     </InputWrapper>

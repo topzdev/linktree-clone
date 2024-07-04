@@ -14,9 +14,11 @@ type Props = {
 const ThemeChooser = ({loading, items, ...props}: Props) => {
 
     return <Chooser className={'grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4'} {...props}>
-        {items.map(item => <ChooserItem key={item.id} title={item.title}
-                                        className="col-span-1 aspect-[132/204] w-full min-w-full"
-                                        value={item.id}>
+        {items.map(item => <ChooserItem
+            key={item.id}
+            title={item.title}
+            className="col-span-1 aspect-[132/204] w-full min-w-full"
+            value={item.id}>
             {item.preview_url && <Image
                 src={item.preview_url}
                 alt={item.title}

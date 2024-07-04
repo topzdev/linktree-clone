@@ -402,6 +402,7 @@
     .typo-p {
         @apply leading-7 text-base;
     }
+
     .typo-p-ui {
         @apply text-base;
     }
@@ -439,7 +440,7 @@
     }
 
     .typo-large {
-        @apply text-lg font-semibold leading-7;
+        @apply md:text-lg font-semibold leading-7;
     }
 
     .typo-overline {
