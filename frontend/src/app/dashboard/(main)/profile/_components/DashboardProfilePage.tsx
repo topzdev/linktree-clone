@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@/components/ui/typography";
-import {useQuery} from "@tanstack/react-query";
-import linkServices from "@/services/links";
-import LinksList, {LinkListSkeleton} from "@/app/dashboard/(main)/_components/links/LinksList";
 import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardContainer";
-import dynamic from "next/dynamic";
-import {useBreakpoint} from "@/hooks/useBreakpoint";
-import AddButtons from "@/app/dashboard/(main)/_components/links/AddButtons";
-import profileServices from "@/services/profile";
-import ProfileForm, {ProfileFormSkeleton} from "@/app/dashboard/(main)/profile/_components/ProfileForm";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
+import ProfileForm, {
+    ProfileFormSkeleton,
+} from "@/app/dashboard/(main)/profile/_components/ProfileForm";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 
 type Props = {
-    children?: React.ReactNode
-}
+    children?: React.ReactNode;
+};
 
 const DashboardProfilePage = (props: Props) => {
-    const {isMd} = useBreakpoint('md');
+    const { isMd } = useBreakpoint("md");
 
-    const {data, isLoading} = useQuery({
-        queryKey: ['profile'],
-        queryFn: () => profileServices.getOne(),
-    })
+    const { data, isLoading } = useFetchAppearance();
 
-    return <DashboardContainer>
-        <div className="flex flex-col gap-y-5 w-full">
-            <div className={'flex flex-col relative'}>
-                <Typography as="h1" variant={'h2'}>
-                   Profile
-                </Typography>
+    useEffect(() => {
+        console.log("Data Updated..", data);
+    }, [data]);
+
+    return (
+        <DashboardContainer>
+            <div className="flex w-full flex-col gap-y-5">
+                <div className={"relative flex flex-col"}>
+                    <Typography as="h1" variant={"h2"}>
+                        Profile
+                    </Typography>
+                </div>
+                {isLoading && <ProfileFormSkeleton />}
+                {!isLoading && data && <ProfileForm value={data} />}
             </div>
-            {isLoading && <ProfileFormSkeleton />}
-            {!isLoading && data && <ProfileForm value={data}/> }
-        </div>
-    </DashboardContainer>
-}
+        </DashboardContainer>
+    );
+};
 
 export default DashboardProfilePage;

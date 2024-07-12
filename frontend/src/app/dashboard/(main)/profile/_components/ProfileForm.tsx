@@ -5,10 +5,10 @@ import useDashboardStore from "@/stores/dashboard";
 import { useToast } from "@/components/ui/use-toast";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UpdateThumbnail } from "@/services/links";
 import { FetchError } from "ofetch";
-import profileServices, { ReturnProfile } from "@/services/profile";
+import profileServices from "@/services/profile";
 import AvatarUploader from "@/app/dashboard/(main)/profile/_components/AvatarUploader";
 import { ButtonSkeleton } from "@/components/ui/button";
 import { FormInput, InputSkeleton } from "@/components/ui/input";
@@ -19,10 +19,12 @@ import {
     FormProfileStyleChooser,
     ProfileStyleChooserSkeleton,
 } from "@/app/dashboard/(main)/profile/_components/ProfileStyleChooser";
+import { AppearanceSettings } from "../../../../../../types/models";
+import { useUpdateAppearance } from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
-    value: ReturnProfile;
+    value: AppearanceSettings;
 };
 
 export const profileSchema = yup.object().shape({
@@ -47,6 +49,8 @@ export const imageStyles = [
 
 export type ProfileForm = yup.InferType<typeof profileSchema>;
 const ProfileForm = ({ value }: Props) => {
+    const updateAppearance = useUpdateAppearance();
+    const queryClient = useQueryClient();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
@@ -85,6 +89,8 @@ const ProfileForm = ({ value }: Props) => {
             });
         },
         onSuccess(data, variables, context) {
+            // updateAppearance(data as AppearanceSettings);
+            updateAppearance(data);
             updatePreview();
         },
         onError(error: FetchError, variables, context) {
