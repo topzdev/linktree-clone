@@ -22,21 +22,25 @@ export const links = [
         href: pageRoutes.dashboard.links.href,
         label: "Links",
         icon: <MaterialSymbolsList />,
+        exact: true,
     },
     {
         href: pageRoutes.dashboard.profile.href,
         label: "Profile",
         icon: <MaterialSymbolsAccountCircleOutline />,
+        exact: false,
     },
     {
         href: pageRoutes.dashboard.appearance.href,
         label: "Appearance",
         icon: <MaterialSymbolsDesignServicesOutline />,
+        exact: false,
     },
     {
         href: pageRoutes.dashboard.settings.href,
         label: "Settings",
         icon: <MaterialSymbolsSettingsOutline />,
+        exact: false,
     },
 ];
 

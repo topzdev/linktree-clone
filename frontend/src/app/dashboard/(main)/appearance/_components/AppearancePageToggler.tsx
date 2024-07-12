@@ -4,8 +4,10 @@ import DashboardContainer from "@/app/dashboard/(main)/_components/DashboardCont
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import useIsActivePage from "@/hooks/useIsActivePage";
+import useFetchTheme from "@/hooks/api/useFetchTheme";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -25,6 +27,17 @@ const AppearanceLink = ({ label, href }: { label: string; href: string }) => {
     );
 };
 const AppearancePageToggler = (props: Props) => {
+    const router = useRouter();
+    const { isLoading, data } = useFetchTheme();
+
+    useLayoutEffect(() => {
+        if (data && data?.theme_id) {
+            router.push(pageRoutes.dashboard.appearance.themes.href);
+        } else {
+            router.push(pageRoutes.dashboard.appearance.href);
+        }
+    }, [data]);
+
     return (
         <DashboardContainer className={"justify-start"}>
             <div

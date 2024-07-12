@@ -135,7 +135,7 @@ const FontSelect = ({ value, onChange, label, ...props }: Props) => {
 
                     <List className="-mr-5 h-[500px] max-h-[500px] overflow-y-scroll">
                         {items.map((item) => (
-                            <ListGroup groupTitle={item.name}>
+                            <ListGroup key={item.name} groupTitle={item.name}>
                                 {item.items.map((sub) => (
                                     <ListItem
                                         selected={preSelected?.id === sub.id}

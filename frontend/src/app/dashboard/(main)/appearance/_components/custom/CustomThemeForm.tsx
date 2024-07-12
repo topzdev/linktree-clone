@@ -282,7 +282,10 @@ const ThemeFormField = ({
                                 <SelectGroup>
                                     <SelectLabel>Select Position</SelectLabel>
                                     {gradientPosition.map((item) => (
-                                        <SelectItem value={item.value}>
+                                        <SelectItem
+                                            key={item.value}
+                                            value={item.value}
+                                        >
                                             {item.name}
                                         </SelectItem>
                                     ))}
