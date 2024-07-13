@@ -10,7 +10,7 @@ class ThemesController extends Controller
 {
     public function index()
     {
-        return response()->json(Themes::all());
+        return response()->json(Themes::all(['id','title','key', 'preview']));
     }
 
     public function getOne()
