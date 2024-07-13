@@ -10,7 +10,8 @@ import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSe
 import AppLogoIcon from "@/components/common/AppLogoIcon";
 import NavigationLink from "./NavigationLink";
 import { Button } from "@/components/ui/button";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import useAppAuth from "@/hooks/useAppAuth";
 
 type Props = {
     children?: React.ReactNode;
@@ -46,8 +47,9 @@ export const links = [
 
 const NavigationSidebar = ({ className }: Props) => {
     const { data: session } = useSession();
+    const { logout } = useAppAuth();
     const handleLogout = async () => {
-        await signOut();
+        await logout();
     };
 
     return (

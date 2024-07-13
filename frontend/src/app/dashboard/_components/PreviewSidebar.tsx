@@ -3,7 +3,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import useFetchAppearance from "@/hooks/api/useFetchAppearance";
-import ConsoleLog from "@/components/utils/ConsoleLog";
 import ProfilePreview from "@/app/dashboard/_components/ProfilePreview";
 
 type Props = {
@@ -20,9 +19,9 @@ const PreviewSidebar = ({ className }: Props) => {
                 className,
             )}
         >
-            <div className={"absolute left-0 top-0 w-full text-sm"}>
-                <ConsoleLog className={"!bg-transparent"} data={data} />
-            </div>
+            {/*<div className={"absolute left-0 top-0 w-full text-sm"}>*/}
+            {/*    <ConsoleLog className={"!bg-transparent"} data={data} />*/}
+            {/*</div>*/}
             <ProfilePreview />
         </aside>
     );
