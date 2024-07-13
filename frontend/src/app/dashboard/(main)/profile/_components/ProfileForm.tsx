@@ -5,7 +5,7 @@ import useDashboardStore from "@/stores/dashboard";
 import { useToast } from "@/components/ui/use-toast";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { UpdateThumbnail } from "@/services/links";
 import { FetchError } from "ofetch";
 import profileServices from "@/services/profile";
@@ -50,7 +50,6 @@ export const imageStyles = [
 export type ProfileForm = yup.InferType<typeof profileSchema>;
 const ProfileForm = ({ value }: Props) => {
     const updateAppearance = useUpdateAppearance();
-    const queryClient = useQueryClient();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 

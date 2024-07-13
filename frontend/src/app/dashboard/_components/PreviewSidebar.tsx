@@ -1,21 +1,31 @@
-"use client"
+"use client";
 
-import React, {useState} from "react";
-import {cn} from "@/lib/utils";
+import React from "react";
+import { cn } from "@/lib/utils";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
+import ConsoleLog from "@/components/utils/ConsoleLog";
 import ProfilePreview from "@/app/dashboard/_components/ProfilePreview";
-import {useSession} from "next-auth/react";
-import {Button} from "@/components/ui/button";
-import useDashboardStore from "@/stores/dashboard";
 
 type Props = {
-    children?: React.ReactNode,
-    className?: string,
-}
+    children?: React.ReactNode;
+    className?: string;
+};
 
-const PreviewSidebar = ({className}: Props) => {
-    return <aside className={cn("bg-background flex items-center justify-center", className)}>
-        <ProfilePreview />
-    </aside>
-}
+const PreviewSidebar = ({ className }: Props) => {
+    const { data } = useFetchAppearance();
+    return (
+        <aside
+            className={cn(
+                "relative flex flex-col items-center justify-center overflow-auto bg-background",
+                className,
+            )}
+        >
+            <div className={"absolute left-0 top-0 w-full text-sm"}>
+                <ConsoleLog className={"!bg-transparent"} data={data} />
+            </div>
+            <ProfilePreview />
+        </aside>
+    );
+};
 
 export default PreviewSidebar;
