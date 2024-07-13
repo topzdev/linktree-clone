@@ -115,7 +115,9 @@ class AppearanceSettings extends Model
     public static function profile()
     {
         $userId = auth()->id();
-        return AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title'])->append(['profile_avatar_url'])->first();
+        $data = AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title'])->first();
+        $data->appends = ['profile_avatar_url'];
+        return $data;
     }
 
     public static function userAppearanceSettings()

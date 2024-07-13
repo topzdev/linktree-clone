@@ -6,8 +6,8 @@ import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
 import React, { useLayoutEffect } from "react";
 import useIsActivePage from "@/hooks/useIsActivePage";
-import useFetchTheme from "@/hooks/api/useFetchTheme";
 import { useRouter } from "next/navigation";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 
 type Props = {};
 
@@ -28,15 +28,15 @@ const AppearanceLink = ({ label, href }: { label: string; href: string }) => {
 };
 const AppearancePageToggler = (props: Props) => {
     const router = useRouter();
-    const { isLoading, data } = useFetchTheme();
+    const { isFetched, data } = useFetchAppearance();
 
     useLayoutEffect(() => {
-        if (data && data?.theme_id) {
+        if (isFetched && data && data?.theme_id) {
             router.push(pageRoutes.dashboard.appearance.themes.href);
         } else {
             router.push(pageRoutes.dashboard.appearance.href);
         }
-    }, [data]);
+    }, [isFetched]);
 
     return (
         <DashboardContainer className={"justify-start"}>

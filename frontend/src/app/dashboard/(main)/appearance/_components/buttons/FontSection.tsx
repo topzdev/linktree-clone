@@ -5,14 +5,14 @@ import Typography from "@/components/ui/typography";
 import FontsForm, {
     FontsFormSkeleton,
 } from "@/app/dashboard/(main)/appearance/_components/buttons/FontsForm";
-import useFetchFonts from "@/hooks/api/useFetchFonts";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
 };
 
 const FontSection = (props: Props) => {
-    const { isLoading, data } = useFetchFonts();
+    const { isLoading, data } = useFetchAppearance();
 
     return (
         <div className="flex w-full flex-col gap-y-5" id={"fonts"}>

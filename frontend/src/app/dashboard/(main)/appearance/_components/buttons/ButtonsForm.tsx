@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { FetchError } from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import buttonsServices, { ReturnButtonsSettings } from "@/services/buttons";
+import buttonsServices from "@/services/buttons";
 import {
     ColorPickerSkeleton,
     FormColorPicker,
@@ -18,10 +18,12 @@ import {
     FormButtonTypeChooser,
 } from "@/app/dashboard/(main)/appearance/_components/buttons/ButtonTypeChooser";
 import profileCssVariables from "@/lib/profileCssVariables";
+import { AppearanceSettings } from "../../../../../../../types/models";
+import { useUpdateAppearance } from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
-    value: ReturnButtonsSettings;
+    value: AppearanceSettings;
 };
 
 export const buttonSchema = yup.object().shape({
@@ -36,6 +38,7 @@ export type ButtonForm = yup.InferType<typeof buttonSchema>;
 const withShadowButtonType = [12, 11, 10, 9, 8, 7];
 
 const ButtonsForm = ({ value }: Props) => {
+    const updateAppearance = useUpdateAppearance();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
@@ -72,6 +75,12 @@ const ButtonsForm = ({ value }: Props) => {
             return buttonsServices.update(data);
         },
         onSuccess(data, variables, context) {
+            updateAppearance({
+                btn_id: data.btn_id,
+                btn_shadow_color: data.btn_shadow_color,
+                btn_color: data.btn_color,
+                btn_text_color: data.btn_text_color,
+            });
             updatePreview();
         },
         onError(error: FetchError, variables, context) {

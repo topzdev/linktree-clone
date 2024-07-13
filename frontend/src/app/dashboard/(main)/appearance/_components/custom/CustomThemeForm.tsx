@@ -12,7 +12,7 @@ import {
     ColorPickerSkeleton,
     FormColorPicker,
 } from "@/components/ui/color-picker";
-import themesServices, { ReturnTheme } from "@/services/themes";
+import themesServices from "@/services/themes";
 import {
     BackgroundChooserSkeleton,
     DEFAULT_BG_FROM,
@@ -31,10 +31,12 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { FormFilePicker } from "@/components/ui/file-picker";
+import { AppearanceSettings } from "../../../../../../../types/models";
+import { useUpdateAppearance } from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
-    value: ReturnTheme;
+    value: AppearanceSettings;
 };
 
 const gradientPosition = [
@@ -116,6 +118,7 @@ export const themeSchema = yup.object().shape({
 
 export type CustomThemeForm = yup.InferType<typeof themeSchema>;
 const CustomThemeForm = ({ value }: Props) => {
+    const updateAppearance = useUpdateAppearance();
     const queryClient = useQueryClient();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
@@ -144,8 +147,8 @@ const CustomThemeForm = ({ value }: Props) => {
             bg_position: value.bg_position || DEFAULT_BG_POSITION,
             bg_image: null,
             bg_video: null,
-            bg_image_m: null,
-            bg_video_m: null,
+            // bg_image_m: null,
+            // bg_video_m: null,
         });
     }, [value]);
 
@@ -156,14 +159,15 @@ const CustomThemeForm = ({ value }: Props) => {
             return themesServices.updateCustom(data);
         },
         onSuccess(data, variables, context) {
-            queryClient.setQueryData(["theme"], (oldData: ReturnTheme) => {
-                return {
-                    ...oldData,
-                    bg_id: data.bg_id,
-                    theme_id: data.theme_id,
-                    bg_image: data.bg_image,
-                    bg_video: data.bg_video,
-                };
+            updateAppearance({
+                bg_id: data.bg_id,
+                theme_id: data.theme_id,
+                bg_image: data.bg_image,
+                bg_video: data.bg_video,
+                bg_color: data.bg_color,
+                bg_from: data.bg_from,
+                bg_to: data.bg_to,
+                bg_position: data.bg_position,
             });
             updatePreview();
         },

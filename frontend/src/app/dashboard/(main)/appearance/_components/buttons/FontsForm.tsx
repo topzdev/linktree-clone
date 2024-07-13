@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { FetchError } from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import fontsServices, { ReturnFont } from "@/services/fonts";
+import fontsServices from "@/services/fonts";
 import {
     ColorPickerSkeleton,
     FormColorPicker,
@@ -17,10 +17,12 @@ import {
     FontSelectSkeleton,
     FormFontSelect,
 } from "@/app/dashboard/(main)/appearance/_components/buttons/FontSelect";
+import { useUpdateAppearance } from "@/hooks/api/useFetchAppearance";
+import { AppearanceSettings } from "../../../../../../../types/models";
 
 type Props = {
     children?: React.ReactNode;
-    value: ReturnFont;
+    value: AppearanceSettings;
 };
 
 const DEFAULT_FONT = 16; // Inter;
@@ -32,6 +34,7 @@ export const fontsSchema = yup.object().shape({
 
 export type FontsForm = yup.InferType<typeof fontsSchema>;
 const FontsForm = ({ value }: Props) => {
+    const updateAppearance = useUpdateAppearance();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
@@ -64,6 +67,10 @@ const FontsForm = ({ value }: Props) => {
             return fontsServices.update(data);
         },
         onSuccess(data, variables, context) {
+            updateAppearance({
+                font_id: data.font_id,
+                font_color: data.font_color,
+            });
             updatePreview();
         },
         onError(error: FetchError, variables, context) {

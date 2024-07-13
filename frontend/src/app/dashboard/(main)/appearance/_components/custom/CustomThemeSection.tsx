@@ -5,14 +5,14 @@ import Typography from "@/components/ui/typography";
 import CustomThemeForm, {
     CustomThemeSkeleton,
 } from "@/app/dashboard/(main)/appearance/_components/custom/CustomThemeForm";
-import useFetchTheme from "@/hooks/api/useFetchTheme";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
 };
 
 const CustomThemeSection = (props: Props) => {
-    const { isLoading, data } = useFetchTheme();
+    const { isLoading, data } = useFetchAppearance();
 
     return (
         <div className="flex w-full flex-col gap-y-5" id={"fonts"}>

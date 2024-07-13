@@ -1,15 +1,24 @@
 import React from "react";
 
 type Props = {
-    children?: React.ReactNode,
-    data: any
-}
+    children?: React.ReactNode;
+    data: any;
+    className?: string;
+};
 
-const ConsoleLog = ({ data }: Props) => {
+const ConsoleLog = ({ data, className }: Props) => {
     return (
-        <pre style={{ textAlign: 'left', backgroundColor: '#f6f8fa', padding: '10px', borderRadius: '5px' }}>
-      {JSON.stringify(data, null, 2)}
-    </pre>
+        <pre
+            style={{
+                textAlign: "left",
+                backgroundColor: "#f6f8fa",
+                padding: "10px",
+                borderRadius: "5px",
+            }}
+            className={className}
+        >
+            {JSON.stringify(data, null, 2)}
+        </pre>
     );
 };
 

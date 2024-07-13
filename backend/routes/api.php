@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppearanceController;
 use App\Http\Controllers\ButtonsController;
 use App\Http\Controllers\FontsController;
 use App\Http\Controllers\LinksController;
@@ -62,6 +63,12 @@ Route::middleware(['auth:sanctum'])->prefix('socials')->controller(SocialsContro
     Route::post('/update/align', 'updateSocialAlignment');
     Route::post('/update/{id}', 'update');
 });
+
+
+Route::middleware(['auth:sanctum'])->prefix('appearance')->controller(AppearanceController::class)->group(function () {
+    Route::get('/', 'getOne');
+});
+
 
 Route::prefix('preview')->controller(PreviewController::class)->group(function () {
     Route::get('/{username}', 'profile');
