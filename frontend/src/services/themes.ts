@@ -38,6 +38,9 @@ export type GetOneReturn = ReturnTheme & {
 };
 
 const themesServices = {
+    getThemes: async () => {
+        return apiClient.get<ThemesPreview[]>(`${basePath}/`);
+    },
     getOne: async () => {
         return apiClient.get<GetOneReturn>(`${basePath}/user`);
     },

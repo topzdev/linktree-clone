@@ -5,18 +5,21 @@ import useDashboardStore from "@/stores/dashboard";
 import { useToast } from "@/components/ui/use-toast";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { FetchError } from "ofetch";
 import AutoSave from "@/components/utils/AutoSave";
-import themesServices, { GetOneReturn, ReturnTheme } from "@/services/themes";
+import themesServices, { ThemesPreview } from "@/services/themes";
 import {
     FormThemeChooser,
     ThemeChooserSkeleton,
 } from "@/app/dashboard/(main)/appearance/_components/themes/ThemeChooser";
+import { useUpdateAppearance } from "@/hooks/api/useFetchAppearance";
+import { AppearanceSettings } from "../../../../../../../types/models";
 
 type Props = {
     children?: React.ReactNode;
-    value: GetOneReturn;
+    value: AppearanceSettings;
+    themes?: ThemesPreview[];
 };
 
 export const themesSchema = yup.object().shape({
@@ -24,8 +27,8 @@ export const themesSchema = yup.object().shape({
 });
 
 export type ThemesForm = yup.InferType<typeof themesSchema>;
-const ThemesForm = ({ value }: Props) => {
-    const queryClient = useQueryClient();
+const ThemesForm = ({ value, themes }: Props) => {
+    const updateAppearance = useUpdateAppearance();
     const updatePreview = useDashboardStore((state) => state.updatePreview);
     const { toast } = useToast();
 
@@ -57,12 +60,9 @@ const ThemesForm = ({ value }: Props) => {
             return themesServices.update(data);
         },
         onSuccess(data, variables, context) {
-            queryClient.setQueryData(["theme"], (oldData: ReturnTheme) => {
-                return {
-                    ...oldData,
-                    bg_id: data.bg_id,
-                    theme_id: data.theme_id,
-                };
+            updateAppearance({
+                bg_id: data.bg_id,
+                theme_id: data.theme_id,
             });
             updatePreview();
         },
@@ -93,13 +93,15 @@ const ThemesForm = ({ value }: Props) => {
                         onSubmit={handleSubmit(onSubmit)}
                         className={"grid grid-cols-12 gap-y-4"}
                     >
-                        <div className="col-span-12">
-                            <FormThemeChooser
-                                items={value.themes}
-                                control={control}
-                                name={"theme_id"}
-                            />
-                        </div>
+                        {themes && (
+                            <div className="col-span-12">
+                                <FormThemeChooser
+                                    items={themes}
+                                    control={control}
+                                    name={"theme_id"}
+                                />
+                            </div>
+                        )}
                         <AutoSave defaultValues={value} onSubmit={onSubmit} />
                     </form>
                 </FormProvider>

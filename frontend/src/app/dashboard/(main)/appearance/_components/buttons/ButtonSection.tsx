@@ -5,18 +5,14 @@ import Typography from "@/components/ui/typography";
 import ButtonsForm, {
     ButtonsFormSkeleton,
 } from "@/app/dashboard/(main)/appearance/_components/buttons/ButtonsForm";
-import { useQuery } from "@tanstack/react-query";
-import buttonsServices from "@/services/buttons";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 
 type Props = {
     children?: React.ReactNode;
 };
 
 const ButtonSection = (props: Props) => {
-    const { data, isLoading } = useQuery({
-        queryKey: ["buttons"],
-        queryFn: () => buttonsServices.getOne(),
-    });
+    const { isLoading, data } = useFetchAppearance();
 
     return (
         <div className="flex w-full flex-col gap-y-5">
