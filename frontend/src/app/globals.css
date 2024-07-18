@@ -305,9 +305,9 @@
         --primary-950: 18 86% 15%; /*#451A05*/
 
         --background: 0 0% 100%;
-        --dashboard-background: var(--gray-100);
-
         --foreground: var(--slate-900);
+
+        --dashboard-background: var(--gray-100);
         --dashboard-foreground: var(--foreground);
 
         --foreground-secondary: var(--slate-500);
@@ -335,7 +335,7 @@
         --destructive-foreground: var(--slate-50);
 
         --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
+        --input: var(--slate-100);
         --ring: 222.2 84% 4.9%;
 
         --radius: 0.5rem;
@@ -345,9 +345,11 @@
         --background: 222.2 84% 4.9%;
         --foreground: 210 40% 98%;
 
-        --dashboard-background: var(--gray-900);
+        --dashboard-background: 222.2 84% 4.9%;
         --dashboard-foreground: var(--foreground);
 
+        --foreground-secondary: var(--slate-400);
+        --foreground-disabled: var(--slate-600);
 
         --card: 222.2 84% 4.9%;
         --card-foreground: 210 40% 98%;
@@ -355,21 +357,20 @@
         --popover: 222.2 84% 4.9%;
         --popover-foreground: 210 40% 98%;
 
-
         --secondary: 217.2 32.6% 17.5%;
         --secondary-foreground: 210 40% 98%;
 
         --muted: var(--slate-800);
         --muted-foreground: var(--slate-400);
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent: var(--slate-200);
+        --accent-foreground: var(--slate-800);
 
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 210 40% 98%;
 
         --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
+        --input: var(--slate-900);
         --ring: 212.7 26.8% 83.9%;
     }
 }
@@ -452,4 +453,8 @@
     .typo-subtitle {
         @apply text-sm leading-5;
     }
+}
+
+input {
+    background: transparent;
 }

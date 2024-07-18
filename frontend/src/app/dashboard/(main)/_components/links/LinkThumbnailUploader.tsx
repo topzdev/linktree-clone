@@ -1,24 +1,27 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import React, { useEffect, useRef, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import MaterialSymbolsImageOutline from "@/components/icons/MaterialSymbolsImageOutline";
 import Image from "next/image";
 import LucideLoaderCircle from "@/components/icons/LucideLoaderCircle";
 
 interface ThumbnailUploaderProps {
-    image?: string | null,
-    title: string | null,
+    image?: string | null;
+    title: string | null;
     onImageUpload?: (file: File) => void;
     loading?: boolean;
 }
 
-const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading, title, onImageUpload}) => {
+const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({
+    image,
+    loading,
+    title,
+    onImageUpload,
+}) => {
     const [preview, setPreview] = useState<string | null | undefined>(image);
 
-
-    useEffect(() =>
-    {
+    useEffect(() => {
         setPreview(image);
-    }, [image])
+    }, [image]);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +36,6 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading
         }
     };
 
-
     const handleClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
@@ -41,26 +43,35 @@ const LinkThumbnailUploader: React.FC<ThumbnailUploaderProps> = ({image, loading
     };
 
     return (
-        <Avatar onClick={handleClick} className={'h-12 w-12 md:h-16 md:w-16 !rounded-lg cursor-pointer'}>
-            {preview && <AvatarImage asChild src={preview}>
-                <Image
-                    priority
-                    src={preview}
-                    alt={title || ''}
-                    width={64}
-                    height={64}
-                />
-            </AvatarImage>}
-            <AvatarFallback className={'text-muted-foreground text-2xl bg-muted rounded-lg'}>
-                <MaterialSymbolsImageOutline/>
+        <Avatar
+            onClick={handleClick}
+            className={"h-12 w-12 md:h-16 md:w-16 !rounded-lg cursor-pointer"}
+        >
+            {preview && (
+                <AvatarImage asChild src={preview}>
+                    <Image
+                        priority
+                        src={preview}
+                        alt={title || ""}
+                        width={64}
+                        height={64}
+                    />
+                </AvatarImage>
+            )}
+            <AvatarFallback
+                className={"text-muted-foreground text-2xl bg-input rounded-lg"}
+            >
+                <MaterialSymbolsImageOutline />
             </AvatarFallback>
-            {
-                loading &&
+            {loading && (
                 <div
-                    className={'absolute w-full h-full text-2xl bg-black/50 flex items-center justify-center text-white'}>
-                    <LucideLoaderCircle className="animate-spin"/>
+                    className={
+                        "absolute w-full h-full text-2xl bg-black/50 flex items-center justify-center text-white"
+                    }
+                >
+                    <LucideLoaderCircle className="animate-spin" />
                 </div>
-            }
+            )}
             <input
                 hidden
                 type="file"

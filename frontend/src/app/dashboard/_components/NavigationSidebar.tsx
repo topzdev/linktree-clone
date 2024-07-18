@@ -9,16 +9,16 @@ import MaterialSymbolsDesignServicesOutline from "@/components/icons/MaterialSym
 import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSettingsOutline";
 import AppLogoIcon from "@/components/common/AppLogoIcon";
 import NavigationLink from "./NavigationLink";
-import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import useAppAuth from "@/hooks/useAppAuth";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
+import AccountMenu from "./AccountMenu";
 
 type Props = {
     children?: React.ReactNode;
     className?: string;
 };
 
-export const links = [
+const links = [
     {
         href: pageRoutes.dashboard.links.href,
         label: "Links",
@@ -47,15 +47,12 @@ export const links = [
 
 const NavigationSidebar = ({ className }: Props) => {
     const { data: session } = useSession();
-    const { logout } = useAppAuth();
-    const handleLogout = async () => {
-        await logout();
-    };
+    const { data } = useFetchAppearance();
 
     return (
         <aside
             className={cn(
-                "flex flex-col items-start gap-y-8 bg-background px-4 py-8 lg:gap-y-12 lg:px-5 lg:py-12",
+                "flex flex-col items-start gap-y-8 bg-background px-4 py-8 lg:gap-y-12 lg:px-5 lg:py-12 dark:border dark:border-border",
                 className,
             )}
         >
@@ -63,6 +60,7 @@ const NavigationSidebar = ({ className }: Props) => {
                 className={"flex h-[30px] max-h-[30px] text-primary"}
                 href={"/"}
             />
+
             <ul className={"flex w-full flex-col gap-y-2 lg:gap-y-4"}>
                 {links.map((item) => (
                     <li key={item.label}>
@@ -71,16 +69,7 @@ const NavigationSidebar = ({ className }: Props) => {
                 ))}
             </ul>
 
-            {session && (
-                <Button
-                    onClick={handleLogout}
-                    className={"mt-auto"}
-                    variant={"text"}
-                    color={"accent"}
-                >
-                    Logout
-                </Button>
-            )}
+            <AccountMenu />
         </aside>
     );
 };

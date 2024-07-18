@@ -1,7 +1,7 @@
-import NavigationSidebar from "@/app/dashboard/_components/NavigationSidebar";
 import PreviewSidebar from "@/app/dashboard/_components/PreviewSidebar";
 import MobileNavigationBottomBar from "@/app/dashboard/_components/MobileNavigationBottomBar";
 import MobileNavbar from "@/app/dashboard/_components/MobileNavbar";
+import NavigationSidebar from "@/app/dashboard/_components/NavigationSidebar";
 
 export default function DashboardLayout({
     children,
