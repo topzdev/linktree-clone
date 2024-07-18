@@ -51,13 +51,15 @@ const useAppAuth = (options?: UseSessionOptions<any>) => {
     };
 
     const oauthLogin = async (provider: "google" | "facebook") => {
-        await signIn(provider, { ...{ provider } }).then((data) => {
-            // console.log(data);
-            // if (data?.error) {
-            //     throw JSON.parse(data.error)
-            // }
-            // window.location.href = data?.url || homeRoute
-        });
+        await signIn(provider, { ...{ provider }, redirect: false }).then(
+            (data) => {
+                console.log(data);
+                if (data?.error) {
+                    throw JSON.parse(data.error);
+                }
+                window.location.href = loginRoute;
+            },
+        );
     };
 
     return {
