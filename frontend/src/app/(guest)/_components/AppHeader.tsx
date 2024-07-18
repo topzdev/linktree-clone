@@ -3,6 +3,7 @@ import AppLogo from "@/components/common/AppLogo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
+import AppLogoIcon from "@/components/common/AppLogoIcon";
 
 type Props = {
     children?: React.ReactNode;
@@ -10,10 +11,23 @@ type Props = {
 
 const AppHeader = (props: Props) => {
     return (
-        <div className={"fixed left-0 top-0 flex w-full justify-center py-10"}>
-            <AppLogo />
+        <div
+            className={
+                "min-lg:py-10 fixed left-0 top-0 flex w-full items-center bg-background bg-opacity-50 px-5 py-5 backdrop-blur-md lg:justify-center lg:py-10"
+            }
+        >
+            <AppLogoIcon
+                className={"hidden h-8 text-primary max-lg:block"}
+                href={"/"}
+            />
 
-            <div className={"absolute right-10 top-1/2 -translate-y-1/2"}>
+            <AppLogo className={"block max-lg:hidden"} />
+
+            <div
+                className={
+                    "absolute right-5 top-1/2 -translate-y-1/2 lg:right-10"
+                }
+            >
                 <Button asChild color={"accent"} variant={"text"}>
                     <Link href={pageRoutes.login.href}>Login</Link>
                 </Button>

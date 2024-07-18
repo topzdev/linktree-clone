@@ -8,7 +8,7 @@ const protectedRoutes = [
     pageRoutes.dashboard.settings.socials.href,
     pageRoutes.dashboard.preview.href,
 ];
-const authRoutes = ["/login", "/register"];
+const authRoutes = ["/login", "/register", "/"];
 const publicRoutes = ["/", "/about"];
 export const loginRoute = "/login";
 export const homeRoute = pageRoutes.dashboard.links.href;

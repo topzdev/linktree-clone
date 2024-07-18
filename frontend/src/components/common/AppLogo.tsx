@@ -1,14 +1,19 @@
 import React from "react";
 import Link from "@/components/ui/link";
+import { cn } from "@/lib/utils";
 
 type Props = {
     children?: React.ReactNode;
+    className?: string;
 };
 
-const AppLogo = (props: Props) => {
+const AppLogo = ({ className }: Props) => {
     return (
         <Link
-            className={"flex h-[25px] md:h-[30px] md:min-h-[30px]"}
+            className={cn(
+                "flex h-[25px] md:h-[30px] md:min-h-[30px]",
+                className,
+            )}
             href={"/"}
         >
             <svg

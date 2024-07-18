@@ -10,9 +10,11 @@ import Typography from "@/components/ui/typography";
 type Props = {};
 const UsernameForm = (props: Props) => {
     const [username, setUsername] = useState("");
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const handleClick = () => {
         if (username) {
+            setLoading(true);
             router.push(pageRoutes.register.href + "?u=" + username);
         }
     };
@@ -23,7 +25,7 @@ const UsernameForm = (props: Props) => {
     };
 
     return (
-        <div className="mx-auto flex w-[500px] items-center gap-x-5">
+        <div className="mx-auto flex items-center gap-4 max-lg:flex-col md:gap-5 lg:w-[500px]">
             <Input
                 leftAdornment={
                     <Typography className={"text-base"}>linktree/</Typography>
@@ -34,8 +36,9 @@ const UsernameForm = (props: Props) => {
                 placeholder={"username"}
             />
             <Button
+                loading={loading}
                 disabled={!username}
-                className={"!min-h-full"}
+                className={"!min-h-full max-lg:w-full"}
                 onClick={handleClick}
                 size={"lg"}
             >

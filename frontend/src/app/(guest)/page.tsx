@@ -6,11 +6,15 @@ const Page = (props: Props) => {
     return (
         <div
             className={
-                "flex h-screen w-screen flex-col items-center justify-center text-foreground"
+                "flex min-h-screen w-screen flex-col items-center justify-center text-foreground"
             }
         >
-            <div className="mx-auto w-[800px] space-y-7 text-center">
-                <h1 className={"text-center text-[100px] leading-[100%]"}>
+            <div className="mx-auto w-full space-y-7 text-center max-lg:px-5 lg:w-[800px]">
+                <h1
+                    className={
+                        "text-center text-[50px] leading-[100%] md:text-[100px]"
+                    }
+                >
                     One
                     <b>
                         <i>link </i>
