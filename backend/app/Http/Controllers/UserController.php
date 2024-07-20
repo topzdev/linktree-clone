@@ -97,7 +97,7 @@ class UserController extends Controller
 
         $user = auth()->user();
         $user = User::find($user->id);
-        
+
         if($request->code != $user->username) {
             return response()->json(["message" => "Code does not matched"]);
         }

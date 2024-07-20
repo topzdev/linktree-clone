@@ -15,7 +15,7 @@ const PreviewSidebar = ({ className }: Props) => {
     return (
         <aside
             className={cn(
-                "relative flex flex-col items-center justify-center overflow-auto bg-background dark:border dark:border-border",
+                "relative flex flex-col items-center justify-center overflow-auto bg-background border-l border-transparent dark:border-border",
                 className,
             )}
         >

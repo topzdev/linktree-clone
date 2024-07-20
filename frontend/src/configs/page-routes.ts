@@ -75,9 +75,18 @@ const pageRoutes = {
             preview: {
                 href: `${_path}/preview`,
             },
-            more: {
-                href: `${_path}/more`,
-            },
+            more: (() => {
+                const subPath = _path + "/more";
+                return {
+                    href: subPath,
+                    myAccount: {
+                        href: `${subPath}/my-account`,
+                    },
+                    changePassword: {
+                        href: `${subPath}/change-password`,
+                    },
+                };
+            })(),
         };
     })(),
 };

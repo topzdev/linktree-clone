@@ -21,7 +21,7 @@ const NavigationLink = ({ href, label, icon, exact }: Props) => {
                 size={"xl"}
                 className={"w-full justify-start"}
                 color={isActivePage ? "primary" : "accent"}
-                variant={isActivePage ? "tonal" : ""}
+                variant={isActivePage ? "tonal" : "text"}
                 iconLeft={icon}
             >
                 {label}

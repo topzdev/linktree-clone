@@ -13,6 +13,7 @@ import Image from "next/image";
 import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 import { mobileNavbarHeight } from "@/configs/layout-config";
 import AccountAvatar from "@/app/dashboard/_components/AccountAvatar";
+import Typography from "@/components/ui/typography";
 
 type Props = {
     children?: React.ReactNode;
@@ -90,7 +91,8 @@ const MobileNavigationBottomBar = ({ className, ...props }: Props) => {
                     href={pageRoutes.dashboard.more.href}
                     className={"h-full w-full"}
                 >
-                    <AccountAvatar className="h-10 w-10" />
+                    <AccountAvatar className="h-[24px] w-[24px]" />
+                    <Typography variant={"small"}>Account</Typography>
                 </MobileNavigationBottomLink>
             </ul>
         </div>

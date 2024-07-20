@@ -1,10 +1,16 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+    AvatarSkeleton,
+} from "@/components/ui/avatar";
 import Image from "next/image";
 import MaterialSymbolsImageOutline from "@/components/icons/MaterialSymbolsImageOutline";
 import React from "react";
 import useFetchAppearance from "@/hooks/api/useFetchAppearance";
 import { AvatarProps } from "@radix-ui/react-avatar";
 import MaterialSymbolsPersonOutline from "@/components/icons/MaterialSymbolsPersonOutline";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = AvatarProps;
 const AccountAvatar = ({ className, ...props }: Props) => {
@@ -30,5 +36,9 @@ const AccountAvatar = ({ className, ...props }: Props) => {
             </AvatarFallback>
         </Avatar>
     );
+};
+
+export const AccountAvatarSkeleton = ({ className }: Props) => {
+    return <AvatarSkeleton className={className} />;
 };
 export default AccountAvatar;
