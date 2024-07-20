@@ -21,6 +21,13 @@ export const variants = {
         text: "text-primary hover:text-primary-400",
         tonal: "bg-primary/10 text-primary hover:bg-primary/20",
     },
+    error: {
+        filled: "border bg-destructive text-destructive-foreground border-destructive hover:bg-destructive-600 hover:border-destructive-600 hover:text-destructive-foreground",
+        outlined:
+            "border border-destructive text-destructive hover:border-destructive/75 hover:text-destructive/75",
+        text: "text-destructive hover:text-destructive-400",
+        tonal: "bg-destructive/10 text-destructive hover:bg-destructive/20",
+    },
     accent: {
         filled: "border bg-accent text-accent-foreground border-accent hover:bg-accent-600 hover:border-accent-600 hover:text-accent-foreground",
         outlined:
@@ -60,7 +67,7 @@ export interface ButtonProps
     asChild?: boolean;
     size?: "sm" | "base" | "lg" | "xl";
     variant?: "filled" | "outlined" | "text" | "tonal";
-    color?: "primary" | "accent";
+    color?: "primary" | "accent" | "error";
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
     rounded?: boolean;

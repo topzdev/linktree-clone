@@ -56,6 +56,9 @@ class User extends Authenticatable
             ]);
             $user->appearance_settings()->save($appearance);
         });
+        static::deleting(function (User $user) {
+            $user->appearance_settings()->delete();
+        });
     }
 
     protected function casts(): array

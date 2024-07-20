@@ -107,7 +107,7 @@ class UserController extends Controller
             return response()->json(["message" => "Code does not matched"]);
         }
 
-        $user->delete();
+        $user->forceDelete();
         return response()->json(["message" => "Account Deleted"]);
     }
 }

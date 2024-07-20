@@ -37,7 +37,7 @@ return new class extends Migration
             $table->foreign('bg_id')->references('id')->on('backgrounds');
             $table->unsignedBigInteger('btn_id')->default(1);
             $table->foreign('btn_id')->references('id')->on('buttons');
-            $table->foreignId('font_id')->nullable()->constrained();
+            $table->foreignId('font_id')->nullable()->default(1)->constrained();
             $table->foreignId('theme_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
         });

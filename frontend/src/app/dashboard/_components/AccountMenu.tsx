@@ -53,15 +53,8 @@ const AccountMenu = (props: Props) => {
             </PopoverTrigger>
             <PopoverContent>
                 <div className={"flex items-center gap-4 pb-4"}>
-                    <Image
-                        className={
-                            "h-10 w-10 items-start overflow-hidden rounded-full"
-                        }
-                        src={data?.profile_avatar_url}
-                        alt={data?.profile_title}
-                        width={54}
-                        height={54}
-                    />
+                    <AccountAvatar className={"h-10 w-10"} />
+
                     <div>
                         <Typography className={"leading-none"} variant={"p"}>
                             {user?.firstname} {user?.lastname}
