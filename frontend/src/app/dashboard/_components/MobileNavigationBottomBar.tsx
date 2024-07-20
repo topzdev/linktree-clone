@@ -9,8 +9,10 @@ import MaterialSymbolsFontDownloadOutline from "@/components/icons/MaterialSymbo
 import MaterialSymbolsSettingsOutline from "@/components/icons/MaterialSymbolsSettingsOutline";
 import { cn } from "@/lib/utils";
 import MobileNavigationBottomLink from "@/app/dashboard/_components/MobileNavigationBottomLink";
-
-export const mobileNavbarHeight = 83;
+import Image from "next/image";
+import useFetchAppearance from "@/hooks/api/useFetchAppearance";
+import { mobileNavbarHeight } from "@/configs/layout-config";
+import AccountAvatar from "@/app/dashboard/_components/AccountAvatar";
 
 type Props = {
     children?: React.ReactNode;
@@ -84,9 +86,12 @@ const MobileNavigationBottomBar = ({ className, ...props }: Props) => {
                         />
                     </li>
                 ))}
-                {/*<li className="w-full h-full">*/}
-                {/*    <MobileNavigationBottomLink className={'w-full h-full'} icon={<MaterialSymbolsMoreHoriz/>} label={'More'} />*/}
-                {/*</li>*/}
+                <MobileNavigationBottomLink
+                    href={pageRoutes.dashboard.more.href}
+                    className={"h-full w-full"}
+                >
+                    <AccountAvatar className="h-10 w-10" />
+                </MobileNavigationBottomLink>
             </ul>
         </div>
     );

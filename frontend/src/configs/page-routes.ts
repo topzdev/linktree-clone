@@ -75,6 +75,9 @@ const pageRoutes = {
             preview: {
                 href: `${_path}/preview`,
             },
+            more: {
+                href: `${_path}/more`,
+            },
         };
     })(),
 };

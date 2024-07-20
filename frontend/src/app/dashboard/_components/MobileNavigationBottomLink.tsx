@@ -9,8 +9,8 @@ import { variants } from "@/components/ui/button";
 type Props = {
     children?: React.ReactNode;
     href?: LinkProps["href"];
-    label: string;
-    icon: React.ReactNode;
+    label?: string;
+    icon?: React.ReactNode;
     className?: string;
     exact?: boolean;
 } & React.DetailedHTMLProps<
@@ -24,6 +24,7 @@ const MobileNavigationBottomLink = ({
     icon,
     className,
     exact,
+    children,
     ...props
 }: Props) => {
     const Comp = href ? Link : "button";
@@ -40,8 +41,14 @@ const MobileNavigationBottomLink = ({
             )}
             {...props}
         >
-            <span className={"text-3xl"}>{icon}</span>
-            <Typography variant={"small"}>{label}</Typography>
+            {children ? (
+                children
+            ) : (
+                <>
+                    <span className={"text-2xl md:text-3xl"}>{icon}</span>
+                    <Typography variant={"small"}>{label}</Typography>
+                </>
+            )}
         </Comp>
     );
 };

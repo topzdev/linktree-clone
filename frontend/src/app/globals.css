@@ -419,7 +419,7 @@
     }
 
     .typo-small {
-        @apply font-medium text-sm;
+        @apply font-medium text-xs lg:text-sm;
     }
 
     .typo-detail {

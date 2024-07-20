@@ -52,7 +52,7 @@ const NavigationSidebar = ({ className }: Props) => {
     return (
         <aside
             className={cn(
-                "flex flex-col items-start gap-y-8 bg-background px-4 py-8 lg:gap-y-12 lg:px-5 lg:py-12 dark:border dark:border-border",
+                "flex flex-col items-start gap-y-8 bg-background px-4 pt-8 lg:gap-y-12 lg:px-5 lg:pb-6 lg:pt-12 dark:border dark:border-border",
                 className,
             )}
         >

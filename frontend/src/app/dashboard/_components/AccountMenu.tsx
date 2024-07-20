@@ -39,12 +39,12 @@ const AccountMenu = (props: Props) => {
                     color={"accent"}
                     variant="outlined"
                     className={
-                        "w-full justify-start p-2 gap-5 md:h-auto mt-auto "
+                        "w-full justify-start p-2 gap-3 md:h-auto mt-auto "
                     }
                 >
                     <Image
                         className={
-                            "h-10 w-10 items-start overflow-hidden rounded-full"
+                            "h-12 w-12 items-start overflow-hidden rounded-full"
                         }
                         src={data?.profile_avatar_url}
                         alt={data?.profile_title}
