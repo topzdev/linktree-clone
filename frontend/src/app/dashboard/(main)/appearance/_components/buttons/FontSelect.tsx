@@ -100,7 +100,7 @@ const FontSelect = ({ value, onChange, label, ...props }: Props) => {
                     <div
                         className={
                             cn(
-                                "group flex cursor-pointer select-none items-center gap-x-3 rounded-lg border border-border p-3 py-2.5 hover:bg-slate-100 md:gap-x-4 md:p-4 md:py-3",
+                                "group flex cursor-pointer select-none items-center gap-x-3 rounded-lg border border-border p-3 py-2.5 bg-input md:gap-x-4 md:p-4 md:py-3",
                             ) +
                             " " +
                             selected?.className
@@ -108,7 +108,7 @@ const FontSelect = ({ value, onChange, label, ...props }: Props) => {
                     >
                         <div
                             className={
-                                "flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-slate-100 text-xl font-bold group-hover:bg-white md:h-[50px] md:w-[50px]"
+                                "flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-800 text-xl font-bold  md:h-[50px] md:w-[50px]"
                             }
                         >
                             Aa

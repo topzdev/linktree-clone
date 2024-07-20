@@ -324,7 +324,7 @@ export default async function RootLayout({
     const session = await getServerSession(authOptions);
 
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={[
                     "min-h-screen bg-background font-sans antialiased",
@@ -334,10 +334,8 @@ export default async function RootLayout({
             >
                 <ClientSessionProvider session={session}>
                     <Providers>
-                        <Registry>
-                            {children}
-                            <Toaster />
-                        </Registry>
+                        {children}
+                        <Toaster />
                     </Providers>
                 </ClientSessionProvider>
             </body>

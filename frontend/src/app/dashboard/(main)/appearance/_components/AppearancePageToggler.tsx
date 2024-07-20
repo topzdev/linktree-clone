@@ -8,6 +8,7 @@ import React, { useLayoutEffect } from "react";
 import useIsActivePage from "@/hooks/useIsActivePage";
 import { useRouter } from "next/navigation";
 import useFetchAppearance from "@/hooks/api/useFetchAppearance";
+import { Card } from "@/components/ui/card";
 
 type Props = {};
 
@@ -40,9 +41,9 @@ const AppearancePageToggler = (props: Props) => {
 
     return (
         <DashboardContainer className={"justify-start"}>
-            <div
+            <Card
                 className={
-                    "mb-10 flex w-auto items-center rounded-full bg-slate-200"
+                    "mb-10 flex w-auto items-center rounded-full shadow-none"
                 }
             >
                 <AppearanceLink
@@ -53,7 +54,7 @@ const AppearancePageToggler = (props: Props) => {
                     label={"Themes"}
                     href={pageRoutes.dashboard.appearance.themes.href}
                 />
-            </div>
+            </Card>
         </DashboardContainer>
     );
 };

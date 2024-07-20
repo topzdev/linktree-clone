@@ -1,19 +1,20 @@
-import React from "react";
-import ReactQueryProviders from "@/components/providers/ReactQueryProvider";
-import SessionToLocalStorageProvider from "@/components/providers/SessionToLocalStorageProvider";
+import React from 'react';
+import ReactQueryProviders from '@/components/providers/ReactQueryProvider';
+import SessionToLocalStorageProvider from '@/components/providers/SessionToLocalStorageProvider';
+import { ThemeProvider } from 'next-themes';
 
 type Props = {
-    children?: React.ReactNode
-}
+  children?: React.ReactNode;
+};
 
-const Providers = async ({children}: Props) => {
-    return <ReactQueryProviders>
-        <SessionToLocalStorageProvider>
-            {children}
-        </SessionToLocalStorageProvider>
+const Providers = async ({ children }: Props) => {
+  return (
+    <ReactQueryProviders>
+      <SessionToLocalStorageProvider>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
+      </SessionToLocalStorageProvider>
     </ReactQueryProviders>
-
-
-}
+  );
+};
 
 export default Providers;
