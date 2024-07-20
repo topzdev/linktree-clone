@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [UserController::class, 'index']);
     Route::post('/update-user', [UserController::class, 'updateUser']);
+    Route::post('/change-password', [UserController::class, 'changePassword']);
+    Route::post('/change-info', [UserController::class, 'updateAccountInfo']);
+    Route::post('/delete-account', [UserController::class, 'deleteAccount']);
 });
 
 Route::middleware(['auth:sanctum'])->prefix('links')->controller(LinksController::class)->group(function () {
