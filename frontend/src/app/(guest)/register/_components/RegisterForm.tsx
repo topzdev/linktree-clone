@@ -10,22 +10,14 @@ import { toast } from "@/components/ui/use-toast";
 import { RegisterInfo } from "@/app/(guest)/register/page";
 import * as yup from "yup";
 import { useSearchParams } from "next/navigation";
+import { usernameFieldSchema } from "@/configs/shared-schema";
 
 type Props = {};
 
 const schema = yup.object({
     firstname: yup.string().required().label("First Name"),
     lastname: yup.string().required().label("Last name"),
-    username: yup
-        .string()
-        .required()
-        .matches(
-            /^[a-zA-Z][a-zA-Z0-9_\.]{2,19}$/,
-            "Username must start with a letter and can contain letters, numbers, underscores, and dots.",
-        )
-        .min(3, "Username must be at least 3 characters long.")
-        .max(20, "Username cannot be longer than 20 characters.")
-        .label("Username"),
+    username: usernameFieldSchema.label("Username"),
     email: yup.string().required().email().label("Email"),
     password: yup
         .string()

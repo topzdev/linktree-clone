@@ -14,7 +14,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $user = User::with('appearance_settings', 'socials')->find(auth()->id());
         return $user;
     }
 
@@ -36,21 +35,27 @@ class UserController extends Controller
     {
         $user = $request->user();
         $userId = $user->id;
-        $request->validate([
+
+        $validator = \Validator::make($request->all(), [
             "username" => [new UsernameFormat($withIsExist = true, $ignoreUserId = $userId)],
             "firstname" => 'string|required',
             "lastname" => 'string|required',
             "email" => "string|required|email"
         ]);
 
+
         if (!($user->email === $request->email)) {
             $isExist = User::where(['email' => $request->email])->exists();
 
             if ($isExist) {
-                throw ValidationException::withMessages([
-                    'email' => ['email address is already taken']
-                ]);
+                $validator->after(function ($validator) {
+                    $validator->errors()->add('email', 'The email address has already been taken');
+                });
             }
+        }
+
+        if($validator->fails()) {
+            throw new ValidationException($validator);
         }
 
         $user = User::find($user->id);

@@ -6,7 +6,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button, ButtonSkeleton } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Typography, { TypographySkeleton } from "@/components/ui/typography";
 import MaterialSymbolsAccountCircleOutline from "@/components/icons/MaterialSymbolsAccountCircleOutline";
@@ -19,6 +19,8 @@ import MaterialSymbolsPassword from "@/components/icons/MaterialSymbolsPassword"
 import AccountAvatar, {
     AccountAvatarSkeleton,
 } from "@/app/dashboard/_components/AccountAvatar";
+import pageRoutes from "@/configs/page-routes";
+import Link from "next/link";
 
 type Props = {};
 const AccountMenu = (props: Props) => {
@@ -75,20 +77,28 @@ const AccountMenu = (props: Props) => {
                 </div>
                 <div className="flex flex-col gap-y-2.5 -mx-3">
                     <Button
+                        asChild
                         className="justify-start"
                         color={"accent"}
                         variant="text"
                         iconLeft={<MaterialSymbolsAccountCircleOutline />}
                     >
-                        My Account
+                        <Link href={pageRoutes.dashboard.more.myAccount.href}>
+                            My Account
+                        </Link>
                     </Button>
                     <Button
+                        asChild
                         className="justify-start"
                         color={"accent"}
                         variant="text"
                         iconLeft={<MaterialSymbolsPassword />}
                     >
-                        Change Password
+                        <Link
+                            href={pageRoutes.dashboard.more.changePassword.href}
+                        >
+                            Change Password
+                        </Link>
                     </Button>
                     <Button
                         asChild
