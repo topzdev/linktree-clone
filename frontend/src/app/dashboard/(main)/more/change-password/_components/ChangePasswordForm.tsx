@@ -6,30 +6,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { FetchError } from "ofetch";
-import { Button, ButtonSkeleton } from "@/components/ui/button";
-import { FormInput, InputSkeleton } from "@/components/ui/input";
-import { TextareaSkeleton } from "@/components/ui/textarea";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ProfileStyleChooserSkeleton } from "@/app/dashboard/(main)/profile/_components/ProfileStyleChooser";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/ui/input";
 import useAppAuth from "@/hooks/useAppAuth";
 import { AuthUser } from "../../../../../../../types/next-auth";
 import accountServices from "@/services/account";
-import { usernameFieldSchema } from "@/configs/shared-schema";
+import { passwordFieldSchema } from "@/configs/shared-schema";
 
 type Props = {
     children?: React.ReactNode;
     value: AuthUser;
 };
 
-const myAccountSchema = yup.object().shape({
-    username: usernameFieldSchema.label("Username"),
-    firstname: yup.string().required().label("First Name"),
-    lastname: yup.string().required().label("Last Name"),
-    email: yup.string().email().required().label("Email Address"),
+const changePasswordSchema = yup.object().shape({
+    password: yup.string().required().label("Current Password"),
+    new_password: passwordFieldSchema.label("New Password"),
+    new_password_confirmation: yup
+        .string()
+        .oneOf([yup.ref("new_password"), ""], "Passwords must match")
+        .required("New Password confirmation is required"),
 });
 
-export type MyAccountForm = yup.InferType<typeof myAccountSchema>;
-const MyAccountForm = ({ value }: Props) => {
+export type ChangePasswordForm = yup.InferType<typeof changePasswordSchema>;
+const ChangePasswordForm = ({ value }: Props) => {
     const { update } = useAppAuth();
     const { toast } = useToast();
 
@@ -38,35 +37,31 @@ const MyAccountForm = ({ value }: Props) => {
         handleSubmit,
         setError,
         reset,
-        formState: {
-            isSubmitSuccessful,
-            isLoading,
-            isSubmitting,
-            isValid,
-            isDirty,
-        },
-    } = useForm<MyAccountForm>({
+        formState: { isValid, isDirty },
+    } = useForm<ChangePasswordForm>({
+        mode: "onChange",
         defaultValues: {
-            username: value.username,
-            lastname: value.lastname,
-            firstname: value.firstname,
-            email: value.email,
+            password: "",
+            new_password: "",
+            new_password_confirmation: "",
         },
-        resolver: yupResolver(myAccountSchema),
+        resolver: yupResolver(changePasswordSchema),
     });
 
     const useUpdateContent = useMutation({
-        mutationFn: async (data: MyAccountForm) => {
-            await accountServices.changeInfo(data);
+        mutationFn: async (data: ChangePasswordForm) => {
+            await accountServices.changePassword(data);
         },
         onSuccess: async (data, variables, context) => {
             await update();
 
             toast({
-                title: "My Account",
-                description: "Account Information Updated",
+                title: "Change Password",
+                description: "Password Successfully Updated",
                 variant: "success",
             });
+
+            reset();
         },
         onError(error: FetchError, variables, context) {
             const errors = error.data.errors;
@@ -92,7 +87,7 @@ const MyAccountForm = ({ value }: Props) => {
         },
     });
 
-    const onSubmit = async (data: MyAccountForm) => {
+    const onSubmit = async (data: ChangePasswordForm) => {
         await useUpdateContent.mutate(data);
     };
 
@@ -105,30 +100,26 @@ const MyAccountForm = ({ value }: Props) => {
                 >
                     <div className="col-span-12">
                         <FormInput
+                            type={"password"}
                             control={control}
-                            name={"username"}
-                            label={"Username"}
-                        />
-                    </div>
-                    <div className="col-span-6">
-                        <FormInput
-                            control={control}
-                            name={"firstname"}
-                            label={"First name"}
-                        />
-                    </div>
-                    <div className="col-span-6">
-                        <FormInput
-                            control={control}
-                            name={"lastname"}
-                            label={"Last name"}
+                            name={"password"}
+                            label={"Current Password"}
                         />
                     </div>
                     <div className="col-span-12">
                         <FormInput
+                            type={"password"}
                             control={control}
-                            name={"email"}
-                            label={"Email Address"}
+                            name={"new_password"}
+                            label={"New Password"}
+                        />
+                    </div>
+                    <div className="col-span-12">
+                        <FormInput
+                            type={"password"}
+                            control={control}
+                            name={"new_password_confirmation"}
+                            label={"Confirm Password"}
                         />
                     </div>
                     <div className="col-span-12 flex justify-end">
@@ -151,4 +142,4 @@ const MyAccountForm = ({ value }: Props) => {
         </Card>
     );
 };
-export default MyAccountForm;
+export default ChangePasswordForm;

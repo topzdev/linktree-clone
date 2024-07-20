@@ -134,7 +134,7 @@ export const LinkMainCardSkeleton = () => {
         >
             <CardContent
                 className={
-                    "flex items-center w-full !pl-0 p-2 py-4 md::py-5 gap-x-3"
+                    "flex items-center w-full !pl-2 pr-3 py-4 md::py-5 gap-x-3"
                 }
             >
                 <Skeleton className="h-10 min-w-5 rounded-lg" />

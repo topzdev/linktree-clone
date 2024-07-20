@@ -1,5 +1,6 @@
 import { apiClient } from "@/lib/ofetch";
-import MyAccountForm from "@/app/dashboard/(main)/more/my-account/_components/MyAccountForm";
+import { MyAccountForm } from "@/app/dashboard/(main)/more/my-account/_components/MyAccountForm";
+import { ChangePasswordForm } from "@/app/dashboard/(main)/more/change-password/_components/ChangePasswordForm";
 
 const basePath = "";
 
@@ -9,7 +10,7 @@ const accountServices = {
             body: info,
         });
     },
-    changePassword: async (info: any) => {
+    changePassword: async (info: ChangePasswordForm) => {
         return apiClient.post<{ message: string }>(
             `${basePath}/change-password`,
             {

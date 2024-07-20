@@ -54,7 +54,7 @@ class UserController extends Controller
             }
         }
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
@@ -68,23 +68,27 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-
-        $request->validate([
-            'password' => ['required', Rules\Password::defaults()],
+        $validator = \Validator::make($request->all(), [
+            'password' => ['required', 'string'],
             'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
         $user = User::find(auth()->id());
 
         if (!Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'password' => ['Current password does not match'],
-            ]);
+            $validator->after(function ($validator) {
+                $validator->errors()->add('password', 'Current password does not match');
+            });
         }
 
-        if($request->password === $request->new_password) {
-            throw ValidationException::withMessages([
-                'new_password' => ['New password cannot be the same as the current password'],
-            ]);
+        if ($request->password === $request->new_password) {
+            $validator->after(function ($validator) {
+                $validator->errors()->add('new_password', 'New password cannot be the same as the current password');
+            });
+        }
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
         }
 
         $user->forceFill([
@@ -103,7 +107,7 @@ class UserController extends Controller
         $user = auth()->user();
         $user = User::find($user->id);
 
-        if($request->code != $user->username) {
+        if ($request->code != $user->username) {
             return response()->json(["message" => "Code does not matched"]);
         }
 
