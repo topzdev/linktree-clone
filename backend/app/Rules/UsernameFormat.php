@@ -11,11 +11,21 @@ class UsernameFormat implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
+
+    protected $withIsExist;
+    protected $ignoreUserId;
+
+    public function __construct($withIsExist = true, $ignoreUserId = null)
+    {
+        $this->withIsExist = $withIsExist;
+        $this->ignoreUserId = $ignoreUserId;
+    }
+
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(empty($value)) {
+        if (empty($value)) {
             $fail('The username is required');
         }
 
@@ -23,7 +33,7 @@ class UsernameFormat implements ValidationRule
             $fail('The username must be string');
         }
 
-        if(!preg_match('/^[a-zA-Z0-9_.]+$/u', $value)) {
+        if (!preg_match('/^[a-zA-Z0-9_.]+$/u', $value)) {
             $fail('The username may only contain letters, numbers, underscores ("_"), and periods (".")');
         }
 
@@ -33,10 +43,17 @@ class UsernameFormat implements ValidationRule
             $fail('The username may not be less 3 or greater than 32 characters');
         }
 
-        $isExist = User::where('username', $value)->exists();
 
-        if($isExist) {
-            $fail('The username has already been taken');
+        if ($this->withIsExist) {
+            $isExist = User::where('username', $value);
+            if ($this->ignoreUserId) {
+                $isExist = $isExist->whereNot('id', $this->ignoreUserId);
+            }
+            $isExist = $isExist->exists();
+
+            if ($isExist) {
+                $fail('The username has already been taken');
+            }
         }
     }
 

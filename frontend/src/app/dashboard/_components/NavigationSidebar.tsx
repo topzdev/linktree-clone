@@ -11,7 +11,7 @@ import AppLogoIcon from "@/components/common/AppLogoIcon";
 import NavigationLink from "./NavigationLink";
 import { useSession } from "next-auth/react";
 import useFetchAppearance from "@/hooks/api/useFetchAppearance";
-import AccountMenu from "./AccountMenu";
+import AccountMenu, { AccountMenuSkeleton } from "./AccountMenu";
 
 type Props = {
     children?: React.ReactNode;
@@ -46,13 +46,13 @@ const links = [
 ];
 
 const NavigationSidebar = ({ className }: Props) => {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const { data } = useFetchAppearance();
 
     return (
         <aside
             className={cn(
-                "flex flex-col items-start gap-y-8 bg-background px-4 pt-8 lg:gap-y-12 lg:px-5 lg:pb-6 lg:pt-12 dark:border dark:border-border",
+                "flex flex-col items-start gap-y-8 bg-background px-4 pt-8 lg:gap-y-12 lg:px-5 lg:pb-6 lg:pt-12 border-r border-transparent dark:border-border",
                 className,
             )}
         >
@@ -60,7 +60,6 @@ const NavigationSidebar = ({ className }: Props) => {
                 className={"flex h-[30px] max-h-[30px] text-primary"}
                 href={"/"}
             />
-
             <ul className={"flex w-full flex-col gap-y-2 lg:gap-y-4"}>
                 {links.map((item) => (
                     <li key={item.label}>
@@ -69,7 +68,7 @@ const NavigationSidebar = ({ className }: Props) => {
                 ))}
             </ul>
 
-            <AccountMenu />
+            {!data ? <AccountMenuSkeleton /> : <AccountMenu />}
         </aside>
     );
 };
