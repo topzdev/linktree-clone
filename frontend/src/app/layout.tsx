@@ -53,14 +53,8 @@ import { Toaster } from "@/components/ui/toaster";
 import Providers from "@/app/providers";
 import Registry from "@/app/registry";
 
-const fontSans = FontSans({
-    subsets: ["latin"],
-    variable: "--font-sans",
-});
-
 // Initialize fonts at module scope
 const fontInter = Inter({
-    weight: ["400", "700"],
     subsets: ["latin"],
     variable: "--font-inter",
 });
@@ -327,8 +321,7 @@ export default async function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body
                 className={[
-                    "min-h-screen bg-background font-sans antialiased",
-                    fontSans.variable,
+                    "min-h-screen bg-background font-inter antialiased",
                     allFonts.map((item) => item.variable).join(" "),
                 ].join(" ")}
             >

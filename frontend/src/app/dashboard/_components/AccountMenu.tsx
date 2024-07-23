@@ -7,7 +7,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Typography, { TypographySkeleton } from "@/components/ui/typography";
 import MaterialSymbolsAccountCircleOutline from "@/components/icons/MaterialSymbolsAccountCircleOutline";
 import MaterialSymbolsRoutineOutlineRounded from "@/components/icons/MaterialSymbolsRoutineOutlineRounded";
@@ -51,7 +50,11 @@ const AccountMenu = (props: Props) => {
                     <AccountAvatar className={"h-12 w-12"} />@{user?.username}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent
+                sideOffset={10}
+                align="start"
+                className="max-w-full"
+            >
                 <div className={"flex items-center gap-4 pb-4"}>
                     <AccountAvatar className={"h-10 w-10"} />
 

@@ -17,6 +17,7 @@ export const inputStyling = ({ error }: Pick<InputProps, "error">) => {
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     inputClassName?: string;
+    inputParentClassName?: string;
     type?: Pick<React.InputHTMLAttributes<HTMLInputElement>, "type"> | "hex";
     leftAdornment?: React.ReactNode;
     rightAdornment?: React.ReactNode;
@@ -29,6 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             error,
             hint,
             className,
+            inputParentClassName,
             inputClassName,
             type,
             onKeyDown,
@@ -80,7 +82,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     className={cn(
                         inputStyling({ error }),
                         "h-[48px] md:h-[52px] md:px-5 !py-0 gap-x-1.5 items-center",
-                        inputClassName,
+                        inputParentClassName,
                     )}
                 >
                     {leftAdornment && (
@@ -88,9 +90,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     )}
                     <input
                         type={type}
-                        className={
-                            "w-full !outline-0 bg-transparent h-full py-3"
-                        }
+                        className={cn(
+                            "w-full !outline-0 bg-transparent h-full py-3",
+                            inputClassName,
+                        )}
                         ref={ref}
                         {...props}
                         onKeyDown={handleKeyDown}

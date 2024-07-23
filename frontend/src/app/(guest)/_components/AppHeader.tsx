@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import AppLogo from "@/components/common/AppLogo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import pageRoutes from "@/configs/page-routes";
 import AppLogoIcon from "@/components/common/AppLogoIcon";
+import { cn } from "@/lib/utils";
 
 type Props = {
     children?: React.ReactNode;
@@ -16,12 +19,17 @@ const AppHeader = (props: Props) => {
                 "min-lg:py-10 fixed left-0 top-0 flex w-full items-center bg-background bg-opacity-50 px-5 py-5 backdrop-blur-md lg:justify-center lg:py-10"
             }
         >
-            <AppLogoIcon
-                className={"hidden h-8 text-primary max-lg:block"}
+            <Link className={"hidden h-8 text-primary max-lg:block"} href={"/"}>
+                <AppLogoIcon />
+            </Link>
+            <Link
+                className={cn(
+                    "h-[25px] md:h-[30px] md:min-h-[30px] block max-lg:hidden",
+                )}
                 href={"/"}
-            />
-
-            <AppLogo className={"block max-lg:hidden"} />
+            >
+                <AppLogo />
+            </Link>
 
             <div
                 className={
