@@ -17,7 +17,7 @@ export const variants = {
     primary: {
         filled: "border bg-primary text-primary-foreground border-primary hover:bg-primary-600 hover:border-primary-600 hover:text-primary-foreground",
         outlined:
-            "border border-primary text-primary hover:bg-primary-100 hover:text-primary-foreground",
+            "border border-primary text-primary hover:border-primary/75 hover:text-primary/75",
         text: "text-primary hover:text-primary-400",
         tonal: "bg-primary/10 text-primary hover:bg-primary/20",
     },

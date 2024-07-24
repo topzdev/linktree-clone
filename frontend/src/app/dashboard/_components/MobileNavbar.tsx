@@ -35,10 +35,18 @@ const MobileNavbar = ({ className, ...props }: Props) => {
                     username={user.username}
                     description={data.profile_bio}
                 >
-                    <ShareMenuButton className={"ml-auto"} />
+                    <ShareMenuButton
+                        size="lg"
+                        variant="outlined"
+                        color={"accent"}
+                        className={"ml-auto"}
+                    />
                 </ShareMenu>
             ) : (
-                <ShareMenuButtonSkeleton className={"ml-auto"} />
+                <ShareMenuButtonSkeleton
+                    variant={"outlined"}
+                    className={"ml-auto"}
+                />
             )}
         </nav>
     );

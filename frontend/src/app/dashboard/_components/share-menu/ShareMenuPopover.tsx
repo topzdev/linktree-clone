@@ -4,7 +4,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { DialogBody } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
+
 import ShareMenuContent from "@/app/dashboard/_components/share-menu/ShareMenuContent";
 import React from "react";
 import { ShareMenuProps } from "@/app/dashboard/_components/ShareMenu";
@@ -19,9 +19,7 @@ const ShareMenuPopover = ({ children, ...props }: Props) => {
                     <DialogHeader className={"pb-4"}>
                         <DialogTitle>Share to</DialogTitle>
                     </DialogHeader>
-                    <DialogBody>
-                        <ShareMenuContent {...props} />
-                    </DialogBody>
+                    <ShareMenuContent {...props} />
                 </Dialog>
             </PopoverContent>
         </Popover>

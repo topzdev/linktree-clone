@@ -1,4 +1,5 @@
-import {ButtonStyleTypes} from "@/data/buttons-style";
+import { ButtonStyleTypes } from "@/data/buttons-style";
+import { AuthUser } from "./next-auth";
 
 export type AppearanceSettings = {
     id: number;
@@ -24,7 +25,7 @@ export type AppearanceSettings = {
     profile_image_style: string;
     profile_title: string;
     profile_avatar: string;
-    profile_initials: string | null
+    profile_initials: string | null;
     font_color: string | null;
     font_style: string | null;
     bg_id: number;
@@ -37,8 +38,8 @@ export type AppearanceSettings = {
     button?: Button;
     background?: Background;
     theme?: any | null;
-    social_align?: number
-}
+    social_align?: number;
+};
 
 export type Theme = {
     id: number;
@@ -56,7 +57,7 @@ export type Theme = {
     bg_image_m: string | null;
     bg_image_url?: string | null;
     bg_image_m_url?: string | null;
-    preview: string | null,
+    preview: string | null;
     preview_url?: string | null;
     btn_color: string;
     btn_style: string | null;
@@ -71,7 +72,7 @@ export type Theme = {
     font?: Font;
     button?: Button;
     background?: Background;
-}
+};
 
 export type Font = {
     id: number;
@@ -81,7 +82,7 @@ export type Font = {
     font_weight: string;
     letter_spacing: string;
     group_id: number;
-}
+};
 
 export type Button = {
     id: number;
@@ -90,7 +91,7 @@ export type Button = {
     title: string;
     key: ButtonStyleTypes;
     group_id: number;
-}
+};
 
 export type Background = {
     id: number;
@@ -99,7 +100,7 @@ export type Background = {
     preview: string;
     created_at: string | null;
     updated_at: string | null;
-}
+};
 
 export type Link = {
     id: number;
@@ -114,7 +115,7 @@ export type Link = {
     user_id: number;
     deleted_at: string | null;
     is_enabled: boolean;
-}
+};
 export type Social = {
     id: number;
     social_id: string;
@@ -124,10 +125,10 @@ export type Social = {
     enabled: boolean;
     created_at: string | null;
     updated_at: string;
-}
+};
 
-export type ProfileData = {
+export type ProfileData = AuthUser & {
     appearance_settings: AppearanceSettings;
     links: Link[];
     socials: Social[];
-}
+};

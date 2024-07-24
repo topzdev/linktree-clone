@@ -4,7 +4,8 @@ import MaterialSymbolsChevronRightRounded from "@/components/icons/MaterialSymbo
 import Image from "next/image";
 import LinkCopierInput from "@/app/dashboard/_components/LinkCopierInput";
 import React from "react";
-import { APP_SHORT_LINK } from "@/configs/app-config";
+import ShareMenuGuest from "@/app/dashboard/_components/share-menu/ShareMenuGuest";
+import useAppAuth from "@/hooks/useAppAuth";
 
 const shareTo = [
     {
@@ -51,7 +52,8 @@ export type ShareMenuContentProps = {
 };
 
 const ShareMenuContent = ({ username, description }: ShareMenuContentProps) => {
-    const link = `${APP_SHORT_LINK}/${username}`;
+    const link = `${process.env.NEXT_PUBLIC_SHORT_URL}/${username}`;
+    const { isLoggedIn } = useAppAuth();
 
     const shareLink = (platform: string) => {
         const encodedURL = encodeURIComponent(link);
@@ -92,11 +94,11 @@ const ShareMenuContent = ({ username, description }: ShareMenuContentProps) => {
 
     return (
         <>
-            <List className="gap-y-1 mb-5">
+            <List className="gap-y-1 !mb-5">
                 {shareTo.map((item) => (
                     <ListItem
                         onClick={() => shareLink(item.id)}
-                        className={"gap-x-5 !pr-0"}
+                        className={"gap-x-4 md:gap-x-5 !pr-0"}
                         key={item.id}
                         rightAdornment={
                             <IconButton size="lg">
@@ -105,7 +107,7 @@ const ShareMenuContent = ({ username, description }: ShareMenuContentProps) => {
                         }
                     >
                         <Image
-                            className="overflow-hidden rounded-lg"
+                            className="overflow-hidden h-[40px] w-[40px] md:h-[50px] md:w-[50px] rounded-lg"
                             src={item.icon}
                             alt={item.title}
                             height={50}
@@ -116,6 +118,7 @@ const ShareMenuContent = ({ username, description }: ShareMenuContentProps) => {
                 ))}
             </List>
             <LinkCopierInput link={link} />
+            {!isLoggedIn && <ShareMenuGuest />}
         </>
     );
 };

@@ -39,7 +39,7 @@ const LinkCopierInput = ({ link }: Props) => {
                     </Typography>
                 }
                 readOnly
-                inputParentClassName="min-h-[68px]"
+                inputParentClassName="min-h-[58px] md:min-h-[68px]"
                 inputClassName="cursor-pointer text-center"
                 className={"text-center cursor-pointer"}
                 value={link}

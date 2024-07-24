@@ -52,7 +52,7 @@ const AccountMenu = (props: Props) => {
             </PopoverTrigger>
             <PopoverContent
                 sideOffset={10}
-                align="start"
+                align="center"
                 className="max-w-full"
             >
                 <div className={"flex items-center gap-4 pb-4"}>

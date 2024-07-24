@@ -11,7 +11,6 @@ const ConsoleLog = ({ data, className }: Props) => {
         <pre
             style={{
                 textAlign: "left",
-                backgroundColor: "#f6f8fa",
                 padding: "10px",
                 borderRadius: "5px",
             }}

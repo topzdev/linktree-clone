@@ -6,6 +6,11 @@ import { ShareMenuContentProps } from "@/app/dashboard/_components/share-menu/Sh
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import dynamic from "next/dynamic";
 
+const ShareMenuModal = dynamic(
+    () => import("@/app/dashboard/_components/share-menu/ShareMenuModal"),
+    { ssr: false },
+);
+
 const ShareMenuPopover = dynamic(
     () => import("@/app/dashboard/_components/share-menu/ShareMenuPopover"),
     { ssr: false },
@@ -18,13 +23,18 @@ const ShareMenuDrawer = dynamic(
 
 export type ShareMenuProps = {
     children?: React.ReactNode;
+    modal?: boolean;
 } & ShareMenuContentProps;
 
-const ShareMenu = (props: ShareMenuProps) => {
+const ShareMenu = ({ modal, ...props }: ShareMenuProps) => {
     const { isMd } = useBreakpoint("md");
 
     return isMd ? (
-        <ShareMenuPopover {...props} />
+        modal ? (
+            <ShareMenuModal {...props} />
+        ) : (
+            <ShareMenuPopover {...props} />
+        )
     ) : (
         <ShareMenuDrawer {...props} />
     );
