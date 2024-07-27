@@ -3,15 +3,19 @@
 import React, { useMemo } from "react";
 import ProfileInfo from "@/app/(public)/[username]/_components/ProfileInfo";
 import LinkListContainer from "@/app/(public)/[username]/_components/LinkListContainer";
-import { apiClient } from "@/lib/ofetch";
-import { ProfileData } from "../../../../../types/models";
-import { useQuery } from "@tanstack/react-query";
 import profileCssVariables from "@/lib/profileCssVariables";
 import SocialIconsList from "@/app/(public)/[username]/_components/SocialIconsList";
 import AppLogo from "@/components/common/AppLogo";
 import { getImageProps } from "next/image";
 import { cn } from "@/lib/utils";
 import fonts from "@/data/fonts";
+import ShareMenu from "@/app/dashboard/_components/ShareMenu";
+import { IconButton } from "@/components/ui/icon-button";
+import MaterialSymbolsMoreHoriz from "@/components/icons/MaterialSymbolsMoreHoriz";
+import Link from "next/link";
+import pageRoutes from "@/configs/page-routes";
+import useFetchProfile from "@/hooks/api/useFetchProfile";
+import EmptyProfilePage from "@/app/(public)/[username]/_components/EmptyProfilePage";
 
 type Props = {
     children?: React.ReactNode;
@@ -21,12 +25,12 @@ type Props = {
 const DEFAULT_FONT_ID = 1;
 
 const ProfilePage = ({ username }: Props) => {
-    const { data } = useQuery<ProfileData>({
-        queryKey: ["profile"],
-        queryFn: () => apiClient.get<ProfileData>(`/preview/${username}`),
-    });
+    const { data, error, status } = useFetchProfile(username);
 
-    if (!data) return <></>;
+    if (!data || status === "error") {
+        return <EmptyProfilePage />;
+    }
+
     const appearance_settings = data.appearance_settings;
     const links = data.links;
     const socials = data.socials;
@@ -101,10 +105,7 @@ const ProfilePage = ({ username }: Props) => {
                 }),
                 ...backgroundStyle,
             }}
-            className={cn(
-                "max-h-screen overflow-hidden relative",
-                font.className,
-            )}
+            className={cn("h-screen overflow-hidden relative", font.className)}
         >
             {video && (
                 <video
@@ -123,7 +124,7 @@ const ProfilePage = ({ username }: Props) => {
                 </video>
             )}
             {images.desktop && images.mobile && (
-                <picture className={"absolute top-0 left-0 h-full w-full"}>
+                <picture className={"absolute top-0 left-0 h-screen w-screen"}>
                     {images.mobile && (
                         <source
                             media={`(max-width: 767px)`}
@@ -144,14 +145,28 @@ const ProfilePage = ({ username }: Props) => {
 
             <div
                 className={
-                    "pb-[95px] md:pb-[100px] h-full w-full overflow-auto max-h-screen relative z-100"
+                    "pb-[95px] md:pb-[100px] h-full w-full overflow-auto max-h-screen relative z-100 max-w-[700px] mx-auto"
                 }
             >
+                <ShareMenu
+                    modal={true}
+                    username={data.username}
+                    description={appearance_settings.profile_bio}
+                >
+                    <IconButton
+                        size={"lg"}
+                        variant="tonal"
+                        rounded
+                        className={"absolute top-4 right-4 z-10"}
+                    >
+                        <MaterialSymbolsMoreHoriz />
+                    </IconButton>
+                </ShareMenu>
                 <ProfileInfo
-                    className="max-w-[700px] !mx-auto mb-10 "
+                    className="max-w-full !mx-auto mb-10 "
                     data={appearance_settings}
                 />
-                <div className="px-3 md:px-5 md:px-0 max-w-[700px] flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]">
+                <div className="px-3 md:px-5 md:px-0 max-w-full flex flex-col items-center mx-auto gap-y-10 md:gap-y-[60px]">
                     {appearance_settings.social_align === 1 && (
                         <SocialIconsList socials={socials}></SocialIconsList>
                     )}
@@ -163,7 +178,9 @@ const ProfilePage = ({ username }: Props) => {
                     {appearance_settings.social_align === 2 && (
                         <SocialIconsList socials={socials}></SocialIconsList>
                     )}
-                    <AppLogo />
+                    <Link className="mt-auto" href={pageRoutes.home.href}>
+                        <AppLogo className="h-8" />
+                    </Link>
                 </div>
             </div>
         </div>
