@@ -34,6 +34,6 @@ class PreviewController extends Controller
             "links" => $user->links->where('is_enabled', '=', true)->values(),
             "socials" => $user->socials
         ];
-        return response()->json($data);
+        return response()->json(array_merge($user->toArray(), $data));
     }
 }
