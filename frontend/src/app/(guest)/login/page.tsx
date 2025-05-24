@@ -1,28 +1,31 @@
-'use client';
+"use client";
 
-import React from 'react';
-import {useForm} from 'react-hook-form';
-import {FormInput} from '@/components/ui/input';
-import {Button} from '@/components/ui/button';
-import {Credentials} from '@/lib/auth';
-import useAppAuth from '@/hooks/useAppAuth';
-import {toast} from '@/components/ui/use-toast';
-import GoogleLoginButton from '@/components/auth/GoogleLoginButton';
-import Typography from '@/components/ui/typography';
-import Link from '@/components/ui/link';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { FormInput } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+// import { Credentials } from "@/lib/auth";
+import useAppAuth from "@/hooks/useAppAuth";
+import { toast } from "@/components/ui/use-toast";
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
+import Typography from "@/components/ui/typography";
+import { Credentials } from "@/app/api/auth/[...nextauth]/route";
+import Link from "@/components/ui/link";
 
 type Props = {
     children?: React.ReactNode;
 };
 
 const Page = (props: Props) => {
-    const {login} = useAppAuth();
-    const {register, control, handleSubmit, formState} = useForm<Credentials>({
-        defaultValues: {
-            password: '123456789dev',
-            email: 'christianlugod05@gmail.com',
+    const { login } = useAppAuth();
+    const { register, control, handleSubmit, formState } = useForm<Credentials>(
+        {
+            defaultValues: {
+                password: "123456789dev",
+                email: "christianlugod05@gmail.com",
+            },
         },
-    });
+    );
 
     const onSubmit = handleSubmit(async (data) => {
         try {
@@ -30,88 +33,84 @@ const Page = (props: Props) => {
         } catch (e: any) {
             console.log(e);
             toast({
-                title: 'Login Error',
+                title: "Login Error",
                 description: e?.message,
-                variant: 'destructive',
+                variant: "destructive",
             });
         }
     });
 
     return (
-        <div className='container flex items-center justify-center h-screen'>
-            <div className='grid w-full max-w-sm items-center gap-6 mx-auto'>
-                <div className={'flex flex-col gap-y-1'}>
-                    <Typography
-                        className={'text-center'}
-                        variant='h2'
-                        as='h2'
-                    >
+        <div className="container flex items-center justify-center h-screen">
+            <div className="grid w-full max-w-sm items-center gap-6 mx-auto">
+                <div className={"flex flex-col gap-y-1"}>
+                    <Typography className={"text-center"} variant="h2" as="h2">
                         Welcome Back
                     </Typography>
                     <Typography
-                        foreground='secondary'
-                        className={'text-center'}
-                        variant='p'
-                        as='p'
+                        foreground="secondary"
+                        className={"text-center"}
+                        variant="p"
+                        as="p"
                     >
                         Login in to your Linktree Account
                     </Typography>
                 </div>
 
                 <form
-                    className={'flex flex-col gap-y-3 mt-2'}
+                    className={"flex flex-col gap-y-3 mt-2"}
                     onSubmit={onSubmit}
                 >
                     <FormInput
                         control={control}
-                        name={'email'}
-                        label={'Email'}
-                        id='email'
-                        type='email'
-                        placeholder='Email'
+                        name={"email"}
+                        label={"Email"}
+                        id="email"
+                        type="email"
+                        placeholder="Email"
                     />
                     <FormInput
                         control={control}
-                        name={'password'}
-                        label='Password'
-                        id='email'
-                        type='password'
-                        placeholder='Password'
+                        name={"password"}
+                        label="Password"
+                        id="email"
+                        type="password"
+                        placeholder="Password"
                     />
                     <Button
-                        size={'lg'}
+                        size={"lg"}
                         rounded
                         loading={formState.isSubmitting}
                         disabled={formState.isSubmitting}
-                        type={'submit'}
+                        type={"submit"}
                     >
                         Login
                     </Button>
                 </form>
 
-                <Typography
+                {/* <Typography
                     className={'text-center uppercase'}
                     foreground='secondary'
                     variant='p'
                     as='p'
                 >
                     or
-                </Typography>
+                </Typography> */}
 
-                <div className={'flex flex-col gap-y-2'}>
+                {/* <div className={'flex flex-col gap-y-2'}>
                     <GoogleLoginButton/>
-                </div>
+                </div> */}
 
                 <Typography
-                    className={'text-center my-4'}
-                    foreground='secondary'
-                    variant='p'
-                    as='p'
+                    className={"text-center my-4"}
+                    foreground="secondary"
+                    variant="p"
+                    as="p"
                 >
-                    Don't have an account{' '}
+                    Don't have an account{" "}
                     <Link
-                        className='text-blue-500 underline'
-                        href={'/register'}
+                        className="text-blue-500 underline"
+                        href={"/register"}
                     >
                         Sign Up
                     </Link>

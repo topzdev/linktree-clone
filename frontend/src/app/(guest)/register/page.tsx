@@ -28,7 +28,7 @@ const Page = (props: Props) => {
 
                 <RegisterForm />
 
-                <Typography
+                {/* <Typography
                     className={"text-center uppercase"}
                     foreground="secondary"
                     variant="p"
@@ -39,7 +39,7 @@ const Page = (props: Props) => {
 
                 <div className={"flex flex-col gap-y-2"}>
                     <GoogleLoginButton />
-                </div>
+                </div> */}
 
                 <Typography
                     className={"my-4 text-center"}
