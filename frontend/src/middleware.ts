@@ -22,6 +22,14 @@ export default withAuth(
         const isProtectedRoute = protectedRoutes.includes(pathname);
         const isPublicRoute = publicRoutes.includes(pathname);
 
+        console.log("Middleware Check", {
+            token,
+            isAuthenticated,
+            isAuthRoute,
+            isProtectedRoute,
+            isPublicRoute,
+        });
+
         if (isProtectedRoute && !isAuthenticated) {
             return NextResponse.redirect(new URL(loginRoute, req.nextUrl));
         }

@@ -183,6 +183,8 @@ export const authOptions: NextAuthOptions = {
                 const data = await response.json();
 
                 if (!response.ok) {
+                    console.log("Hello World: ");
+                    console.error(data);
                     throw new Error(JSON.stringify(data));
                 }
 
@@ -202,9 +204,9 @@ export const authOptions: NextAuthOptions = {
 
             return true;
         },
-        async redirect({ url, baseUrl }) {
-            return baseUrl;
-        },
+        // async redirect({ url, baseUrl }) {
+        //     return baseUrl;
+        // },
         async jwt({ token, user, account, profile, isNewUser }) {
             // console.log('Token',{token, user, account, profile})
             if (!!user) {

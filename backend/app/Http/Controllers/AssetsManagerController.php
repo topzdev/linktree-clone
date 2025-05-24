@@ -23,14 +23,17 @@ class AssetsManagerController extends Controller
         ];
     }
 
-    public function delete(String $source) {
+    public function delete(String $source)
+    {
         return Storage::delete($source);
     }
 
-    public function uploadAvatar(UploadedFile $file) {
+    public function uploadAvatar(UploadedFile $file)
+    {
         return $this->upload('avatars', $file);
     }
-    public function uploadThumbnail(UploadedFile $file) {
+    public function uploadThumbnail(UploadedFile $file)
+    {
         return $this->upload('thumbnails', $file);
     }
 

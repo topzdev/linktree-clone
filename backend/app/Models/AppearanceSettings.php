@@ -115,8 +115,10 @@ class AppearanceSettings extends Model
     public static function profile()
     {
         $userId = auth()->id();
-        $data = AppearanceSettings::find(['user_id' => $userId], ['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title'])->first();
-        $data->appends = ['profile_avatar_url'];
+        $data = AppearanceSettings::where('user_id', $userId)->first(['id', 'user_id', 'profile_avatar', 'profile_bio', 'profile_image_style', 'profile_title']);
+        if ($data) {
+            $data->appends = ['profile_avatar_url'];
+        }
         return $data;
     }
 
@@ -135,8 +137,10 @@ class AppearanceSettings extends Model
     public static function fontSettings()
     {
         $userId = auth()->id();
-        $font = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'user_id', 'font_id', 'font_color'])->first();
-        $font->appends = [];
+        $font = AppearanceSettings::where('user_id', $userId)->with('font')->first(['id', 'user_id', 'font_id', 'font_color']);
+        if ($font) {
+            $font->appends = [];
+        }
         return $font;
     }
 
@@ -144,13 +148,17 @@ class AppearanceSettings extends Model
     {
 
         $userId = auth()->id();
-        $data = AppearanceSettings::with('font')->find(['user_id' => $userId], ['id', 'theme_id', 'bg_image', 'bg_image_m', 'bg_video' ,'bg_video_m', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position'])->first();
-        $data->appends = [
-            'bg_image_url',
-            'bg_video_url',
-            'bg_image_m_url',
-            'bg_video_m_url',
-        ];
+        $data = AppearanceSettings::with('font')->where('user_id', $userId)->first(['id', 'theme_id', 'bg_image', 'bg_image_m', 'bg_video', 'bg_video_m', 'bg_color', 'bg_from', 'bg_to', 'bg_id', 'bg_position']);
+
+        if ($data) {
+            $data->appends = [
+                'bg_image_url',
+                'bg_video_url',
+                'bg_image_m_url',
+                'bg_video_m_url',
+            ];
+        }
+
         return $data;
     }
 
@@ -178,5 +186,4 @@ class AppearanceSettings extends Model
     {
         return  $this->hasOne(Themes::class, 'id', 'theme_id')->with(['button', 'background', 'font']);
     }
-
 }

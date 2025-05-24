@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
             ButtonsSeeder::class,
             FontsSeeder::class,
             ThemesSeeder::class,
-            UserSeeder::class,
-            SocialsSeeder::class,
-            LinksSeeder::class
+            // UserSeeder::class,
+            // SocialsSeeder::class,
+            // LinksSeeder::class
         ]);
     }
 }
