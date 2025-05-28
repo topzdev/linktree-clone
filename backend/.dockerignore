@@ -1,28 +1,47 @@
-# excludes from the docker image/build
+# Include any files or directories that you don't want to be copied to your
+# container here (e.g., local build artifacts, temporary files, etc.).
+#
+# For more help, visit the .dockerignore file reference guide at
+# https://docs.docker.com/go/build-context-dockerignore/
 
-# 1. Ignore Laravel-specific files we don't need
-bootstrap/cache/*
-storage/framework/cache/*
-storage/framework/sessions/*
-storage/framework/views/*
-storage/logs/*
-*.env*
-.rr.yml
-rr
-frankenphp
-vendor
-
-# 2. Ignore common files/directories we don't need
-fly.toml
-.vscode
-.idea
-**/*node_modules
-**.git
-**.gitignore
-**.gitattributes
-**.sass-cache
-**/*~
-**/*.log
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.gitattributes
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/.next
+**/.cache
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/charts
+**/docker-compose*
+**/compose.y*ml
+**/compose.*.y*ml
+!**/composer.json
+!**/composer.lock
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+**/vendor
 **/.DS_Store
-**/Thumbs.db
-public/hot
+.editorconfig
+.env.example
+LICENSE
+README.md
+
+# Ignore development-related files and directories
+# For development environment, we will use mount bind to mount the source code to the container
+# So we don't need to copy the source code to the container for development
+tests/
+phpunit.xml
+phpunit.xml.dist
