@@ -1,18 +1,16 @@
 services:
-  # frontend:
-  #   container_name: linktree-fe
-  #   image: linktree/linktree-fe
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   environment:
-  #     - NODE_ENV=production
-
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - linktree-dev-frontend
   backend:
     build:
       context: ./backend
@@ -128,7 +126,9 @@ networks:
   # For example, 'php-fpm' can connect to 'postgres' by using 'postgres' as the hostname.
   # -----------------------------------------------------------
   laravel-production:
-
+    driver: bridge
+  linktree-dev-frontend:
+    driver: bridge
 volumes:
   postgres-data-production:
   laravel-storage-production:
