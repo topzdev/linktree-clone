@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+import { JWT } from "next-auth/jwt";
 
 /*Next Auth Guide
  * https://medium.com/ascentic-technology/authentication-with-next-js-13-and-next-auth-9c69d55d6bfd
@@ -42,6 +43,8 @@ type AccessTokenAuth = {
     access_token: string;
 };
 
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
 export const authOptions: NextAuthOptions = {
     pages: {
         signIn: "/login",
@@ -51,174 +54,169 @@ export const authOptions: NextAuthOptions = {
         FacebookProvider({
             clientId: process.env.FACEBOOK_CLIENT_ID || "",
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
-            // @ts-ignore
-            async profile(profile, tokens) {
-                console.log("Google Login", { profile, tokens });
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth`,
-                    {
+            async profile(profile) {
+                try {
+                    const response = await fetch(`${API_URL}/oauth`, {
                         method: "POST",
                         body: JSON.stringify({
-                            access_token: tokens.access_token,
-                            provider: "",
+                            access_token: profile.access_token,
+                            provider: "facebook",
                         }),
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
                         },
-                    },
-                );
+                    });
 
-                const data = await response.json();
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(
+                            error.message || "Facebook authentication failed",
+                        );
+                    }
 
-                console.log("Facebook Login Data", { data });
+                    const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error(JSON.stringify(data));
+                    return {
+                        id: profile.id,
+                        name: profile.name,
+                        email: profile.email,
+                        image: profile.picture?.data?.url,
+                        access_token: data.access_token,
+                    } as any;
+                } catch (error) {
+                    console.error("Facebook auth error:", error);
+                    throw error;
                 }
-
-                return {
-                    id: profile.sub,
-                    name: profile.name,
-                    email: profile.email,
-                    image: profile.picture,
-                    access_token: data.access_token,
-                };
             },
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID || "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-            // @ts-ignore
-            async profile(profile, tokens) {
-                console.log("Google Login", { profile, tokens });
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth`,
-                    {
+            async profile(profile) {
+                try {
+                    const response = await fetch(`${API_URL}/oauth`, {
                         method: "POST",
                         body: JSON.stringify({
-                            access_token: tokens.access_token,
+                            access_token: profile.access_token,
                             provider: "google",
                         }),
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
                         },
-                    },
-                );
+                    });
 
-                const data = await response.json();
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(
+                            error.message || "Google authentication failed",
+                        );
+                    }
 
-                console.log("Google Login Data", { data });
+                    const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error(JSON.stringify(data));
+                    return {
+                        id: profile.sub,
+                        name: profile.name,
+                        email: profile.email,
+                        image: profile.picture,
+                        access_token: data.access_token,
+                    } as any;
+                } catch (error) {
+                    console.error("Google auth error:", error);
+                    throw error;
                 }
-
-                return {
-                    id: profile.sub,
-                    name: profile.name,
-                    email: profile.email,
-                    image: profile.picture,
-                    access_token: data.access_token,
-                };
             },
         }),
-
         CredentialsProvider({
             id: "access_token",
-            // @ts-ignore
-            async authorize(credential: AccessTokenAuth) {
-                console.log("Access Token Auth", credential);
-                return { access_token: credential.access_token };
+            name: "Access Token",
+            credentials: {
+                access_token: { label: "Access Token", type: "text" },
+            },
+            async authorize(credentials) {
+                if (!credentials?.access_token) return null;
+                return { access_token: credentials.access_token } as any;
             },
         }),
-
         CredentialsProvider({
             id: "register",
-            // @ts-ignore
-            async authorize(credential: AccessTokenAuth) {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/register`,
-                    {
-                        method: "POST",
-                        body: JSON.stringify(credential),
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json",
-                        },
-                    },
-                );
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(JSON.stringify(data));
-                }
-
-                console.log("Register", { credential, data });
-
-                return { access_token: data.access_token };
+            name: "Register",
+            credentials: {
+                username: { label: "Username", type: "text" },
+                email: { label: "Email", type: "email" },
+                password: { label: "Password", type: "password" },
             },
-        }),
-        CredentialsProvider({
-            name: "Login",
-            id: "login",
-            // @ts-ignore
-            async authorize(credentials: Credentials, req) {
-                console.log("Login Credential", credentials);
-
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`,
-                    {
+            async authorize(credentials) {
+                if (!credentials) return null;
+                try {
+                    const response = await fetch(`${API_URL}/register`, {
                         method: "POST",
                         body: JSON.stringify(credentials),
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
                         },
-                    },
-                );
+                    });
 
-                const data = await response.json();
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || "Registration failed");
+                    }
 
-                if (!response.ok) {
-                    console.log("Hello World: ");
-                    console.error(data);
-                    throw new Error(JSON.stringify(data));
+                    const data = await response.json();
+                    return { access_token: data.access_token } as any;
+                } catch (error) {
+                    console.error("Registration error:", error);
+                    throw error;
                 }
+            },
+        }),
+        CredentialsProvider({
+            name: "Login",
+            id: "login",
+            credentials: {
+                email: { label: "Email", type: "email" },
+                password: { label: "Password", type: "password" },
+            },
+            async authorize(credentials) {
+                if (!credentials) return null;
+                try {
+                    const response = await fetch(`${API_URL}/login`, {
+                        method: "POST",
+                        body: JSON.stringify(credentials),
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    });
 
-                return { access_token: data.access_token };
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || "Login failed");
+                    }
+
+                    const data = await response.json();
+                    return { access_token: data.access_token } as any;
+                } catch (error) {
+                    console.error("Login error:", error);
+                    throw new Error(error || "Login failed");
+                }
             },
         }),
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            console.log("Sign IN", {
-                user,
-                account,
-                profile,
-                email,
-                credentials,
-            });
-
-            return true;
-        },
-        // async redirect({ url, baseUrl }) {
-        //     return baseUrl;
-        // },
-        async jwt({ token, user, account, profile, isNewUser }) {
-            // console.log('Token',{token, user, account, profile})
-            if (!!user) {
+        async jwt({ token, user }) {
+            if (user) {
                 token.user = user.user;
                 token.access_token = user.access_token;
             }
             return token;
         },
         async session({ session, token }) {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user`,
-                {
+            try {
+                const response = await fetch(`${API_URL}/api/user`, {
                     headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
@@ -226,40 +224,46 @@ export const authOptions: NextAuthOptions = {
                             ? `Bearer ${token.access_token}`
                             : "",
                     },
-                },
-            );
+                });
 
-            if (!response.ok) {
-                throw response.body;
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data");
+                }
+
+                const user = await response.json();
+                return {
+                    ...session,
+                    user: user,
+                    access_token: token.access_token,
+                };
+            } catch (error) {
+                console.error("Session error:", error);
+                throw error;
             }
-            const user = await response.json();
-            return {
-                ...session,
-                user: user,
-                access_token: token.access_token,
-            };
         },
     },
     events: {
-        async signOut({ token, session }) {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`,
-                {
+        async signOut({ token }) {
+            try {
+                const response = await fetch(`${API_URL}/logout`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token.access_token}`,
-                        Referer: "http://127.0.0.1:8000",
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     },
-                },
-            );
+                });
 
-            if (!response.ok) {
-                throw response.body;
+                if (!response.ok) {
+                    throw new Error("Logout failed");
+                }
+            } catch (error) {
+                console.error("Logout error:", error);
+                throw error;
             }
-            const data = response.json();
-            // console.log('Logout Response', data);
         },
     },
+    debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);

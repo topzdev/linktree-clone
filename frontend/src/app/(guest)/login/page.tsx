@@ -30,6 +30,8 @@ const Page = (props: Props) => {
     const onSubmit = handleSubmit(async (data) => {
         try {
             const response = await login(data);
+
+            console.log(response);
         } catch (e: any) {
             console.log(e);
             toast({
